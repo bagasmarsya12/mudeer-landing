@@ -10,7 +10,7 @@ export default function Home() {
         <p className="text-slate-400 text-lg mb-8">
           Choose a landing page design
         </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
           <Link
             href="/page1"
             className="px-8 py-4 bg-gradient-to-r from-[#D4AF37] to-yellow-600 text-[#0A1628] rounded-xl font-semibold text-lg hover:opacity-90 transition-opacity shadow-lg shadow-yellow-600/20"
@@ -34,6 +34,12 @@ export default function Home() {
             className="px-8 py-4 bg-white text-slate-900 rounded-xl font-semibold text-lg hover:bg-slate-100 transition-all shadow-lg shadow-white/20 border border-slate-200"
           >
             Page 4 - Professional (Light)
+          </Link>
+          <Link
+            href="/page5"
+            className="px-8 py-4 bg-gradient-to-r from-[#E6C08E] to-[#2DD4BF] text-[#070B1F] rounded-xl font-semibold text-lg hover:opacity-95 transition-all shadow-lg shadow-black/30 border border-white/10"
+          >
+            Page 5 - Royal Luxe
           </Link>
         </div>
         <div className="pt-8 border-t border-white/10 mt-8">
