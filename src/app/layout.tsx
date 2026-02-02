@@ -1,7 +1,12 @@
 import type { Metadata } from 'next';
 import './globals.css';
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000');
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: 'The Mudeer | Elite Property Management Platform',
   description:
     'The definitive digital ecosystem for elite developers and asset managers. Command your real estate empire with The Mudeer.',
