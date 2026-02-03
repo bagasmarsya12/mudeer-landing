@@ -681,7 +681,7 @@ const SolutionsSection = () => {
             <br />real estate
           </h2>
           <p className="text-lg text-slate-500 max-w-2xl mx-auto">
-            Whether you're a developer, property manager, or investor, 
+            Whether you’re a developer, property manager, or investor, 
             The Mudeer adapts to your specific needs.
           </p>
         </motion.div>
@@ -937,7 +937,7 @@ const CTASection = () => {
             <br />property management?
           </h2>
           <p className="text-xl text-slate-400 mb-10">
-            Join 500+ property managers who've already made the switch.
+            Join 500+ property managers who’ve already made the switch.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <motion.button

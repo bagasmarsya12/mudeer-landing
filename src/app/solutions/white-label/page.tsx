@@ -195,8 +195,8 @@ export default function WhiteLabelPage() {
                 <h3 className="text-[#D4AF37] text-sm tracking-[0.2em] uppercase mb-4">Success Story</h3>
                 <h4 className="font-['Cormorant_Garamond'] text-3xl sm:text-4xl mb-6">How Al-Rashid Group Transformed Their Business</h4>
                 <p className="text-[#CBC5CE] leading-relaxed mb-6">
-                  "The white label solution allowed us to offer a premium technology platform to our clients 
-                  without the massive investment in development. Within 6 months, we increased our client base by 40%."
+                  “The white label solution allowed us to offer a premium technology platform to our clients
+                  without the massive investment in development. Within 6 months, we increased our client base by 40%.”
                 </p>
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 bg-[#D4AF37] rounded-full flex items-center justify-center text-[#0A1628] font-bold">MR</div>

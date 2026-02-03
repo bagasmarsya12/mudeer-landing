@@ -19,15 +19,6 @@ import {
 } from 'lucide-react';
 import { LanguageProvider, useLanguage } from '@/lib/LanguageContext';
 
-const palette = {
-  base: 'bg-[#070B1F]',
-  ink: '#070B1F',
-  accentMetal: '#E6C08E', // rose-gold / champagne
-  accentJade: '#2DD4BF',
-  accentRoyal: '#7C3AED',
-  sand: '#F6F3ED',
-};
-
 const Shell = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="min-h-screen bg-[#070B1F] text-white">

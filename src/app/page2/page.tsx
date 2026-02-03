@@ -13,21 +13,6 @@ const fadeInUp = {
   viewport: { once: true },
 };
 
-const fadeIn = {
-  initial: { opacity: 0 },
-  whileInView: { opacity: 1 },
-  viewport: { once: true },
-};
-
-const staggerContainer = {
-  initial: {},
-  whileInView: {
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-};
-
 // ============================================
 // CONTACT MODAL COMPONENT
 // ============================================
@@ -518,7 +503,7 @@ const HeroSection = ({ onContactClick }: { onContactClick: (method: 'form' | 'em
 // ============================================
 // THREE PILLARS SECTION
 // ============================================
-const ThreePillarsSection = ({ onContactClick, onWhiteLabelClick }: { onContactClick: (method: 'form' | 'email') => void; onWhiteLabelClick: () => void }) => {
+const ThreePillarsSection = ({ onWhiteLabelClick }: { onWhiteLabelClick: () => void }) => {
   const pillars = [
     {
       id: 'platform',
@@ -625,16 +610,16 @@ const ThreePillarsSection = ({ onContactClick, onWhiteLabelClick }: { onContactC
                     </li>
                   ))}
                 </ul>
-                {pillar.onClick ? (
-                  <button onClick={onWhiteLabelClick} className="text-[#D4AF37] text-xs sm:text-sm font-medium flex items-center gap-2 group-hover:gap-3 transition-all">
-                    {pillar.linkText}
-                    <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-                  </button>
-                ) : (
+                {pillar.link ? (
                   <Link href={pillar.link} className="text-[#D4AF37] text-xs sm:text-sm font-medium flex items-center gap-2 group-hover:gap-3 transition-all">
                     {pillar.linkText}
                     <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
                   </Link>
+                ) : (
+                  <button onClick={onWhiteLabelClick} className="text-[#D4AF37] text-xs sm:text-sm font-medium flex items-center gap-2 group-hover:gap-3 transition-all">
+                    {pillar.linkText}
+                    <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                  </button>
                 )}
               </div>
             </motion.div>
@@ -804,7 +789,7 @@ export default function Page2() {
       <WhiteLabelWizard isOpen={whiteLabelOpen} onClose={() => setWhiteLabelOpen(false)} />
       <Header onContactClick={openContact} />
       <HeroSection onContactClick={openContact} />
-      <ThreePillarsSection onContactClick={openContact} onWhiteLabelClick={() => setWhiteLabelOpen(true)} />
+      <ThreePillarsSection onWhiteLabelClick={() => setWhiteLabelOpen(true)} />
       <HowItWorksSection onContactClick={openContact} />
       <ContactSection onContactClick={openContact} />
       <Footer onContactClick={openContact} />

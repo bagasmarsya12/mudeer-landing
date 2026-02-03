@@ -159,8 +159,8 @@ export default function HausbuddyPage() {
                   </div>
                 </div>
                 <p className="text-[#CBC5CE] italic">
-                  "Hausbuddy has made my rental experience so much smoother. Paying rent takes seconds, 
-                  and I love being able to track my maintenance requests in real-time."
+                  “Hausbuddy has made my rental experience so much smoother. Paying rent takes seconds,
+                  and I love being able to track my maintenance requests in real-time.”
                 </p>
               </div>
             </div>
