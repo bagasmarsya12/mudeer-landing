@@ -1,0 +1,2022 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Mudeer | Property Management, Mastered</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy-deep: #0A1628;
+            --navy-medium: #0F1D2F;
+            --navy-light: #1A2B42;
+            --gold: #D4AF37;
+            --gold-light: #E8C968;
+            --gold-dark: #B8962E;
+            --teal: #00A79D;
+            --teal-light: #2EC4B6;
+            --sand: #CBC5CE;
+            --sand-light: #F5F3F0;
+            --text-light: #F8F9FA;
+            --text-muted: #9CA3AF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--navy-deep);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* Utility Classes */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 60px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 24px;
+            }
+        }
+
+        /* ========== HEADER ========== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 20px 0;
+            transition: all 0.4s ease;
+            background: transparent;
+        }
+
+        header.scrolled {
+            background: rgba(10, 22, 40, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 44px;
+            height: 44px;
+        }
+
+        .logo-text {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            font-size: 18px;
+            letter-spacing: 0.2em;
+            color: var(--text-light);
+            text-transform: uppercase;
+        }
+
+        .logo-subtitle {
+            font-size: 9px;
+            letter-spacing: 0.15em;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-top: 2px;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--gold);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .lang-switcher {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-muted);
+            font-size: 13px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .lang-switcher:hover {
+            color: var(--gold);
+        }
+
+        .btn-portal {
+            padding: 12px 24px;
+            border: 1px solid var(--gold);
+            background: transparent;
+            color: var(--gold);
+            font-family: 'Outfit', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn-portal:hover {
+            background: var(--gold);
+            color: var(--navy-deep);
+        }
+
+        /* Mobile Menu */
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .mobile-toggle span {
+            width: 24px;
+            height: 2px;
+            background: var(--gold);
+            transition: all 0.3s ease;
+        }
+
+        @media (max-width: 1024px) {
+            nav {
+                display: none;
+            }
+            .mobile-toggle {
+                display: flex;
+            }
+        }
+
+        /* ========== HERO SECTION ========== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 100px;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                135deg,
+                rgba(10, 22, 40, 0.97) 0%,
+                rgba(10, 22, 40, 0.85) 50%,
+                rgba(10, 22, 40, 0.75) 100%
+            );
+            z-index: 1;
+        }
+
+        .hero-bg-image {
+            position: absolute;
+            inset: 0;
+            background: 
+                radial-gradient(ellipse at 80% 20%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 20% 80%, rgba(0, 167, 157, 0.05) 0%, transparent 50%),
+                linear-gradient(180deg, var(--navy-deep) 0%, var(--navy-medium) 100%);
+        }
+
+        /* Animated Grid Lines */
+        .grid-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            opacity: 0.15;
+            background-image: 
+                linear-gradient(var(--gold) 1px, transparent 1px),
+                linear-gradient(90deg, var(--gold) 1px, transparent 1px);
+            background-size: 100px 100px;
+            animation: gridPulse 8s ease-in-out infinite;
+        }
+
+        @keyframes gridPulse {
+            0%, 100% { opacity: 0.08; }
+            50% { opacity: 0.15; }
+        }
+
+        /* Floating Particles */
+        .particles {
+            position: absolute;
+            inset: 0;
+            z-index: 3;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--gold);
+            border-radius: 50%;
+            opacity: 0;
+            animation: floatParticle 15s infinite;
+        }
+
+        .particle:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .particle:nth-child(2) { left: 25%; animation-delay: 2s; }
+        .particle:nth-child(3) { left: 40%; animation-delay: 4s; }
+        .particle:nth-child(4) { left: 55%; animation-delay: 6s; }
+        .particle:nth-child(5) { left: 70%; animation-delay: 8s; }
+        .particle:nth-child(6) { left: 85%; animation-delay: 10s; }
+
+        @keyframes floatParticle {
+            0% {
+                transform: translateY(100vh) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-100px) scale(1);
+                opacity: 0;
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            max-width: 900px;
+        }
+
+        .hero-tagline {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 32px;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.2s forwards;
+        }
+
+        .hero-tagline span {
+            font-size: 12px;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+
+        .hero-tagline::before,
+        .hero-tagline::after {
+            content: '';
+            width: 40px;
+            height: 1px;
+            background: var(--gold);
+        }
+
+        .hero h1 {
+            font-size: clamp(48px, 8vw, 96px);
+            line-height: 1.05;
+            margin-bottom: 32px;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.4s forwards;
+        }
+
+        .hero h1 .highlight {
+            color: var(--gold);
+            position: relative;
+        }
+
+        .hero-subtitle {
+            font-size: 20px;
+            font-weight: 300;
+            color: var(--sand);
+            max-width: 600px;
+            margin-bottom: 48px;
+            line-height: 1.7;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.6s forwards;
+        }
+
+        .hero-ctas {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.8s forwards;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 18px 40px;
+            background: var(--gold);
+            color: var(--navy-deep);
+            font-family: 'Outfit', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--gold-light);
+            transform: translateX(-100%);
+            transition: transform 0.4s ease;
+        }
+
+        .btn-primary:hover::before {
+            transform: translateX(0);
+        }
+
+        .btn-primary span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-light);
+            font-size: 14px;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            color: var(--gold);
+            gap: 16px;
+        }
+
+        .btn-secondary svg {
+            transition: transform 0.3s ease;
+        }
+
+        .btn-secondary:hover svg {
+            transform: translateX(4px);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            opacity: 0;
+            animation: fadeIn 1s ease 1.5s forwards;
+        }
+
+        .scroll-indicator span {
+            font-size: 11px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        .scroll-line {
+            width: 1px;
+            height: 60px;
+            background: linear-gradient(to bottom, var(--gold), transparent);
+            animation: scrollPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes scrollPulse {
+            0%, 100% { transform: scaleY(1); opacity: 1; }
+            50% { transform: scaleY(0.5); opacity: 0.5; }
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        /* ========== ECOSYSTEM SECTION ========== */
+        .ecosystem {
+            padding: 160px 0;
+            background: var(--sand-light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ecosystem::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(212, 175, 55, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(0, 167, 157, 0.03) 0%, transparent 50%);
+        }
+
+        .ecosystem-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        @media (max-width: 968px) {
+            .ecosystem-inner {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+        }
+
+        .ecosystem-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 11px;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--gold-dark);
+            margin-bottom: 24px;
+            position: relative;
+            padding-left: 48px;
+        }
+
+        .section-label::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 32px;
+            height: 1px;
+            background: var(--gold);
+        }
+
+        .ecosystem h2 {
+            font-size: clamp(40px, 5vw, 64px);
+            color: var(--navy-deep);
+            margin-bottom: 32px;
+            line-height: 1.1;
+        }
+
+        .ecosystem-text {
+            font-size: 18px;
+            color: var(--navy-light);
+            line-height: 1.8;
+            max-width: 520px;
+        }
+
+        .ecosystem-visual {
+            position: relative;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .infinity-loop {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .loop-item {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .loop-item.mudeer {
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .loop-item.hausbuddy {
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .loop-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+        }
+
+        .loop-icon.gold {
+            background: var(--gold);
+            color: var(--navy-deep);
+            box-shadow: 0 20px 60px rgba(212, 175, 55, 0.3);
+        }
+
+        .loop-icon.teal {
+            background: var(--teal);
+            color: white;
+            box-shadow: 0 20px 60px rgba(0, 167, 157, 0.3);
+        }
+
+        .loop-label {
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--navy-deep);
+        }
+
+        .building-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120px;
+            height: 180px;
+            background: linear-gradient(180deg, var(--navy-light) 0%, var(--navy-deep) 100%);
+            border-radius: 8px 8px 0 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 20px;
+            gap: 10px;
+        }
+
+        .building-windows {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            padding: 0 15px;
+        }
+
+        .window {
+            width: 20px;
+            height: 24px;
+            background: rgba(212, 175, 55, 0.3);
+            border-radius: 2px;
+            animation: windowGlow 3s ease-in-out infinite;
+        }
+
+        .window:nth-child(odd) {
+            animation-delay: 0.5s;
+        }
+
+        @keyframes windowGlow {
+            0%, 100% { background: rgba(212, 175, 55, 0.2); }
+            50% { background: rgba(212, 175, 55, 0.6); }
+        }
+
+        .connection-line {
+            position: absolute;
+            left: 50%;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--gold), var(--teal));
+            border-radius: 2px;
+        }
+
+        .connection-line.top {
+            top: 100px;
+            height: 80px;
+            transform: translateX(-50%);
+        }
+
+        .connection-line.bottom {
+            bottom: 100px;
+            height: 80px;
+            transform: translateX(-50%);
+        }
+
+        /* ========== MUDEER PLATFORM SECTION ========== */
+        .mudeer-section {
+            padding: 160px 0;
+            background: var(--navy-deep);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mudeer-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+
+        .cockpit-overlay {
+            position: absolute;
+            inset: 0;
+            background: 
+                radial-gradient(ellipse at 50% 0%, rgba(212, 175, 55, 0.05) 0%, transparent 60%),
+                radial-gradient(circle at 10% 90%, rgba(0, 167, 157, 0.03) 0%, transparent 40%);
+            pointer-events: none;
+        }
+
+        .mudeer-header {
+            text-align: center;
+            margin-bottom: 80px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .mudeer-section .section-label {
+            color: var(--gold);
+        }
+
+        .mudeer-section .section-label::before {
+            background: var(--gold);
+        }
+
+        .mudeer-section h2 {
+            font-size: clamp(40px, 5vw, 72px);
+            margin-bottom: 24px;
+        }
+
+        .mudeer-section h2 .gold {
+            color: var(--gold);
+        }
+
+        .mudeer-hook {
+            font-size: 20px;
+            color: var(--sand);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* White Label Box */
+        .white-label-box {
+            background: linear-gradient(135deg, var(--navy-medium) 0%, var(--navy-light) 100%);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 16px;
+            padding: 60px;
+            margin-bottom: 100px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .white-label-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        @media (max-width: 968px) {
+            .white-label-box {
+                grid-template-columns: 1fr;
+                padding: 40px;
+            }
+        }
+
+        .white-label-content h3 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: var(--gold);
+        }
+
+        .white-label-content p {
+            font-size: 17px;
+            color: var(--sand);
+            line-height: 1.8;
+        }
+
+        .white-label-visual {
+            position: relative;
+            background: var(--navy-deep);
+            border-radius: 12px;
+            padding: 24px;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .wl-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .wl-logo-placeholder {
+            width: 40px;
+            height: 40px;
+            border: 2px dashed var(--gold);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            color: var(--gold);
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        .wl-brand-placeholder {
+            padding: 8px 16px;
+            border: 1px dashed var(--gold);
+            border-radius: 4px;
+            font-size: 12px;
+            color: var(--gold);
+            letter-spacing: 0.1em;
+        }
+
+        .wl-metrics {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .wl-metric {
+            background: rgba(212, 175, 55, 0.05);
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+        }
+
+        .wl-metric-value {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--gold);
+        }
+
+        .wl-metric-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Platform Showcase */
+        .platform-showcase {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 24px;
+        }
+
+        @media (max-width: 1200px) {
+            .platform-showcase {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .platform-showcase {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .showcase-item {
+            background: var(--navy-medium);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            transition: all 0.4s ease;
+        }
+
+        .showcase-item:hover {
+            transform: translateY(-8px);
+            border-color: rgba(212, 175, 55, 0.3);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .showcase-screen {
+            aspect-ratio: 4/3;
+            background: var(--navy-deep);
+            padding: 16px;
+            position: relative;
+        }
+
+        .screen-header {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 12px;
+        }
+
+        .screen-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        .screen-dot.red { background: #ff5f57; }
+        .screen-dot.yellow { background: #febc2e; }
+        .screen-dot.green { background: #28c840; }
+
+        .screen-content {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .screen-bar {
+            height: 8px;
+            background: rgba(212, 175, 55, 0.2);
+            border-radius: 4px;
+        }
+
+        .screen-bar.gold { background: var(--gold); width: 60%; }
+        .screen-bar.half { width: 80%; }
+        .screen-bar.short { width: 40%; }
+
+        .screen-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 6px;
+            margin-top: 8px;
+        }
+
+        .screen-box {
+            aspect-ratio: 1;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 4px;
+        }
+
+        .screen-box.highlight {
+            background: rgba(212, 175, 55, 0.3);
+        }
+
+        .showcase-caption {
+            padding: 24px;
+        }
+
+        .showcase-caption h4 {
+            font-size: 16px;
+            color: var(--gold);
+            margin-bottom: 8px;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+        }
+
+        .showcase-caption p {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* ========== CONNECTION TRANSITION ========== */
+        .connection-section {
+            padding: 120px 0;
+            background: linear-gradient(180deg, var(--navy-deep) 0%, var(--navy-medium) 50%, var(--sand-light) 100%);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .data-flow {
+            position: relative;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .flow-line {
+            width: 300px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gold), var(--teal));
+            border-radius: 2px;
+            position: relative;
+        }
+
+        .flow-dot {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--gold);
+            top: 50%;
+            transform: translateY(-50%);
+            animation: flowMove 2s ease-in-out infinite;
+            box-shadow: 0 0 20px var(--gold);
+        }
+
+        @keyframes flowMove {
+            0% { left: 0; background: var(--gold); box-shadow: 0 0 20px var(--gold); }
+            100% { left: calc(100% - 12px); background: var(--teal); box-shadow: 0 0 20px var(--teal); }
+        }
+
+        .connection-text {
+            margin-top: 40px;
+        }
+
+        .connection-text h3 {
+            font-size: 32px;
+            color: var(--navy-deep);
+            margin-bottom: 8px;
+        }
+
+        .connection-text span {
+            color: var(--gold);
+        }
+
+        /* ========== HAUSBUDDY SECTION ========== */
+        .hausbuddy-section {
+            padding: 160px 0;
+            background: var(--sand-light);
+            position: relative;
+        }
+
+        .hausbuddy-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: 
+                radial-gradient(circle at 80% 20%, rgba(0, 167, 157, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 20% 80%, rgba(212, 175, 55, 0.03) 0%, transparent 50%);
+        }
+
+        .hausbuddy-header {
+            text-align: center;
+            margin-bottom: 80px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hausbuddy-section .section-label {
+            color: var(--teal);
+        }
+
+        .hausbuddy-section .section-label::before {
+            background: var(--teal);
+        }
+
+        .hausbuddy-section h2 {
+            font-size: clamp(40px, 5vw, 72px);
+            color: var(--navy-deep);
+            margin-bottom: 24px;
+        }
+
+        .hausbuddy-section h2 .teal {
+            color: var(--teal);
+        }
+
+        .hausbuddy-hook {
+            font-size: 20px;
+            color: var(--navy-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Phone Showcase */
+        .phone-showcase {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 2;
+        }
+
+        .phone-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .phone-frame {
+            width: 220px;
+            height: 440px;
+            background: var(--navy-deep);
+            border-radius: 36px;
+            padding: 12px;
+            box-shadow: 0 40px 80px rgba(10, 22, 40, 0.3);
+            transition: transform 0.4s ease;
+        }
+
+        .phone-frame:hover {
+            transform: translateY(-12px);
+        }
+
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background: white;
+            border-radius: 28px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .phone-notch {
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 24px;
+            background: var(--navy-deep);
+            border-radius: 12px;
+            z-index: 10;
+        }
+
+        .phone-content {
+            padding: 40px 16px 16px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .app-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .app-greeting {
+            font-size: 11px;
+            color: var(--navy-deep);
+            font-weight: 600;
+        }
+
+        .app-avatar {
+            width: 28px;
+            height: 28px;
+            background: var(--teal);
+            border-radius: 50%;
+        }
+
+        .app-card {
+            background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy-light) 100%);
+            border-radius: 12px;
+            padding: 16px;
+            color: white;
+        }
+
+        .app-card-label {
+            font-size: 9px;
+            opacity: 0.7;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .app-card-value {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--gold);
+        }
+
+        .app-actions {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+        }
+
+        .app-action {
+            background: var(--sand-light);
+            border-radius: 8px;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .app-action-icon {
+            font-size: 16px;
+            margin-bottom: 4px;
+        }
+
+        .app-action-label {
+            font-size: 9px;
+            color: var(--navy-light);
+            font-weight: 500;
+        }
+
+        .phone-caption {
+            text-align: center;
+        }
+
+        .phone-caption h4 {
+            font-size: 15px;
+            color: var(--navy-deep);
+            margin-bottom: 4px;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+        }
+
+        .phone-caption p {
+            font-size: 13px;
+            color: var(--navy-light);
+        }
+
+        /* ========== TRUST SECTION ========== */
+        .trust-section {
+            padding: 160px 0;
+            background: var(--navy-deep);
+            position: relative;
+        }
+
+        .trust-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+
+        .trust-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .trust-section .section-label {
+            color: var(--gold);
+        }
+
+        .trust-section h2 {
+            font-size: clamp(36px, 4vw, 56px);
+        }
+
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 48px;
+        }
+
+        @media (max-width: 768px) {
+            .trust-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+
+        .trust-item {
+            text-align: center;
+            padding: 48px 32px;
+            background: var(--navy-medium);
+            border-radius: 16px;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            transition: all 0.4s ease;
+        }
+
+        .trust-item:hover {
+            border-color: rgba(212, 175, 55, 0.3);
+            transform: translateY(-8px);
+        }
+
+        .trust-icon {
+            width: 72px;
+            height: 72px;
+            margin: 0 auto 24px;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .trust-icon svg {
+            width: 32px;
+            height: 32px;
+            stroke: var(--gold);
+        }
+
+        .trust-item h3 {
+            font-size: 22px;
+            color: var(--gold);
+            margin-bottom: 12px;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+        }
+
+        .trust-item p {
+            font-size: 15px;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        /* ========== FINAL CTA SECTION ========== */
+        .final-cta {
+            padding: 160px 0;
+            background: var(--navy-deep);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .geometric-pattern {
+            position: absolute;
+            inset: 0;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0L60 30L30 60L0 30L30 0z' fill='none' stroke='%23D4AF37' stroke-width='1'/%3E%3C/svg%3E");
+            background-size: 60px 60px;
+        }
+
+        .final-cta-inner {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .final-cta h2 {
+            font-size: clamp(40px, 5vw, 64px);
+            margin-bottom: 20px;
+        }
+
+        .final-cta h2 .gold {
+            color: var(--gold);
+        }
+
+        .final-cta-subtitle {
+            font-size: 20px;
+            color: var(--sand);
+            margin-bottom: 48px;
+        }
+
+        .final-cta .btn-primary {
+            font-size: 16px;
+            padding: 22px 56px;
+        }
+
+        /* ========== FOOTER ========== */
+        footer {
+            background: var(--navy-medium);
+            padding: 80px 0 40px;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr repeat(4, 1fr);
+            gap: 48px;
+            margin-bottom: 60px;
+        }
+
+        @media (max-width: 968px) {
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 568px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .footer-brand .logo {
+            margin-bottom: 20px;
+        }
+
+        .footer-brand p {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.7;
+            max-width: 280px;
+        }
+
+        .footer-column h4 {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 24px;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 12px;
+        }
+
+        .footer-column a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column a:hover {
+            color: var(--gold);
+        }
+
+        .footer-bottom {
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-trust {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .footer-trust strong {
+            color: var(--gold);
+        }
+
+        .footer-copyright {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        /* ========== ANIMATIONS ON SCROLL ========== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="#" class="logo">
+                    <svg class="logo-icon" viewBox="0 0 44 44" fill="none">
+                        <rect x="6" y="8" width="32" height="6" rx="2" fill="#D4AF37"/>
+                        <rect x="6" y="19" width="26" height="6" rx="2" fill="#D4AF37"/>
+                        <rect x="6" y="30" width="20" height="6" rx="2" fill="#D4AF37"/>
+                    </svg>
+                    <div>
+                        <div class="logo-text">The Mudeer</div>
+                        <div class="logo-subtitle">Property Management, Mastered</div>
+                    </div>
+                </a>
+                
+                <nav>
+                    <a href="#solutions">Solutions</a>
+                    <a href="#white-label">White Label</a>
+                    <a href="#hausbuddy">Hausbuddy App</a>
+                    <a href="#contact">Contact</a>
+                </nav>
+
+                <div class="header-right">
+                    <div class="lang-switcher">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                        </svg>
+                        EN
+                    </div>
+                    <a href="#portal" class="btn-portal">Client Portal Login</a>
+                </div>
+
+                <div class="mobile-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg">
+            <div class="hero-bg-image"></div>
+            <div class="grid-overlay"></div>
+            <div class="particles">
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+            </div>
+        </div>
+        
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-tagline">
+                    <span>The Future of Property Management</span>
+                </div>
+                <h1>Command Your<br>Real Estate <span class="highlight">Empire.</span></h1>
+                <p class="hero-subtitle">The definitive digital ecosystem for elite developers and asset managers. Bridging physical assets with executive digital control.</p>
+                <div class="hero-ctas">
+                    <a href="#demo" class="btn-primary">
+                        <span>Request Executive Demo</span>
+                    </a>
+                    <a href="#white-label" class="btn-secondary">
+                        Explore White Label Solutions
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="scroll-indicator">
+            <span>Scroll</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- Ecosystem Section -->
+    <section class="ecosystem">
+        <div class="container">
+            <div class="ecosystem-inner">
+                <div class="ecosystem-content reveal">
+                    <span class="section-label">The Seamless Ecosystem</span>
+                    <h2>Two Horizons.<br>One Pulse.</h2>
+                    <p class="ecosystem-text">We harmonize property management complexity. The Mudeer gives managers absolute clarity. Hausbuddy gives residents absolute convenience. A synchronized heartbeat for your entire portfolio.</p>
+                </div>
+                <div class="ecosystem-visual reveal">
+                    <div class="infinity-loop">
+                        <div class="loop-item mudeer">
+                            <div class="loop-icon gold">
+                                <svg width="32" height="32" viewBox="0 0 44 44" fill="none">
+                                    <rect x="6" y="10" width="28" height="5" rx="2" fill="#0A1628"/>
+                                    <rect x="6" y="19" width="22" height="5" rx="2" fill="#0A1628"/>
+                                    <rect x="6" y="28" width="16" height="5" rx="2" fill="#0A1628"/>
+                                </svg>
+                            </div>
+                            <span class="loop-label">The Mudeer</span>
+                        </div>
+                        
+                        <div class="connection-line top"></div>
+                        
+                        <div class="building-icon">
+                            <div class="building-windows">
+                                <div class="window"></div>
+                                <div class="window"></div>
+                                <div class="window"></div>
+                                <div class="window"></div>
+                                <div class="window"></div>
+                                <div class="window"></div>
+                                <div class="window"></div>
+                                <div class="window"></div>
+                                <div class="window"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="connection-line bottom"></div>
+                        
+                        <div class="loop-item hausbuddy">
+                            <span class="loop-label">Hausbuddy</span>
+                            <div class="loop-icon teal">📱</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mudeer Platform Section -->
+    <section class="mudeer-section" id="solutions">
+        <div class="cockpit-overlay"></div>
+        <div class="container">
+            <div class="mudeer-header reveal">
+                <span class="section-label">B2B Platform</span>
+                <h2>Executive Control. <span class="gold">Redefined.</span></h2>
+                <p class="mudeer-hook">Forget cluttered spreadsheets. Welcome to the operating system for modern real estate.</p>
+            </div>
+
+            <!-- White Label Box -->
+            <div class="white-label-box reveal" id="white-label">
+                <div class="white-label-content">
+                    <h3>Your Prestige. Powered by Our Engine.</h3>
+                    <p>Significant portfolios deserve their own digital identity. Full white-label deployment available. Your logo. Your domain. Your brand experience. We remain the silent engine beneath your success.</p>
+                </div>
+                <div class="white-label-visual">
+                    <div class="wl-header">
+                        <div class="wl-logo-placeholder">YOUR<br>LOGO</div>
+                        <div class="wl-brand-placeholder">YOUR BRAND HERE</div>
+                    </div>
+                    <div class="wl-metrics">
+                        <div class="wl-metric">
+                            <div class="wl-metric-value">847</div>
+                            <div class="wl-metric-label">Units</div>
+                        </div>
+                        <div class="wl-metric">
+                            <div class="wl-metric-value">96%</div>
+                            <div class="wl-metric-label">Occupancy</div>
+                        </div>
+                        <div class="wl-metric">
+                            <div class="wl-metric-value">2.4M</div>
+                            <div class="wl-metric-label">AED / Month</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Platform Showcase -->
+            <div class="platform-showcase">
+                <div class="showcase-item reveal">
+                    <div class="showcase-screen">
+                        <div class="screen-header">
+                            <div class="screen-dot red"></div>
+                            <div class="screen-dot yellow"></div>
+                            <div class="screen-dot green"></div>
+                        </div>
+                        <div class="screen-content">
+                            <div class="screen-bar gold"></div>
+                            <div class="screen-bar half"></div>
+                            <div class="screen-grid">
+                                <div class="screen-box highlight"></div>
+                                <div class="screen-box"></div>
+                                <div class="screen-box"></div>
+                                <div class="screen-box"></div>
+                                <div class="screen-box highlight"></div>
+                                <div class="screen-box"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="showcase-caption">
+                        <h4>The Executive Overwatch</h4>
+                        <p>Financial health, occupancy metrics, and portfolio status at a glance.</p>
+                    </div>
+                </div>
+
+                <div class="showcase-item reveal">
+                    <div class="showcase-screen">
+                        <div class="screen-header">
+                            <div class="screen-dot red"></div>
+                            <div class="screen-dot yellow"></div>
+                            <div class="screen-dot green"></div>
+                        </div>
+                        <div class="screen-content">
+                            <div class="screen-bar short"></div>
+                            <div class="screen-bar half"></div>
+                            <div class="screen-bar gold"></div>
+                            <div class="screen-bar half"></div>
+                            <div class="screen-bar short"></div>
+                        </div>
+                    </div>
+                    <div class="showcase-caption">
+                        <h4>Preventative Precision</h4>
+                        <p>Maintenance schedules, asset lifecycles, and digital property records.</p>
+                    </div>
+                </div>
+
+                <div class="showcase-item reveal">
+                    <div class="showcase-screen">
+                        <div class="screen-header">
+                            <div class="screen-dot red"></div>
+                            <div class="screen-dot yellow"></div>
+                            <div class="screen-dot green"></div>
+                        </div>
+                        <div class="screen-content">
+                            <div class="screen-grid">
+                                <div class="screen-box"></div>
+                                <div class="screen-box highlight"></div>
+                                <div class="screen-box"></div>
+                            </div>
+                            <div class="screen-bar gold"></div>
+                            <div class="screen-bar half"></div>
+                        </div>
+                    </div>
+                    <div class="showcase-caption">
+                        <h4>Revenue Clarity</h4>
+                        <p>Automated rent collection, arrears tracking, and real-time cash flow in AED.</p>
+                    </div>
+                </div>
+
+                <div class="showcase-item reveal">
+                    <div class="showcase-screen">
+                        <div class="screen-header">
+                            <div class="screen-dot red"></div>
+                            <div class="screen-dot yellow"></div>
+                            <div class="screen-dot green"></div>
+                        </div>
+                        <div class="screen-content">
+                            <div class="screen-bar short"></div>
+                            <div class="screen-bar gold"></div>
+                            <div class="screen-bar half"></div>
+                            <div class="screen-bar short"></div>
+                        </div>
+                    </div>
+                    <div class="showcase-caption">
+                        <h4>Broadcast Command</h4>
+                        <p>Building-wide announcements or individual tenant notices in seconds.</p>
+                    </div>
+                </div>
+
+                <div class="showcase-item reveal">
+                    <div class="showcase-screen">
+                        <div class="screen-header">
+                            <div class="screen-dot red"></div>
+                            <div class="screen-dot yellow"></div>
+                            <div class="screen-dot green"></div>
+                        </div>
+                        <div class="screen-content">
+                            <div class="screen-bar gold"></div>
+                            <div class="screen-bar half"></div>
+                            <div class="screen-bar"></div>
+                            <div class="screen-bar short"></div>
+                        </div>
+                    </div>
+                    <div class="showcase-caption">
+                        <h4>Boardroom-Ready Data</h4>
+                        <p>Professional PDF reports generated instantly for stakeholders.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Connection Transition -->
+    <section class="connection-section">
+        <div class="container">
+            <div class="data-flow">
+                <div class="flow-line">
+                    <div class="flow-dot"></div>
+                </div>
+            </div>
+            <div class="connection-text">
+                <h3>Instant Synchronization. <span>Zero Latency.</span></h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hausbuddy Section -->
+    <section class="hausbuddy-section" id="hausbuddy">
+        <div class="container">
+            <div class="hausbuddy-header reveal">
+                <span class="section-label">Tenant Mobile App</span>
+                <h2>Elevate the <span class="teal">Resident Experience.</span></h2>
+                <p class="hausbuddy-hook">Satisfied tenants renew leases. Hausbuddy transforms a rented apartment into a connected home.</p>
+            </div>
+
+            <div class="phone-showcase">
+                <div class="phone-item reveal">
+                    <div class="phone-frame">
+                        <div class="phone-screen">
+                            <div class="phone-notch"></div>
+                            <div class="phone-content">
+                                <div class="app-header">
+                                    <span class="app-greeting">Good Morning, Ahmed</span>
+                                    <div class="app-avatar"></div>
+                                </div>
+                                <div class="app-card">
+                                    <div class="app-card-label">Next Rent Due</div>
+                                    <div class="app-card-value">8,500 AED</div>
+                                </div>
+                                <div class="app-actions">
+                                    <div class="app-action">
+                                        <div class="app-action-icon">💳</div>
+                                        <div class="app-action-label">Pay Now</div>
+                                    </div>
+                                    <div class="app-action">
+                                        <div class="app-action-icon">🔧</div>
+                                        <div class="app-action-label">Request</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="phone-caption">
+                        <h4>Your Home, One Tap Away</h4>
+                        <p>Rent status, quick actions, building updates.</p>
+                    </div>
+                </div>
+
+                <div class="phone-item reveal">
+                    <div class="phone-frame">
+                        <div class="phone-screen">
+                            <div class="phone-notch"></div>
+                            <div class="phone-content">
+                                <div class="app-header">
+                                    <span class="app-greeting">Payments</span>
+                                    <div class="app-avatar"></div>
+                                </div>
+                                <div class="app-card">
+                                    <div class="app-card-label">Total Balance</div>
+                                    <div class="app-card-value">0 AED</div>
+                                </div>
+                                <div class="app-actions">
+                                    <div class="app-action">
+                                        <div class="app-action-icon">🍎</div>
+                                        <div class="app-action-label">Apple Pay</div>
+                                    </div>
+                                    <div class="app-action">
+                                        <div class="app-action-icon">💳</div>
+                                        <div class="app-action-label">Card</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="phone-caption">
+                        <h4>Frictionless Finance</h4>
+                        <p>Secure payments via Apple Pay or card.</p>
+                    </div>
+                </div>
+
+                <div class="phone-item reveal">
+                    <div class="phone-frame">
+                        <div class="phone-screen">
+                            <div class="phone-notch"></div>
+                            <div class="phone-content">
+                                <div class="app-header">
+                                    <span class="app-greeting">Amenities</span>
+                                    <div class="app-avatar"></div>
+                                </div>
+                                <div class="app-actions" style="grid-template-columns: repeat(2, 1fr);">
+                                    <div class="app-action">
+                                        <div class="app-action-icon">🏊</div>
+                                        <div class="app-action-label">Pool</div>
+                                    </div>
+                                    <div class="app-action">
+                                        <div class="app-action-icon">🏋️</div>
+                                        <div class="app-action-label">Gym</div>
+                                    </div>
+                                    <div class="app-action">
+                                        <div class="app-action-icon">🚗</div>
+                                        <div class="app-action-label">Parking</div>
+                                    </div>
+                                    <div class="app-action">
+                                        <div class="app-action-icon">🎾</div>
+                                        <div class="app-action-label">Tennis</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="phone-caption">
+                        <h4>The Lifestyle Concierge</h4>
+                        <p>Book facilities and services instantly.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Section -->
+    <section class="trust-section">
+        <div class="container">
+            <div class="trust-header reveal">
+                <span class="section-label">Why The Mudeer</span>
+                <h2>Engineered for High-Volume Portfolios.</h2>
+            </div>
+
+            <div class="trust-grid">
+                <div class="trust-item reveal">
+                    <div class="trust-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                    </div>
+                    <h3>Bank-Grade Security</h3>
+                    <p>Data sovereignty compliant. Enterprise-class encryption protects every transaction.</p>
+                </div>
+
+                <div class="trust-item reveal">
+                    <div class="trust-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                            <path d="M18.178 8c5.096 0 5.096 8 0 8-5.095 0-7.133-8-12.739-8-4.781 0-4.781 8 0 8 5.606 0 7.644-8 12.74-8z"/>
+                        </svg>
+                    </div>
+                    <h3>Infinite Scalability</h3>
+                    <p>From 5 towers to 500. Our infrastructure expands with your ambition.</p>
+                </div>
+
+                <div class="trust-item reveal">
+                    <div class="trust-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                            <circle cx="12" cy="12" r="3"/>
+                            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                        </svg>
+                    </div>
+                    <h3>German Engineering</h3>
+                    <p>Built on proven European technology. Adapted for Gulf market dynamics.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta" id="contact">
+        <div class="geometric-pattern"></div>
+        <div class="container">
+            <div class="final-cta-inner reveal">
+                <h2>Ready to <span class="gold">Modernize</span> Your Portfolio?</h2>
+                <p class="final-cta-subtitle">Let us discuss a tailored strategy for your properties.</p>
+                <a href="#demo" class="btn-primary">
+                    <span>Schedule a Consultation</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="logo">
+                        <svg class="logo-icon" viewBox="0 0 44 44" fill="none" style="width: 36px; height: 36px;">
+                            <rect x="6" y="8" width="32" height="6" rx="2" fill="#D4AF37"/>
+                            <rect x="6" y="19" width="26" height="6" rx="2" fill="#D4AF37"/>
+                            <rect x="6" y="30" width="20" height="6" rx="2" fill="#D4AF37"/>
+                        </svg>
+                        <div>
+                            <div class="logo-text" style="font-size: 14px;">The Mudeer</div>
+                        </div>
+                    </a>
+                    <p>The definitive digital ecosystem for elite property developers and asset managers.</p>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Solutions</h4>
+                    <ul>
+                        <li><a href="#">The Mudeer Platform</a></li>
+                        <li><a href="#">Hausbuddy App</a></li>
+                        <li><a href="#">White Label</a></li>
+                        <li><a href="#">Enterprise</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Press</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Cookie Settings</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="mailto:hello@themudeer.com">hello@themudeer.com</a></li>
+                        <li><a href="#">Dubai, UAE</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-trust">
+                    <strong>Global Footprint:</strong> Operating across Europe, Middle East, and Asia.
+                </div>
+                <div class="footer-copyright">
+                    © 2025 The Mudeer. All Rights Reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Header scroll effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Reveal on scroll
+        const reveals = document.querySelectorAll('.reveal');
+        
+        const revealOnScroll = () => {
+            reveals.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 100) {
+                    element.classList.add('active');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', revealOnScroll);
+        window.addEventListener('load', revealOnScroll);
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
