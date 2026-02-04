@@ -10,7 +10,7 @@ import { Header } from '@/components/Header';
 // CONTACT MODAL COMPONENT
 // ============================================
 const ContactModal = ({ isOpen, onClose, method }: { isOpen: boolean; onClose: () => void; method: 'form' | 'email' | null }) => {
-  const { isRTL, language } = useLanguage();
+  const { language } = useLanguage();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -133,7 +133,7 @@ const ContactModal = ({ isOpen, onClose, method }: { isOpen: boolean; onClose: (
 // WHITE LABEL WIZARD
 // ============================================
 const WhiteLabelWizard = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => {
-  const { isRTL, language } = useLanguage();
+  const { language } = useLanguage();
   const [step, setStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -334,7 +334,7 @@ const HeroSection = ({ onContactClick }: { onContactClick: (method: 'form' | 'em
 // ============================================
 // THREE PILLARS SECTION
 // ============================================
-const ThreePillarsSection = ({ onContactClick, onWhiteLabelClick }: { onContactClick: (method: 'form' | 'email') => void; onWhiteLabelClick: () => void }) => {
+const ThreePillarsSection = ({ onWhiteLabelClick }: { onWhiteLabelClick: () => void }) => {
   const { isRTL, language } = useLanguage();
 
   const content = {
@@ -450,7 +450,7 @@ const ThreePillarsSection = ({ onContactClick, onWhiteLabelClick }: { onContactC
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ transform: isRTL ? 'rotate(180deg)' : 'none' }}><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
                   </button>
                 ) : (
-                  <Link href={'link' in pillar ? pillar.link : '#'} className="text-[#D4AF37] text-xs sm:text-sm font-medium flex items-center gap-2 group-hover:gap-3 transition-all">
+                  <Link href={'link' in pillar ? pillar.link! : '#'} className="text-[#D4AF37] text-xs sm:text-sm font-medium flex items-center gap-2 group-hover:gap-3 transition-all">
                     {pillar.cta}
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ transform: isRTL ? 'rotate(180deg)' : 'none' }}><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
                   </Link>
@@ -468,7 +468,7 @@ const ThreePillarsSection = ({ onContactClick, onWhiteLabelClick }: { onContactC
 // HOW IT WORKS SECTION
 // ============================================
 const HowItWorksSection = ({ onContactClick }: { onContactClick: (method: 'form' | 'email') => void }) => {
-  const { isRTL, language } = useLanguage();
+  const { language } = useLanguage();
 
   const content = {
     EN: {
@@ -629,7 +629,7 @@ const ContactSection = ({ onContactClick }: { onContactClick: (method: 'form' | 
 // FOOTER
 // ============================================
 const Footer = ({ onContactClick }: { onContactClick: (method: 'form' | 'email') => void }) => {
-  const { isRTL, language } = useLanguage();
+  const { language } = useLanguage();
 
   const content = {
     EN: {
@@ -732,7 +732,7 @@ export default function Page2() {
       <WhiteLabelWizard isOpen={whiteLabelOpen} onClose={() => setWhiteLabelOpen(false)} />
       <Header onContactClick={openContact} />
       <HeroSection onContactClick={openContact} />
-      <ThreePillarsSection onContactClick={openContact} onWhiteLabelClick={() => setWhiteLabelOpen(true)} />
+      <ThreePillarsSection onWhiteLabelClick={() => setWhiteLabelOpen(true)} />
       <HowItWorksSection onContactClick={openContact} />
       <ContactSection onContactClick={openContact} />
       <Footer onContactClick={openContact} />
