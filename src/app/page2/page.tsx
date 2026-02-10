@@ -9,7 +9,9 @@ import { Header } from '@/components/Header';
 // ============================================
 // CONTACT MODAL COMPONENT
 // ============================================
-const ContactModal = ({ isOpen, onClose, method }: { isOpen: boolean; onClose: () => void; method: 'form' | 'email' | null }) => {
+type ModalType = 'lets-talk' | 'executive-demo' | 'contact-form' | 'email' | null;
+
+const ContactModal = ({ isOpen, onClose, type }: { isOpen: boolean; onClose: () => void; type: ModalType }) => {
   const { language } = useLanguage();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -33,52 +35,50 @@ const ContactModal = ({ isOpen, onClose, method }: { isOpen: boolean; onClose: (
     onClose();
   };
 
-  const text = {
-    EN: {
-      emailTitle: 'Send us an Email',
-      emailDesc: 'Reach out to our team at your convenience.',
-      formTitle: 'Schedule a Demo',
-      formDesc: 'Fill in your details and we will respond shortly.',
-      name: 'Full Name',
-      email: 'Email Address',
-      phone: 'Phone Number',
-      submit: 'Request Demo',
-      sending: 'Sending...',
-      thankYou: 'Thank You',
-      thankYouDesc: 'Our team will contact you within 24 hours.',
-      close: 'Close'
-    },
-    AR: {
-      emailTitle: 'راسلنا عبر البريد',
-      emailDesc: 'تواصل مع فريقنا في أي وقت',
-      formTitle: 'جدولة عرض توضيحي',
-      formDesc: 'املأ بياناتك وسنرد عليك قريباً',
-      name: 'الاسم الكامل',
-      email: 'البريد الإلكتروني',
-      phone: 'رقم الهاتف',
-      submit: 'طلب عرض توضيحي',
-      sending: 'جاري الإرسال...',
-      thankYou: 'شكراً لك',
-      thankYouDesc: 'سيتواصل معك فريقنا خلال 24 ساعة',
-      close: 'إغلاق'
-    },
-    ID: {
-      emailTitle: 'Kirim Email',
-      emailDesc: 'Hubungi tim kami kapan saja.',
-      formTitle: 'Jadwalkan Demo',
-      formDesc: 'Isi detail Anda dan kami akan merespons segera.',
-      name: 'Nama Lengkap',
-      email: 'Alamat Email',
-      phone: 'Nomor Telepon',
-      submit: 'Minta Demo',
-      sending: 'Mengirim...',
-      thankYou: 'Terima Kasih',
-      thankYouDesc: 'Tim kami akan menghubungi Anda dalam 24 jam.',
-      close: 'Tutup'
+  // Get title based on modal type
+  const getTitle = () => {
+    switch (type) {
+      case 'lets-talk':
+        return language === 'AR' ? 'دعنا نتحدث' : language === 'ID' ? 'Mari Bicara' : "Let's Talk";
+      case 'executive-demo':
+        return language === 'AR' ? 'طلب عرض تنفيذي' : language === 'ID' ? 'Minta Demo Eksekutif' : 'Request Executive Demo';
+      case 'contact-form':
+        return language === 'AR' ? 'نموذج التواصل' : language === 'ID' ? 'Form Kontak' : 'Contact Form';
+      default:
+        return language === 'AR' ? 'طلب عرض تنفيذي' : language === 'ID' ? 'Minta Demo Eksekutif' : 'Request Executive Demo';
     }
   };
 
-  const t = text[language];
+  const getDescription = () => {
+    switch (type) {
+      case 'lets-talk':
+        return language === 'AR' ? 'املأ النموذج أدناه وسنرد عليك في أقرب وقت ممكن.' : language === 'ID' ? 'Isi formulir di bawah dan kami akan menghubungi Anda secepatnya.' : 'Fill out the form below and we will get back to you as soon as possible.';
+      case 'executive-demo':
+        return language === 'AR' ? 'املأ بياناتك وسنرد عليك قريباً' : language === 'ID' ? 'Isi detail Anda dan kami akan merespons segera.' : 'Fill in your details and we will respond shortly.';
+      case 'contact-form':
+        return language === 'AR' ? 'أرسل لنا رسالة وسنرد عليك في أقرب وقت ممكن.' : language === 'ID' ? 'Kirim pesan kepada kami dan kami akan merespons secepatnya.' : 'Send us a message and we will respond as soon as possible.';
+      default:
+        return language === 'AR' ? 'املأ بياناتك وسنرد عليك قريباً' : language === 'ID' ? 'Isi detail Anda dan kami akan merespons segera.' : 'Fill in your details and we will respond shortly.';
+    }
+  };
+
+  const t = {
+    firstName: language === 'AR' ? 'الاسم الأول' : language === 'ID' ? 'Nama Depan' : 'First Name',
+    lastName: language === 'AR' ? 'اسم العائلة' : language === 'ID' ? 'Nama Belakang' : 'Last Name',
+    phone: language === 'AR' ? 'الهاتف' : language === 'ID' ? 'Telepon' : 'Phone',
+    email: language === 'AR' ? 'البريد' : language === 'ID' ? 'Email' : 'Email',
+    message: language === 'AR' ? 'الرسالة' : language === 'ID' ? 'Pesan' : 'Message',
+    submit: language === 'AR' ? 'إرسال' : language === 'ID' ? 'Kirim' : 'Submit',
+    sending: language === 'AR' ? 'جاري الإرسال...' : language === 'ID' ? 'Mengirim...' : 'Sending...',
+    thankYou: language === 'AR' ? 'شكراً لك' : language === 'ID' ? 'Terima Kasih' : 'Thank You',
+    thankYouDesc: language === 'AR' ? 'سيتواصل معك فريقنا خلال 24 ساعة' : language === 'ID' ? 'Tim kami akan menghubungi Anda dalam 24 jam.' : 'Our team will contact you within 24 hours.',
+    close: language === 'AR' ? 'إغلاق' : language === 'ID' ? 'Tutup' : 'Close',
+    emailTitle: language === 'AR' ? 'راسلنا عبر البريد' : language === 'ID' ? 'Kirim Email' : 'Send us an Email',
+    emailDesc: language === 'AR' ? 'تواصل مع فريقنا في أي وقت' : language === 'ID' ? 'Hubungi tim kami kapan saja.' : 'Reach out to our team at your convenience.',
+  };
+
+  const isForm = type !== 'email';
+  const showMessage = type === 'lets-talk' || type === 'contact-form' || type === 'executive-demo';
 
   if (!isOpen) return null;
 
@@ -86,7 +86,7 @@ const ContactModal = ({ isOpen, onClose, method }: { isOpen: boolean; onClose: (
     <AnimatePresence>
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={handleClose} className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50" />
       <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.9 }} className="fixed inset-0 flex items-center justify-center z-50 p-4">
-        <div className={`relative w-full max-w-md bg-gradient-to-br from-[#0F1D2F] to-[#1A2B42] border border-[#D4AF37]/30 rounded-2xl p-8 shadow-2xl text-left`}>
+        <div className={`relative w-full max-w-md bg-gradient-to-br from-[#0F1D2F] to-[#1A2B42] border border-[#D4AF37]/30 rounded-2xl p-8 shadow-2xl text-left max-h-[90vh] overflow-y-auto`}>
           <button onClick={handleClose} className={`absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-[#D4AF37]/10 text-[#D4AF37] hover:bg-[#D4AF37]/20`}>
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
           </button>
@@ -100,7 +100,7 @@ const ContactModal = ({ isOpen, onClose, method }: { isOpen: boolean; onClose: (
               <p className="text-[#CBC5CE]">{t.thankYouDesc}</p>
               <button onClick={handleClose} className="mt-6 px-6 py-3 bg-[#D4AF37] text-[#0A1628] font-semibold rounded-lg">{t.close}</button>
             </div>
-          ) : method === 'email' ? (
+          ) : type === 'email' ? (
             <div className="text-center py-8">
               <div className="w-16 h-16 mx-auto mb-6 bg-[#D4AF37]/20 rounded-full flex items-center justify-center">
                 <svg className="w-8 h-8 text-[#D4AF37]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
@@ -112,14 +112,20 @@ const ContactModal = ({ isOpen, onClose, method }: { isOpen: boolean; onClose: (
           ) : (
             <>
               <div className="text-center mb-8">
-                <h3 className="text-2xl font-['Cormorant_Garamond'] text-[#D4AF37] mb-2">{t.formTitle}</h3>
-                <p className="text-[#9CA3AF] text-sm">{t.formDesc}</p>
+                <h3 className="text-2xl font-['Cormorant_Garamond'] text-[#D4AF37] mb-2">{getTitle()}</h3>
+                <p className="text-[#9CA3AF] text-sm">{getDescription()}</p>
               </div>
-              <form onSubmit={handleSubmit} className="space-y-5">
-                <input type="text" required placeholder={t.name} className="w-full px-4 py-3 bg-[#0A1628] border border-[#D4AF37]/20 rounded-lg text-[#F8F9FA]" />
-                <input type="email" required placeholder={t.email} className="w-full px-4 py-3 bg-[#0A1628] border border-[#D4AF37]/20 rounded-lg text-[#F8F9FA]" />
-                <input type="tel" placeholder={t.phone} className="w-full px-4 py-3 bg-[#0A1628] border border-[#D4AF37]/20 rounded-lg text-[#F8F9FA]" />
-                <button type="submit" disabled={isSubmitting} className="w-full py-4 bg-[#D4AF37] text-[#0A1628] font-semibold rounded-lg">{isSubmitting ? t.sending : t.submit}</button>
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div className="grid grid-cols-2 gap-4">
+                  <input type="text" placeholder={t.firstName} className="w-full px-4 py-3 bg-[#0A1628] border border-[#D4AF37]/20 rounded-lg text-[#F8F9FA] placeholder:text-[#9CA3AF]" />
+                  <input type="text" placeholder={t.lastName} className="w-full px-4 py-3 bg-[#0A1628] border border-[#D4AF37]/20 rounded-lg text-[#F8F9FA] placeholder:text-[#9CA3AF]" />
+                </div>
+                <input type="tel" placeholder={t.phone} className="w-full px-4 py-3 bg-[#0A1628] border border-[#D4AF37]/20 rounded-lg text-[#F8F9FA] placeholder:text-[#9CA3AF]" />
+                <input type="email" required placeholder={t.email} className="w-full px-4 py-3 bg-[#0A1628] border border-[#D4AF37]/20 rounded-lg text-[#F8F9FA] placeholder:text-[#9CA3AF]" />
+                {showMessage && (
+                  <textarea rows={4} placeholder={t.message} className="w-full px-4 py-3 bg-[#0A1628] border border-[#D4AF37]/20 rounded-lg text-[#F8F9FA] placeholder:text-[#9CA3AF] resize-none" />
+                )}
+                <button type="submit" disabled={isSubmitting} className="w-full py-4 bg-[#D4AF37] text-[#0A1628] font-semibold rounded-lg hover:bg-[#E8C968] transition-colors">{isSubmitting ? t.sending : t.submit}</button>
               </form>
             </>
           )}
@@ -156,7 +162,7 @@ const WhiteLabelWizard = ({ isOpen, onClose }: { isOpen: boolean; onClose: () =>
         'Tell us about yourself and we will prepare a customized proposal.'
       ],
       name: 'Full Name', company: 'Company', email: 'Email', phone: 'Phone',
-      portfolioSize: 'Portfolio Size', submit: 'Get Proposal', back: 'Back', next: 'Next',
+      portfolioSize: 'Portfolio Size', submit: 'Submit', back: 'Back', next: 'Next',
       thankYou: 'Thank You!', close: 'Close'
     },
     AR: {
@@ -168,7 +174,7 @@ const WhiteLabelWizard = ({ isOpen, onClose }: { isOpen: boolean; onClose: () =>
         'أخبرنا عن نفسك وسنعد اقتراحاً مخصصاً لك.'
       ],
       name: 'الاسم الكامل', company: 'الشركة', email: 'البريد الإلكتروني', phone: 'رقم الهاتف',
-      portfolioSize: 'حجم المحفظة', submit: 'احصل على اقتراح', back: 'رجوع', next: 'التالي',
+      portfolioSize: 'حجم المحفظة', submit: 'إرسال', back: 'رجوع', next: 'التالي',
       thankYou: 'شكراً لك!', close: 'إغلاق'
     },
     ID: {
@@ -180,7 +186,7 @@ const WhiteLabelWizard = ({ isOpen, onClose }: { isOpen: boolean; onClose: () =>
         'Ceritakan tentang diri Anda dan kami akan menyiapkan proposal kustom.'
       ],
       name: 'Nama Lengkap', company: 'Perusahaan', email: 'Email', phone: 'Telepon',
-      portfolioSize: 'Ukuran Portofolio', submit: 'Dapatkan Proposal', back: 'Kembali', next: 'Lanjut',
+      portfolioSize: 'Ukuran Portofolio', submit: 'Kirim', back: 'Kembali', next: 'Lanjut',
       thankYou: 'Terima Kasih!', close: 'Tutup'
     }
   };
@@ -254,7 +260,7 @@ const WhiteLabelWizard = ({ isOpen, onClose }: { isOpen: boolean; onClose: () =>
 // ============================================
 // HERO SECTION
 // ============================================
-const HeroSection = ({ onContactClick }: { onContactClick: (method: 'form' | 'email') => void }) => {
+const HeroSection = ({ onContactClick }: { onContactClick: (type: ModalType) => void }) => {
   const { isRTL, language } = useLanguage();
 
   const content = {
@@ -262,7 +268,7 @@ const HeroSection = ({ onContactClick }: { onContactClick: (method: 'form' | 'em
       badge: 'Premium Property Management',
       headline: 'Elevate Your Real Estate Portfolio',
       subhead: 'A refined approach to property management. Seamless operations, satisfied tenants, and complete control over your assets.',
-      cta1: 'Schedule a Demo',
+      cta1: 'Request Executive Demo',
       cta2: 'White Label Solution',
       scroll: 'Scroll'
     },
@@ -270,7 +276,7 @@ const HeroSection = ({ onContactClick }: { onContactClick: (method: 'form' | 'em
       badge: 'إدارة عقارات متميزة',
       headline: 'ارتقِ بمحفظتك العقارية',
       subhead: 'نهج راقٍ في إدارة العقارات. عمليات سلسة، مستأجرين راضين، وسيطرة كاملة على أصولك.',
-      cta1: 'جدولة عرض توضيحي',
+      cta1: 'طلب عرض تنفيذي',
       cta2: 'حل العلامة البيضاء',
       scroll: 'scroll'
     },
@@ -278,7 +284,7 @@ const HeroSection = ({ onContactClick }: { onContactClick: (method: 'form' | 'em
       badge: 'Manajemen Properti Premium',
       headline: 'Tingkatkan Portofolio Real Estate Anda',
       subhead: 'Pendekatan terhalus untuk manajemen properti. Operasi tanpa hambatan, penyewa puas, dan kontrol penuh atas aset Anda.',
-      cta1: 'Jadwalkan Demo',
+      cta1: 'Minta Demo Eksekutif',
       cta2: 'Solusi White Label',
       scroll: 'Scroll'
     }
@@ -311,11 +317,11 @@ const HeroSection = ({ onContactClick }: { onContactClick: (method: 'form' | 'em
           </motion.p>
 
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.8 }} className={`flex flex-col sm:flex-row gap-3 sm:gap-4 ${isRTL ? 'sm:flex-row-reverse' : ''}`}>
-            <motion.button onClick={() => onContactClick('form')} whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="px-6 sm:px-8 py-3 sm:py-4 bg-[#D4AF37] text-[#0A1628] font-semibold rounded-lg hover:bg-[#E8C968] transition-colors">
+            <motion.button onClick={() => onContactClick('executive-demo')} whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="h-12 sm:h-14 min-w-[220px] px-6 sm:px-8 bg-[#D4AF37] text-[#0A1628] font-semibold rounded-lg hover:bg-[#E8C968] transition-colors flex items-center justify-center whitespace-nowrap">
               {t.cta1}
             </motion.button>
-            <Link href="/solutions/white-label">
-              <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="w-full px-6 sm:px-8 py-3 sm:py-4 border border-[#D4AF37]/30 text-[#F8F9FA] font-medium rounded-lg hover:bg-[#D4AF37]/10 transition-colors">
+            <Link href="/solutions/white-label" className="w-full sm:w-auto">
+              <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="w-full sm:w-auto h-12 sm:h-14 min-w-[220px] px-6 sm:px-8 border border-[#D4AF37]/30 text-[#F8F9FA] font-medium rounded-lg hover:bg-[#D4AF37]/10 transition-colors flex items-center justify-center whitespace-nowrap">
                 {t.cta2}
               </motion.button>
             </Link>
@@ -370,7 +376,7 @@ const ThreePillarsSection = ({ onWhiteLabelClick }: { onWhiteLabelClick: () => v
     }
   };
 
-  const t = content[language];
+  const t = isRTL ? content.AR : content.EN;
 
   return (
     <section id="platform" className="py-20 sm:py-32 bg-[#0A1628] relative overflow-hidden">
@@ -450,7 +456,7 @@ const ThreePillarsSection = ({ onWhiteLabelClick }: { onWhiteLabelClick: () => v
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ transform: isRTL ? 'rotate(180deg)' : 'none' }}><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
                   </button>
                 ) : (
-                  <Link href={'link' in pillar ? pillar.link! : '#'} className="text-[#D4AF37] text-xs sm:text-sm font-medium flex items-center gap-2 group-hover:gap-3 transition-all">
+                  <Link href={'link' in pillar ? pillar.link : '#'} className="text-[#D4AF37] text-xs sm:text-sm font-medium flex items-center gap-2 group-hover:gap-3 transition-all">
                     {pillar.cta}
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ transform: isRTL ? 'rotate(180deg)' : 'none' }}><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
                   </Link>
@@ -467,8 +473,8 @@ const ThreePillarsSection = ({ onWhiteLabelClick }: { onWhiteLabelClick: () => v
 // ============================================
 // HOW IT WORKS SECTION
 // ============================================
-const HowItWorksSection = ({ onContactClick }: { onContactClick: (method: 'form' | 'email') => void }) => {
-  const { language } = useLanguage();
+const HowItWorksSection = () => {
+  const { isRTL, language } = useLanguage();
 
   const content = {
     EN: {
@@ -480,7 +486,6 @@ const HowItWorksSection = ({ onContactClick }: { onContactClick: (method: 'form'
         { number: '02', title: 'Customize', description: 'Tailor the platform to your brand and workflow. Configure automations that match your processes.' },
         { number: '03', title: 'Launch', description: 'Go live with confidence. Our team provides support throughout the transition and beyond.' },
       ],
-      cta: 'Begin Your Journey'
     },
     AR: {
       badge: 'التنفيذ',
@@ -491,7 +496,6 @@ const HowItWorksSection = ({ onContactClick }: { onContactClick: (method: 'form'
         { number: '02', title: 'التخصيص', description: 'خصص المنصة لعلامتك التجارية وسير عملك. اضبط الأتمتة لتناسب عملياتك.' },
         { number: '03', title: 'الإطلاق', description: 'انطلق بثقة. يقدم فريقنا الدعم طوال الانتقال وما بعده.' },
       ],
-      cta: 'ابدأ رحلتك'
     },
     ID: {
       badge: 'Implementasi',
@@ -502,7 +506,6 @@ const HowItWorksSection = ({ onContactClick }: { onContactClick: (method: 'form'
         { number: '02', title: 'Kustomisasi', description: 'Sesuaikan platform dengan merek dan alur kerja Anda. Konfigurasikan otomatisasi yang sesuai dengan proses Anda.' },
         { number: '03', title: 'Luncurkan', description: 'Go live dengan percaya diri. Tim kami memberikan dukungan sepanjang transisi dan seterusnya.' },
       ],
-      cta: 'Mulai Perjalanan Anda'
     }
   };
 
@@ -527,18 +530,12 @@ const HowItWorksSection = ({ onContactClick }: { onContactClick: (method: 'form'
               transition={{ delay: i * 0.2 }}
               className={`bg-white rounded-2xl p-5 sm:p-8 border border-[#0A1628]/10 hover:border-[#D4AF37]/30 transition-all group text-left`}
             >
-              <span className="font-['Cormorant_Garamond'] text-4xl sm:text-6xl text-[#D4AF37]/20">{step.number}</span>
+              <span className="font-['Cormorant_Garamond'] text-4xl sm:text-6xl text-[#D4AF37]">{step.number}</span>
               <h3 className="text-lg sm:text-xl font-['Outfit'] font-semibold text-[#0A1628] mt-2 sm:mt-4 mb-2 sm:mb-3">{step.title}</h3>
               <p className="text-[#1A2B42]/70 text-xs sm:text-sm leading-relaxed">{step.description}</p>
             </motion.div>
           ))}
         </div>
-
-        <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center">
-          <button onClick={() => onContactClick('form')} className="px-6 sm:px-10 py-3 sm:py-4 bg-[#0A1628] text-white text-sm sm:text-base font-medium rounded-lg hover:bg-[#1A2B42] transition-colors">
-            {t.cta}
-          </button>
-        </motion.div>
       </div>
     </section>
   );
@@ -547,35 +544,38 @@ const HowItWorksSection = ({ onContactClick }: { onContactClick: (method: 'form'
 // ============================================
 // CONTACT SECTION
 // ============================================
-const ContactSection = ({ onContactClick }: { onContactClick: (method: 'form' | 'email') => void }) => {
+const ContactSection = ({ onContactClick }: { onContactClick: (type: ModalType) => void }) => {
   const { isRTL, language } = useLanguage();
 
   const content = {
     EN: {
-      badge: 'Get in Touch',
+      badge: "Let's Talk",
       title: 'Ready to Elevate Your Portfolio?',
-      subtitle: 'Connect with our team. We are here to assist you.',
+      subtitle: 'Choose your preferred way to connect with our team.',
       methods: [
-        { icon: 'calendar', title: 'Schedule a Demo', description: 'See the platform in action with our team.', action: 'Schedule Now', method: 'form' as const },
-        { icon: 'email', title: 'Email Us', description: 'Reach out for detailed inquiries.', action: 'Send Email', method: 'email' as const },
+        { icon: 'form', title: 'Contact Form', description: 'Fill out our form and we will get back to you.', action: 'Fill Form', type: 'contact-form' as const },
+        { icon: 'email', title: 'Email', description: 'Reach out for detailed inquiries.', action: 'Send Email', type: 'email' as const, href: 'mailto:hello@themudeer.com' },
+        { icon: 'whatsapp', title: 'WhatsApp', description: 'Chat with us directly on WhatsApp.', action: 'Chat Now', type: 'whatsapp' as const, href: 'https://wa.me/971501234567' },
       ]
     },
     AR: {
-      badge: 'تواصل معنا',
+      badge: 'دعنا نتحدث',
       title: 'مستعد لرفع مستوى محفظتك؟',
-      subtitle: 'تواصل مع فريقنا. نحن هنا لمساعدتك.',
+      subtitle: 'اختر طريقتك المفضلة للتواصل مع فريقنا.',
       methods: [
-        { icon: 'calendar', title: 'جدولة عرض توضيحي', description: 'شاهد المنصة أثناء العمل مع فريقنا.', action: 'جدولة الآن', method: 'form' as const },
-        { icon: 'email', title: 'راسلنا بالبريد', description: 'تواصل للاستفسارات التفصيلية.', action: 'إرسال بريد', method: 'email' as const },
+        { icon: 'form', title: 'نموذج التواصل', description: 'املأ النموذج وسنرد عليك.', action: 'املأ النموذج', type: 'contact-form' as const },
+        { icon: 'email', title: 'البريد', description: 'تواصل للاستفسارات التفصيلية.', action: 'إرسال بريد', type: 'email' as const, href: 'mailto:hello@themudeer.com' },
+        { icon: 'whatsapp', title: 'واتساب', description: 'دردش معنا مباشرة على واتساب.', action: 'دردش الآن', type: 'whatsapp' as const, href: 'https://wa.me/971501234567' },
       ]
     },
     ID: {
-      badge: 'Hubungi Kami',
+      badge: 'Mari Bicara',
       title: 'Siap Meningkatkan Portofolio Anda?',
-      subtitle: 'Terhubung dengan tim kami. Kami di sini untuk membantu Anda.',
+      subtitle: 'Pilih cara pilihan Anda untuk terhubung dengan tim kami.',
       methods: [
-        { icon: 'calendar', title: 'Jadwalkan Demo', description: 'Lihat platform beraksi dengan tim kami.', action: 'Jadwalkan Sekarang', method: 'form' as const },
-        { icon: 'email', title: 'Email Kami', description: 'Hubungi kami untuk pertanyaan detail.', action: 'Kirim Email', method: 'email' as const },
+        { icon: 'form', title: 'Form Kontak', description: 'Isi formulir kami dan kami akan menghubungi Anda.', action: 'Isi Formulir', type: 'contact-form' as const },
+        { icon: 'email', title: 'Email', description: 'Hubungi kami untuk pertanyaan detail.', action: 'Kirim Email', type: 'email' as const, href: 'mailto:hello@themudeer.com' },
+        { icon: 'whatsapp', title: 'WhatsApp', description: 'Chat langsung dengan kami di WhatsApp.', action: 'Chat Sekarang', type: 'whatsapp' as const, href: 'https://wa.me/971501234567' },
       ]
     }
   };
@@ -592,33 +592,37 @@ const ContactSection = ({ onContactClick }: { onContactClick: (method: 'form' | 
           <p className="text-base sm:text-xl text-[#CBC5CE] max-w-[600px] mx-auto">{t.subtitle}</p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 gap-4 sm:gap-6 max-w-3xl mx-auto">
-          {t.methods.map((item, i) => (
-            <motion.button
-              key={i}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              whileHover={{ y: -8 }}
-              onClick={() => onContactClick(item.method)}
-              className={`p-6 sm:p-8 rounded-2xl text-center transition-all ${i === 0 ? 'bg-[#D4AF37] text-[#0A1628]' : 'bg-[#0A1628] border border-[#D4AF37] text-[#F8F9FA] hover:bg-[#1A2B42]'}`}
-            >
-              <div className={`w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-3 sm:mb-4 rounded-full flex items-center justify-center ${i === 0 ? 'bg-[#0A1628]/10' : 'bg-[#D4AF37]/10'}`}>
-                {item.icon === 'calendar' ? (
-                  <svg className="w-6 h-6 sm:w-8 sm:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
-                ) : (
-                  <svg className="w-6 h-6 sm:w-8 sm:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
-                )}
-              </div>
-              <h3 className="text-lg sm:text-xl font-semibold mb-1 sm:mb-2">{item.title}</h3>
-              <p className={`text-xs sm:text-sm mb-4 sm:mb-6 ${i === 0 ? 'text-[#0A1628]/70' : 'text-white/80'}`}>{item.description}</p>
-              <span className="inline-flex items-center gap-2 font-medium text-sm">
-                {item.action}
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ transform: isRTL ? 'rotate(180deg)' : 'none' }}><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-              </span>
-            </motion.button>
-          ))}
+        <div className="grid sm:grid-cols-3 gap-4 max-w-3xl mx-auto">
+          {t.methods.map((item, i) => {
+            const CardWrapper = item.type === 'contact-form' ? motion.button : motion.a;
+            const cardProps = item.type === 'contact-form' 
+              ? { onClick: () => onContactClick('contact-form') } 
+              : { href: item.href, target: '_blank', rel: 'noopener noreferrer' };
+            
+            return (
+              <CardWrapper
+                key={i}
+                {...cardProps}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                whileHover={{ y: -4 }}
+                className={`p-5 rounded-xl text-center transition-all ${i === 0 ? 'bg-[#D4AF37] text-[#0A1628]' : 'bg-[#0A1628] border border-[#D4AF37] text-[#F8F9FA] hover:bg-[#1A2B42]'}`}
+              >
+                <div className={`w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-2 rounded-full flex items-center justify-center ${i === 0 ? 'bg-[#0A1628]/10' : 'bg-[#D4AF37]/10'}`}>
+                  {item.icon === 'form' ? (
+                    <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                  ) : item.icon === 'email' ? (
+                    <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                  ) : (
+                    <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                  )}
+                </div>
+                <h3 className="text-sm sm:text-base font-semibold">{item.title}</h3>
+              </CardWrapper>
+            );
+          })}
         </div>
       </div>
     </section>
@@ -628,14 +632,14 @@ const ContactSection = ({ onContactClick }: { onContactClick: (method: 'form' | 
 // ============================================
 // FOOTER
 // ============================================
-const Footer = ({ onContactClick }: { onContactClick: (method: 'form' | 'email') => void }) => {
+const Footer = ({ onContactClick }: { onContactClick: (type: ModalType) => void }) => {
   const { language } = useLanguage();
 
   const content = {
     EN: {
       tagline: 'Refined property management solutions for discerning professionals.',
       solutions: 'Solutions',
-      solutionLinks: ['Platform', 'Hausbuddy', 'White Label'],
+      solutionLinks: ['Platform B2B', 'Hausbuddy B2C', 'White Label'],
       contact: 'Contact',
       copyright: '© 2025 The Mudeer. All rights reserved.',
       privacy: 'Privacy',
@@ -644,7 +648,7 @@ const Footer = ({ onContactClick }: { onContactClick: (method: 'form' | 'email')
     AR: {
       tagline: 'حلول إدارة عقارات راقية للمحترفين المتميزين.',
       solutions: 'الحلول',
-      solutionLinks: ['المنصة', 'هاوس بادي', 'العلامة البيضاء'],
+      solutionLinks: ['المنصة B2B', 'هاوس بادي B2C', 'العلامة البيضاء'],
       contact: 'تواصل معنا',
       copyright: '© 2025 المدير. جميع الحقوق محفوظة.',
       privacy: 'الخصوصية',
@@ -653,7 +657,7 @@ const Footer = ({ onContactClick }: { onContactClick: (method: 'form' | 'email')
     ID: {
       tagline: 'Solusi manajemen properti yang halus untuk profesional yang cerdas.',
       solutions: 'Solusi',
-      solutionLinks: ['Platform', 'Hausbuddy', 'White Label'],
+      solutionLinks: ['Platform B2B', 'Hausbuddy B2C', 'White Label'],
       contact: 'Kontak',
       copyright: '© 2025 The Mudeer. Hak cipta dilindungi.',
       privacy: 'Privasi',
@@ -693,7 +697,7 @@ const Footer = ({ onContactClick }: { onContactClick: (method: 'form' | 'email')
           <div>
             <h4 className="text-[10px] sm:text-xs font-semibold tracking-[0.15em] uppercase text-[#D4AF37] mb-3 sm:mb-4">{t.contact}</h4>
             <ul className="space-y-2 sm:space-y-3">
-              <li><button onClick={() => onContactClick('form')} className="text-xs sm:text-sm text-[#9CA3AF] hover:text-[#D4AF37] transition-colors">{language === 'AR' ? 'جدولة عرض' : language === 'ID' ? 'Jadwalkan Demo' : 'Schedule Demo'}</button></li>
+              <li><button onClick={() => onContactClick('lets-talk')} className="text-xs sm:text-sm text-[#9CA3AF] hover:text-[#D4AF37] transition-colors">{language === 'AR' ? 'دعنا نتحدث' : language === 'ID' ? 'Mari Bicara' : "Let's Talk"}</button></li>
               <li><button onClick={() => onContactClick('email')} className="text-xs sm:text-sm text-[#9CA3AF] hover:text-[#D4AF37] transition-colors">{language === 'AR' ? 'راسلنا' : language === 'ID' ? 'Email Kami' : 'Email Us'}</button></li>
               <li><span className="text-xs sm:text-sm text-[#9CA3AF]">Dubai, UAE</span></li>
             </ul>
@@ -715,25 +719,25 @@ const Footer = ({ onContactClick }: { onContactClick: (method: 'form' | 'email')
 // MAIN PAGE
 // ============================================
 export default function Page2() {
-  const [contactModal, setContactModal] = useState<{ isOpen: boolean; method: 'form' | 'email' | null }>({ isOpen: false, method: null });
+  const [contactModal, setContactModal] = useState<{ isOpen: boolean; type: ModalType }>({ isOpen: false, type: null });
   const [whiteLabelOpen, setWhiteLabelOpen] = useState(false);
 
-  const openContact = (method: 'form' | 'email') => {
-    setContactModal({ isOpen: true, method });
+  const openContact = (type: ModalType) => {
+    setContactModal({ isOpen: true, type });
   };
 
   const closeContact = () => {
-    setContactModal({ isOpen: false, method: null });
+    setContactModal({ isOpen: false, type: null });
   };
 
   return (
     <main className="min-h-screen bg-[#0A1628] text-[#F8F9FA] font-['Outfit']">
-      <ContactModal isOpen={contactModal.isOpen} onClose={closeContact} method={contactModal.method} />
+      <ContactModal isOpen={contactModal.isOpen} onClose={closeContact} type={contactModal.type} />
       <WhiteLabelWizard isOpen={whiteLabelOpen} onClose={() => setWhiteLabelOpen(false)} />
-      <Header onContactClick={openContact} />
+      <Header onContactClick={() => openContact('lets-talk')} />
       <HeroSection onContactClick={openContact} />
       <ThreePillarsSection onWhiteLabelClick={() => setWhiteLabelOpen(true)} />
-      <HowItWorksSection onContactClick={openContact} />
+      <HowItWorksSection />
       <ContactSection onContactClick={openContact} />
       <Footer onContactClick={openContact} />
     </main>

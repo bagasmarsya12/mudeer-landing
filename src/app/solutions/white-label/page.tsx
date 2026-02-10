@@ -66,7 +66,7 @@ const content = {
         price: 'Custom Pricing',
         subtitle: 'Tailored to your needs',
         includes: ['Complete brand customization', 'Unlimited properties', 'Full feature access', 'Dedicated account manager', '99.99% uptime SLA'],
-        cta: 'Request a Quote'
+        cta: 'Request Proposal'
       }
     },
     successStory: {
@@ -97,7 +97,7 @@ const content = {
       portfolioSize: 'Portfolio Size',
       portfolioOptions: ['Portfolio Size', '100-500 units', '500-2,000 units', '2,000-10,000 units', '10,000+ units'],
       message: 'Tell us about your requirements...',
-      submit: 'Submit Request',
+      submit: 'Submit',
       close: '✕'
     },
     footer: '© 2025 The Mudeer. All rights reserved.'
@@ -161,7 +161,7 @@ const content = {
         price: 'تسعير مخصص',
         subtitle: 'مصمم حسب احتياجاتك',
         includes: ['تخصيص علامة تجارية كامل', 'عقارات غير محدودة', 'الوصول الكامل للميزات', 'مدير حساب مخصص', '99.99% اتفاقية مستوى الخدمة'],
-        cta: 'طلب عرض سعر'
+        cta: 'طلب اقتراح'
       }
     },
     successStory: {
@@ -192,7 +192,7 @@ const content = {
       portfolioSize: 'حجم المحفظة',
       portfolioOptions: ['حجم المحفظة', '100-500 وحدة', '500-2,000 وحدة', '2,000-10,000 وحدة', '10,000+ وحدة'],
       message: 'أخبرنا عن متطلباتك...',
-      submit: 'إرسال الطلب',
+      submit: 'إرسال',
       close: '✕'
     },
     footer: '© 2025 المدير. جميع الحقوق محفوظة.'
@@ -256,7 +256,7 @@ const content = {
         price: 'Harga Kustom',
         subtitle: 'Disesuaikan dengan kebutuhan Anda',
         includes: ['Kustomisasi merek lengkap', 'Properti tak terbatas', 'Akses fitur penuh', 'Manajer akun khusus', '99,99% uptime SLA'],
-        cta: 'Minta Penawaran'
+        cta: 'Minta Proposal'
       }
     },
     successStory: {
@@ -287,7 +287,7 @@ const content = {
       portfolioSize: 'Ukuran Portofolio',
       portfolioOptions: ['Ukuran Portofolio', '100-500 unit', '500-2.000 unit', '2.000-10.000 unit', '10.000+ unit'],
       message: 'Ceritakan tentang kebutuhan Anda...',
-      submit: 'Kirim Permintaan',
+      submit: 'Kirim',
       close: '✕'
     },
     footer: '© 2025 The Mudeer. Hak cipta dilindungi.'
@@ -297,11 +297,48 @@ const content = {
 export default function WhiteLabelPage() {
   const { language } = useLanguage();
   const [showForm, setShowForm] = useState(false);
+  const [showContactForm, setShowContactForm] = useState(false);
 
   const t = content[language];
   const isRTL = language === 'AR';
 
   const openContact = () => setShowForm(true);
+
+  // Contact Section Content
+  const contactContent = {
+    EN: {
+      badge: "Let's Talk",
+      title: 'Ready to Launch Your Own Platform?',
+      subtitle: 'Choose your preferred way to connect with our team.',
+      methods: [
+        { icon: 'form', title: 'Contact Form', description: 'Fill out our form and we will get back to you.', action: 'Fill Form' },
+        { icon: 'email', title: 'Email', description: 'Reach out for detailed inquiries.', action: 'Send Email', href: 'mailto:hello@themudeer.com' },
+        { icon: 'whatsapp', title: 'WhatsApp', description: 'Chat with us directly on WhatsApp.', action: 'Chat Now', href: 'https://wa.me/971501234567' },
+      ]
+    },
+    AR: {
+      badge: 'دعنا نتحدث',
+      title: 'مستعد لإطلاق منصتك الخاصة؟',
+      subtitle: 'اختر طريقتك المفضلة للتواصل مع فريقنا.',
+      methods: [
+        { icon: 'form', title: 'نموذج التواصل', description: 'املأ النموذج وسنرد عليك.', action: 'املأ النموذج' },
+        { icon: 'email', title: 'البريد', description: 'تواصل للاستفسارات التفصيلية.', action: 'إرسال بريد', href: 'mailto:hello@themudeer.com' },
+        { icon: 'whatsapp', title: 'واتساب', description: 'دردش معنا مباشرة على واتساب.', action: 'دردش الآن', href: 'https://wa.me/971501234567' },
+      ]
+    },
+    ID: {
+      badge: 'Mari Bicara',
+      title: 'Siap Meluncurkan Platform Anda Sendiri?',
+      subtitle: 'Pilih cara pilihan Anda untuk terhubung dengan tim kami.',
+      methods: [
+        { icon: 'form', title: 'Form Kontak', description: 'Isi formulir kami dan kami akan menghubungi Anda.', action: 'Isi Formulir' },
+        { icon: 'email', title: 'Email', description: 'Hubungi kami untuk pertanyaan detail.', action: 'Kirim Email', href: 'mailto:hello@themudeer.com' },
+        { icon: 'whatsapp', title: 'WhatsApp', description: 'Chat langsung dengan kami di WhatsApp.', action: 'Chat Sekarang', href: 'https://wa.me/971501234567' },
+      ]
+    }
+  };
+
+  const ct = contactContent[language];
 
   return (
     <main className="min-h-screen bg-[#0A1628] text-[#F8F9FA] font-['Outfit']" dir={isRTL ? 'rtl' : 'ltr'}>
@@ -310,23 +347,48 @@ export default function WhiteLabelPage() {
       {/* Hero - Navy */}
       <section className="pt-32 pb-20 px-4 sm:px-6 md:px-[60px] bg-[#0A1628]">
         <div className="max-w-[1400px] mx-auto">
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} className="max-w-3xl">
-            <span className="text-[#D4AF37] text-sm tracking-[0.2em] uppercase">{t.hero.badge}</span>
-            <h1 className="font-['Cormorant_Garamond'] text-[clamp(40px,6vw,72px)] leading-tight mt-4 mb-6 whitespace-pre-line">
-              {t.hero.title}
-            </h1>
-            <p className="text-xl text-[#CBC5CE] leading-relaxed mb-8">
-              {t.hero.description}
-            </p>
-            <div className={`flex flex-wrap gap-4 ${isRTL ? 'flex-row-reverse' : ''}`}>
-              <button onClick={() => setShowForm(true)} className="px-8 py-4 bg-[#D4AF37] text-[#0A1628] font-semibold rounded-lg hover:bg-[#E8C968] transition-colors">
-                {t.hero.cta1}
-              </button>
-              <Link href="/page2#contact" className="px-8 py-4 border border-[#D4AF37]/30 text-[#F8F9FA] rounded-lg hover:bg-[#D4AF37]/10 transition-colors">
-                {t.hero.cta2}
-              </Link>
-            </div>
-          </motion.div>
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }}>
+              <span className="text-[#D4AF37] text-sm tracking-[0.2em] uppercase">{t.hero.badge}</span>
+              <h1 className="font-['Cormorant_Garamond'] text-[clamp(40px,6vw,72px)] leading-tight mt-4 mb-6 whitespace-pre-line">
+                {t.hero.title}
+              </h1>
+              <p className="text-xl text-[#CBC5CE] leading-relaxed mb-8">
+                {t.hero.description}
+              </p>
+              <div className={`flex flex-wrap gap-4 ${isRTL ? 'flex-row-reverse' : ''}`}>
+                <button onClick={() => setShowForm(true)} className="px-8 py-4 bg-[#D4AF37] text-[#0A1628] font-semibold rounded-lg hover:bg-[#E8C968] transition-colors">
+                  {t.hero.cta1}
+                </button>
+                <Link href="/page2#contact" className="px-8 py-4 border border-[#D4AF37]/30 text-[#F8F9FA] rounded-lg hover:bg-[#D4AF37]/10 transition-colors">
+                  {t.hero.cta2}
+                </Link>
+              </div>
+            </motion.div>
+            <motion.div initial={{ opacity: 0, x: isRTL ? -50 : 50 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.2 }} className="relative">
+              <div className="relative mx-auto w-full max-w-[420px] h-[420px] bg-gradient-to-br from-[#0F1D2F] to-[#1A2B42] rounded-3xl border border-[#D4AF37]/20 shadow-2xl overflow-hidden p-6">
+                <div className="flex items-center gap-2 mb-4">
+                  <div className="w-3 h-3 rounded-full bg-[#ff5f57]" />
+                  <div className="w-3 h-3 rounded-full bg-[#febc2e]" />
+                  <div className="w-3 h-3 rounded-full bg-[#28c840]" />
+                </div>
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-10 h-10 bg-[#D4AF37]/20 rounded-xl flex items-center justify-center border border-[#D4AF37]/30">
+                    <span className="text-[#D4AF37] text-[10px] font-semibold">Your Logo</span>
+                  </div>
+                  <div className="h-3 bg-[#D4AF37]/30 rounded w-28" />
+                </div>
+                <div className="space-y-3">
+                  <div className="h-20 bg-[#D4AF37]/10 rounded-xl" />
+                  <div className="h-20 bg-[#D4AF37]/10 rounded-xl" />
+                  <div className="grid grid-cols-2 gap-3">
+                    <div className="h-24 bg-[#D4AF37]/10 rounded-xl" />
+                    <div className="h-24 bg-[#D4AF37]/10 rounded-xl" />
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
@@ -498,23 +560,7 @@ export default function WhiteLabelPage() {
         </div>
       </section>
 
-      {/* CTA - Navy */}
-      <section className="py-24 px-4 sm:px-6 md:px-[60px] bg-[#0A1628]">
-        <div className="max-w-[1400px] mx-auto text-center">
-          <h2 className="font-['Cormorant_Garamond'] text-[clamp(32px,4vw,48px)] mb-6">{t.cta.title}</h2>
-          <p className="text-[#CBC5CE] max-w-2xl mx-auto mb-8">{t.cta.subtitle}</p>
-          <div className={`flex flex-wrap justify-center gap-4 ${isRTL ? 'flex-row-reverse' : ''}`}>
-            <button onClick={() => setShowForm(true)} className="px-8 py-4 bg-[#D4AF37] text-[#0A1628] font-semibold rounded-lg hover:bg-[#E8C968] transition-colors">
-              {t.cta.button1}
-            </button>
-            <Link href="/page2" className="px-8 py-4 border border-[#D4AF37]/30 text-[#F8F9FA] rounded-lg hover:bg-[#D4AF37]/10 transition-colors">
-              {t.cta.button2}
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Form Modal */}
+      {/* Form Modal -->
       {showForm && (
         <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
           <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="bg-gradient-to-br from-[#0F1D2F] to-[#1A2B42] border border-[#D4AF37]/30 rounded-2xl p-8 max-w-lg w-full max-h-[90vh] overflow-y-auto">
@@ -539,6 +585,75 @@ export default function WhiteLabelPage() {
               <textarea rows={4} placeholder={t.modal.message} className="w-full px-4 py-3 bg-[#0A1628] border border-[#D4AF37]/20 rounded-lg text-[#F8F9FA] focus:outline-none focus:border-[#D4AF37] resize-none" />
               <button type="submit" className="w-full py-4 bg-[#D4AF37] text-[#0A1628] font-semibold rounded-lg hover:bg-[#E8C968] transition-colors">
                 {t.modal.submit}
+              </button>
+            </form>
+          </motion.div>
+        </div>
+      )}
+
+      {/* Let's Talk Section */}
+      <section id="contact" className="py-20 sm:py-32 bg-[#0A1628] relative overflow-hidden">
+        <div className="absolute inset-0" style={{ backgroundImage: `radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.1) 0%, transparent 50%)` }} />
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-[60px] relative z-10">
+          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className={`text-center mb-12 sm:mb-16`}>
+            <span className="inline-block text-[10px] sm:text-[11px] tracking-[0.3em] uppercase text-[#D4AF37] mb-4 sm:mb-6">{ct.badge}</span>
+            <h2 className="font-['Cormorant_Garamond'] text-[clamp(28px,5vw,56px)] mb-4 sm:mb-6">{ct.title}</h2>
+            <p className="text-base sm:text-xl text-[#CBC5CE] max-w-[600px] mx-auto">{ct.subtitle}</p>
+          </motion.div>
+
+          <div className="grid sm:grid-cols-3 gap-4 max-w-3xl mx-auto">
+            {ct.methods.map((item, i) => {
+              const CardWrapper = i === 0 ? motion.button : motion.a;
+              const cardProps = i === 0 
+                ? { onClick: () => setShowContactForm(true) } 
+                : { href: item.href, target: '_blank', rel: 'noopener noreferrer' };
+              
+              return (
+                <CardWrapper
+                  key={i}
+                  {...cardProps}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                  whileHover={{ y: -4 }}
+                  className={`p-5 rounded-xl text-center transition-all ${i === 0 ? 'bg-[#D4AF37] text-[#0A1628]' : 'bg-[#0A1628] border border-[#D4AF37] text-[#F8F9FA] hover:bg-[#1A2B42]'}`}
+                >
+                  <div className={`w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-2 rounded-full flex items-center justify-center ${i === 0 ? 'bg-[#0A1628]/10' : 'bg-[#D4AF37]/10'}`}>
+                    {item.icon === 'form' ? (
+                      <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                    ) : item.icon === 'email' ? (
+                      <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                    ) : (
+                      <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                    )}
+                  </div>
+                  <h3 className="text-sm sm:text-base font-semibold">{item.title}</h3>
+                </CardWrapper>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Form Modal */}
+      {showContactForm && (
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="bg-gradient-to-br from-[#0F1D2F] to-[#1A2B42] border border-[#D4AF37]/30 rounded-2xl p-8 max-w-lg w-full max-h-[90vh] overflow-y-auto">
+            <div className="flex justify-between items-center mb-6">
+              <h3 className="text-2xl font-['Cormorant_Garamond'] text-[#D4AF37]">{language === 'AR' ? 'نموذج التواصل' : language === 'ID' ? 'Form Kontak' : 'Contact Form'}</h3>
+              <button onClick={() => setShowContactForm(false)} className="text-[#9CA3AF] hover:text-[#F8F9FA]">{t.modal.close}</button>
+            </div>
+            <form className="space-y-4">
+              <div className="grid sm:grid-cols-2 gap-4">
+                <input type="text" placeholder={language === 'AR' ? 'الاسم الأول' : language === 'ID' ? 'Nama Depan' : 'First Name'} className="w-full px-4 py-3 bg-[#0A1628] border border-[#D4AF37]/20 rounded-lg text-[#F8F9FA] focus:outline-none focus:border-[#D4AF37]" />
+                <input type="text" placeholder={language === 'AR' ? 'اسم العائلة' : language === 'ID' ? 'Nama Belakang' : 'Last Name'} className="w-full px-4 py-3 bg-[#0A1628] border border-[#D4AF37]/20 rounded-lg text-[#F8F9FA] focus:outline-none focus:border-[#D4AF37]" />
+              </div>
+              <input type="tel" placeholder={language === 'AR' ? 'الهاتف' : language === 'ID' ? 'Telepon' : 'Phone'} className="w-full px-4 py-3 bg-[#0A1628] border border-[#D4AF37]/20 rounded-lg text-[#F8F9FA] focus:outline-none focus:border-[#D4AF37]" />
+              <input type="email" placeholder={language === 'AR' ? 'البريد' : language === 'ID' ? 'Email' : 'Email'} className="w-full px-4 py-3 bg-[#0A1628] border border-[#D4AF37]/20 rounded-lg text-[#F8F9FA] focus:outline-none focus:border-[#D4AF37]" />
+              <textarea rows={4} placeholder={language === 'AR' ? 'الرسالة' : language === 'ID' ? 'Pesan' : 'Message'} className="w-full px-4 py-3 bg-[#0A1628] border border-[#D4AF37]/20 rounded-lg text-[#F8F9FA] focus:outline-none focus:border-[#D4AF37] resize-none" />
+              <button type="submit" className="w-full py-4 bg-[#D4AF37] text-[#0A1628] font-semibold rounded-lg hover:bg-[#E8C968] transition-colors">
+                {language === 'AR' ? 'إرسال' : language === 'ID' ? 'Kirim' : 'Submit'}
               </button>
             </form>
           </motion.div>
