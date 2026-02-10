@@ -285,11 +285,10 @@ export default function PlatformPage() {
   const t = content[language];
   const isRTL = language === 'AR';
   
-  const [showForm, setShowForm] = useState(false);
   const [showContactForm, setShowContactForm] = useState(false);
   const [selectedFeature, setSelectedFeature] = useState<typeof t.features[0] | null>(null);
 
-  const openContact = () => setShowForm(true);
+  const openContact = () => setShowContactForm(true);
 
   // Contact Section Content
   const contactContent = {

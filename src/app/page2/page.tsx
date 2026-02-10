@@ -77,7 +77,7 @@ const ContactModal = ({ isOpen, onClose, type }: { isOpen: boolean; onClose: () 
     emailDesc: language === 'AR' ? 'تواصل مع فريقنا في أي وقت' : language === 'ID' ? 'Hubungi tim kami kapan saja.' : 'Reach out to our team at your convenience.',
   };
 
-  const isForm = type !== 'email';
+  const _isForm = type !== 'email';
   const showMessage = type === 'lets-talk' || type === 'contact-form' || type === 'executive-demo';
 
   if (!isOpen) return null;
@@ -341,7 +341,7 @@ const HeroSection = ({ onContactClick }: { onContactClick: (type: ModalType) => 
 // THREE PILLARS SECTION
 // ============================================
 const ThreePillarsSection = ({ onWhiteLabelClick }: { onWhiteLabelClick: () => void }) => {
-  const { isRTL, language } = useLanguage();
+  const { isRTL: _isRTL, language: _language } = useLanguage();
 
   const content = {
     EN: {
@@ -474,7 +474,7 @@ const ThreePillarsSection = ({ onWhiteLabelClick }: { onWhiteLabelClick: () => v
 // HOW IT WORKS SECTION
 // ============================================
 const HowItWorksSection = () => {
-  const { isRTL, language } = useLanguage();
+  const { isRTL: _isRTL, language: _language } = useLanguage();
 
   const content = {
     EN: {
@@ -545,7 +545,7 @@ const HowItWorksSection = () => {
 // CONTACT SECTION
 // ============================================
 const ContactSection = ({ onContactClick }: { onContactClick: (type: ModalType) => void }) => {
-  const { isRTL, language } = useLanguage();
+  const { isRTL: _isRTL, language: _language } = useLanguage();
 
   const content = {
     EN: {

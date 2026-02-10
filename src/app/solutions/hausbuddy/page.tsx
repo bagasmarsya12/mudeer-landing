@@ -189,13 +189,12 @@ const content = {
 
 export default function HausbuddyPage() {
   const { language } = useLanguage();
-  const [showForm, setShowForm] = useState(false);
   const [showContactForm, setShowContactForm] = useState(false);
 
   const t = content[language];
   const isRTL = language === 'AR';
 
-  const openContact = () => setShowForm(true);
+  const openContact = () => setShowContactForm(true);
 
   // Contact Section Content
   const contactContent = {
