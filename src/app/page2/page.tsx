@@ -77,7 +77,6 @@ const ContactModal = ({ isOpen, onClose, type }: { isOpen: boolean; onClose: () 
     emailDesc: language === 'AR' ? 'تواصل مع فريقنا في أي وقت' : language === 'ID' ? 'Hubungi tim kami kapan saja.' : 'Reach out to our team at your convenience.',
   };
 
-  const _isForm = type !== 'email';
   const showMessage = type === 'lets-talk' || type === 'contact-form' || type === 'executive-demo';
 
   if (!isOpen) return null;
@@ -341,7 +340,7 @@ const HeroSection = ({ onContactClick }: { onContactClick: (type: ModalType) => 
 // THREE PILLARS SECTION
 // ============================================
 const ThreePillarsSection = ({ onWhiteLabelClick }: { onWhiteLabelClick: () => void }) => {
-  const { isRTL: _isRTL, language: _language } = useLanguage();
+  const { isRTL } = useLanguage();
 
   const content = {
     EN: {
@@ -456,7 +455,7 @@ const ThreePillarsSection = ({ onWhiteLabelClick }: { onWhiteLabelClick: () => v
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ transform: isRTL ? 'rotate(180deg)' : 'none' }}><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
                   </button>
                 ) : (
-                  <Link href={'link' in pillar ? pillar.link : '#'} className="text-[#D4AF37] text-xs sm:text-sm font-medium flex items-center gap-2 group-hover:gap-3 transition-all">
+                  <Link href={('link' in pillar && pillar.link) || '#'} className="text-[#D4AF37] text-xs sm:text-sm font-medium flex items-center gap-2 group-hover:gap-3 transition-all">
                     {pillar.cta}
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ transform: isRTL ? 'rotate(180deg)' : 'none' }}><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
                   </Link>
@@ -474,7 +473,7 @@ const ThreePillarsSection = ({ onWhiteLabelClick }: { onWhiteLabelClick: () => v
 // HOW IT WORKS SECTION
 // ============================================
 const HowItWorksSection = () => {
-  const { isRTL: _isRTL, language: _language } = useLanguage();
+  const { language } = useLanguage();
 
   const content = {
     EN: {
@@ -545,7 +544,7 @@ const HowItWorksSection = () => {
 // CONTACT SECTION
 // ============================================
 const ContactSection = ({ onContactClick }: { onContactClick: (type: ModalType) => void }) => {
-  const { isRTL: _isRTL, language: _language } = useLanguage();
+  const { language } = useLanguage();
 
   const content = {
     EN: {
