@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- Outer Circle -->
+  <circle cx="32" cy="32" r="30" fill="#0A1628" stroke="#D4AF37" stroke-width="2"/>
+  
+  <!-- Inner decorative ring -->
+  <circle cx="32" cy="32" r="24" fill="none" stroke="#D4AF37" stroke-width="0.5" opacity="0.3"/>
+  
+  <!-- M Letter -->
+  <text 
+    x="50%" 
+    y="54%" 
+    dominant-baseline="middle" 
+    text-anchor="middle"
+    font-family="Outfit, sans-serif"
+    font-size="28"
+    font-weight="700"
+    fill="#F8F9FA"
+  >
+    M
+  </text>
+  
+  <!-- Small star accent -->
+  <path d="M52 14 L53 17 L56 17 L54 19 L55 22 L52 20 L49 22 L50 19 L48 17 L51 17 Z" fill="#D4AF37"/>
+</svg>

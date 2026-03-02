@@ -29,42 +29,42 @@ const content = {
         description: 'Gain a powerful, centralized command center that puts your entire portfolio on the map.',
         longDescription: 'Gain a powerful, centralized command center that puts your entire portfolio on the map. From filtering properties by street to monitoring real-time ticket status—maximum oversight and intuitive navigation for every unit you manage. View occupancy rates, track revenue trends, and access key metrics updated in real-time. The dashboard provides a bird\'s eye view of your entire operation, allowing you to drill down into specific properties or units with just a few clicks.',
         image: '/images/features/dashboard.png',
-        screenshot: '/images/features/dashboard-screenshot.png'
+        screenshot: '/images/features/content-mudeer/1.jpg'
       },
       { 
         title: 'Unified Communication Hub', 
         description: 'End the email fragmentation. Channel all tenant inquiries into one central inbox.',
         longDescription: 'End the email fragmentation. Channel all tenant inquiries, complaints, and requests into one central inbox. Whether it is a noise complaint or a contract question, handle every interaction from one place to boost response times and tenant satisfaction. Our unified inbox organizes conversations by property and unit, ensuring you never miss an important message. Automated responses and templates help you reply faster while maintaining a professional tone.',
         image: '/images/features/communication.png',
-        screenshot: '/images/features/communication-screenshot.png'
+        screenshot: '/images/features/content-mudeer/2.jpg'
       },
       { 
         title: 'Dynamic Billboard & Revenue Engine', 
         description: 'Transform your communication channel into a revenue stream.',
         longDescription: 'Transform your communication channel into a revenue stream. Use the digital notice board to push upscale advertising, new property developments, or exclusive promotions directly to resident smartphones. Reach your existing client base instantly with the touch of a button. Monetize your tenant network by offering premium ad placements to local businesses, creating an additional income source for your properties.',
         image: '/images/features/revenue.png',
-        screenshot: '/images/features/revenue-screenshot.png'
+        screenshot: '/images/features/content-mudeer/3.jpg'
       },
       { 
         title: 'Intelligent Ticket & Damage Workflow', 
         description: 'Turn chaos into clarity with our smart "Traffic Light" prioritization system.',
         longDescription: 'Turn chaos into clarity with our smart "Traffic Light" prioritization system. We automate the organization of the damage lifecycle—collecting structured data, photos, and message history into a clean, professional audit trail ready to file or share. Tenants can submit requests with photos, you can assign vendors, track progress, and maintain complete documentation for compliance and insurance purposes.',
         image: '/images/features/workflow.png',
-        screenshot: '/images/features/workflow-screenshot.png'
+        screenshot: '/images/features/content-mudeer/4.jpg'
       },
       { 
         title: 'The Paperless Document Vault', 
         description: 'Digitize your entire filing cabinet with secure cloud storage.',
         longDescription: 'Digitize your entire filing cabinet. Securely upload, archive, and retrieve lease agreements, utility bills, and house rules instantly. Our smart search replaces dusty folders, saving you time while supporting a sustainable, green office strategy. Advanced OCR technology makes all documents searchable, and automatic backups ensure you never lose important paperwork again.',
         image: '/images/features/documents.png',
-        screenshot: '/images/features/documents-screenshot.png'
+        screenshot: '/images/features/content-mudeer/5.jpg'
       },
       { 
         title: 'Internal Task & Vendor Organization', 
         description: 'Assign tickets to staff or external providers directly within the dashboard.',
         longDescription: 'Stop chasing loose ends. Assign specific tickets to internal staff or external providers—like roofers or electricians—directly within the dashboard. Keep your database of contacts, categories, and job statuses in one transparent interface. Track vendor performance, manage service contracts, and ensure nothing falls through the cracks with automated reminders and status updates.',
         image: '/images/features/organization.png',
-        screenshot: '/images/features/organization-screenshot.png'
+        screenshot: '/images/features/content-mudeer/6.jpg'
       }
     ],
     whyChoose: {
@@ -425,10 +425,6 @@ export default function PlatformPage() {
                 <div className="p-6">
                   <h3 className="text-lg font-semibold mb-2 text-[#0A1628] group-hover:text-[#D4AF37] transition-colors">{feature.title}</h3>
                   <p className="text-[#1A2B42]/70 text-sm leading-relaxed">{feature.description}</p>
-                  <span className="inline-flex items-center gap-1 text-[#D4AF37] text-sm mt-3 font-medium">
-                    Learn more 
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
-                  </span>
                 </div>
               </motion.div>
             ))}
@@ -568,7 +564,7 @@ export default function PlatformPage() {
       {/* Feature Detail Modal */}
       <AnimatePresence>
       {selectedFeature && (
-        <div className="fixed inset-0 bg-black/90 backdrop-blur-sm z-50 flex items-center justify-center p-4 overflow-y-auto">
+        <div className="fixed inset-0 bg-black/90 backdrop-blur-sm z-50 flex items-center justify-center p-4">
           <motion.div 
             initial={{ opacity: 0, scale: 0.95 }} 
             animate={{ opacity: 1, scale: 1 }} 
@@ -577,7 +573,7 @@ export default function PlatformPage() {
           >
             {/* Header */}
             <div className="sticky top-0 bg-gradient-to-br from-[#0F1D2F] to-[#1A2B42] border-b border-[#D4AF37]/20 p-6 flex justify-between items-center z-10">
-              <h3 className="text-2xl sm:text-3xl font-['Cormorant_Garamond'] text-[#D4AF37]">{selectedFeature.title}</h3>
+              <h3 className="text-2xl font-['Cormorant_Garamond'] text-[#D4AF37]">{selectedFeature.title}</h3>
               <button 
                 onClick={() => setSelectedFeature(null)} 
                 className="w-10 h-10 flex items-center justify-center rounded-full bg-[#D4AF37]/10 text-[#D4AF37] hover:bg-[#D4AF37]/20 transition-colors"
@@ -588,36 +584,30 @@ export default function PlatformPage() {
 
             {/* Content - 2 Column Layout */}
             <div className="p-6 sm:p-8">
-              <div className="grid lg:grid-cols-2 gap-8 items-start">
+              <div className="grid lg:grid-cols-2 gap-8 lg:gap-10 lg:items-center">
                 {/* Left: Text Description */}
-                <div className="space-y-6">
-                  <div className="prose prose-invert max-w-none">
-                    <p className="text-lg text-[#CBC5CE] leading-relaxed">{selectedFeature.longDescription}</p>
+                <div className="prose prose-invert max-w-none lg:pr-4">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#D4AF37]/10 border border-[#D4AF37]/20 mb-4">
+                    <span className="w-2 h-2 rounded-full bg-[#D4AF37]" />
+                    <span className="text-xs tracking-[0.18em] uppercase text-[#F2D98A]">Feature Highlight</span>
                   </div>
-                  
-                  {/* CTA */}
-                  <button 
-                    onClick={() => { setSelectedFeature(null); setShowContactForm(true); }}
-                    className="px-8 py-4 bg-[#D4AF37] text-[#0A1628] font-semibold rounded-xl hover:bg-[#E8C968] transition-colors"
-                  >
-                    Request Demo
-                  </button>
+                  <p className="text-[17px] sm:text-lg text-[#CBC5CE] leading-relaxed m-0">{selectedFeature.longDescription}</p>
                 </div>
 
                 {/* Right: Screenshot */}
-                <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden border border-[#D4AF37]/20 bg-[#0A1628]">
-                  <Image 
-                    src={selectedFeature.screenshot} 
-                    alt={`${selectedFeature.title} screenshot`}
-                    fill
-                    className="object-cover"
-                    unoptimized
-                  />
-                  {/* Overlay placeholder text if image doesn't exist */}
-                  <div className="absolute inset-0 flex items-center justify-center bg-[#0A1628]/50">
-                    <span className="text-[#D4AF37] text-sm font-medium px-4 py-2 bg-[#0A1628]/80 rounded-lg border border-[#D4AF37]/30">
-                      Screenshot: {selectedFeature.title}
-                    </span>
+                <div className="flex justify-center lg:justify-end">
+                  <div className="relative w-full max-w-[420px] rounded-2xl border border-[#D4AF37]/25 bg-[#0A1628]/70 p-4 sm:p-5 shadow-[0_20px_50px_rgba(0,0,0,0.45)] overflow-hidden">
+                    <div className="pointer-events-none absolute -top-16 -right-16 w-40 h-40 rounded-full bg-[#D4AF37]/20 blur-3xl" />
+                    <div className="pointer-events-none absolute -bottom-16 -left-10 w-36 h-36 rounded-full bg-[#F59E0B]/15 blur-3xl" />
+                    <div className="relative w-full h-[420px] sm:h-[460px] rounded-xl bg-[#020617]/70 ring-1 ring-white/10 overflow-hidden">
+                      <Image 
+                        src={selectedFeature.screenshot} 
+                        alt={`${selectedFeature.title} screenshot`}
+                        fill
+                        className="object-contain"
+                        unoptimized
+                      />
+                    </div>
                   </div>
                 </div>
               </div>

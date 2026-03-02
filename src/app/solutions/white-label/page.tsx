@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState } from 'react';
 import { Header } from '@/components/Header';
 import { useLanguage } from '@/lib/LanguageContext';
@@ -15,16 +16,7 @@ const content = {
       cta1: 'Request Proposal',
       cta2: 'Speak with Sales'
     },
-    whyWhiteLabel: {
-      badge: 'Why White Label',
-      title: 'Scale Without the Headache',
-      description: 'Building property management software from scratch takes years and millions of dollars. With our white label solution, you can launch in weeks with a proven, battle-tested platform.',
-      items: [
-        { title: 'Go to Market Faster', desc: 'Launch in weeks, not years. Our infrastructure is ready.' },
-        { title: 'Reduce Risk', desc: 'Proven technology used by thousands of units worldwide.' },
-        { title: 'Focus on Growth', desc: 'Spend your energy on sales and relationships, not coding.' }
-      ]
-    },
+
     howItWorks: {
       badge: 'How It Works',
       title: 'From Concept to Launch',
@@ -36,16 +28,16 @@ const content = {
       ]
     },
     benefits: {
-      badge: 'Benefits',
-      title: 'Why Choose White Label?',
-      subtitle: 'Build your brand while leveraging proven technology.',
+      badge: 'Why White Label',
+      title: 'Scale Without the Headache',
+      subtitle: 'Building property management software from scratch takes years and millions. With our white label solution, launch in weeks with a proven platform.',
       items: [
-        { title: 'Complete Brand Control', description: 'Your logo, your colors, your domain. Every touchpoint reflects your corporate identity.', icon: '🎨' },
-        { title: 'Rapid Deployment', description: 'Go live in weeks, not years. Our infrastructure is ready—just add your brand.', icon: '⚡' },
-        { title: 'Enterprise Security', description: 'SOC 2 Type II certified infrastructure with 99.99% uptime SLA.', icon: '🔒' },
-        { title: 'Scalable Architecture', description: 'From 100 units to 100,000. Our platform grows seamlessly with your business.', icon: '📈' },
-        { title: 'Dedicated Support', description: 'White-glove onboarding and ongoing technical support for your team.', icon: '🤝' },
-        { title: 'Revenue Growth', description: 'Add technology as a service. Generate new revenue streams from existing clients.', icon: '💎' }
+        { title: 'Your Brand Ecosystem, Front & Center', description: 'Don\'t dilute your brand equity with third-party logos. We provide "Invisible Technology" that wraps entirely in your corporate identity.', longDescription: 'Don\'t dilute your brand equity with third-party logos. We provide "Invisible Technology" that wraps entirely in your corporate identity. From the App Store icon to the dashboard color palette and domain name, your tenants and staff interact exclusively with your brand. We build the engine; you get the credit.', image: '/images/white-label/1.png', screenshot: '/images/features/content-mudeer/1.jpg' },
+        { title: 'Market-Ready Technology, Zero Risk', description: 'Why spend millions and years building from scratch? Bypass the CAPEX and development risks with our turnkey solution.', longDescription: 'Why spend millions and years building a proprietary platform from scratch? Bypass the massive CAPEX and development risks. Our White Label solution is a turnkey product that allows you to launch a fully mature, bug-tested, and feature-rich digital ecosystem in weeks, not years.', image: '/images/white-label/2.png', screenshot: '/images/features/content-mudeer/2.jpg' },
+        { title: 'Monetize Your Digital Real Estate', description: 'Transform your portfolio into a high-margin digital marketplace with full control over the revenue engine.', longDescription: 'Transform your portfolio into a high-margin digital marketplace. With full control over the "Revenue Engine," you can curate exclusive partnerships, sell advertising space to local businesses, or offer premium concierge services under your own banner, creating a recurring revenue stream that goes beyond rent.', image: '/images/white-label/3.png', screenshot: '/images/features/content-mudeer/3.jpg' },
+        { title: 'Own the Data, Own the Customer', description: 'Retain full data sovereignty. Harvest deep analytics on tenant behavior and facility usage to drive smarter decisions.', longDescription: 'In the digital age, data is your most valuable asset. Unlike standard SaaS platforms that gatekeep your information, our White Label solution ensures you retain full data sovereignty. Harvest deep analytics on tenant behavior, facility usage, and payment trends to drive smarter investment decisions and increase property valuation.', image: '/images/white-label/4.png', screenshot: '/images/features/content-mudeer/4.jpg' },
+        { title: 'Effortless Data Onboarding & Portability', description: 'Simply bulk-upload your existing portfolio data via Excel to get started instantly. Your data remains yours.', longDescription: 'Forget complex, expensive IT integration projects that drag on for months. Our system is designed for immediate deployment. Simply bulk-upload your existing portfolio data via Excel to get started instantly. Need reports? Your data remains yours—easily exportable at any time for your internal accounting or analysis needs with zero friction.', image: '/images/white-label/5.png', screenshot: '/images/features/content-mudeer/5.jpg' },
+        { title: 'Enterprise-Class Scalability & Support', description: 'From 100 units to 100,000, our infrastructure grows with you. Our technical team handles updates invisibly.', longDescription: 'Whether you manage 100 units or 100,000, our infrastructure is built to grow with you. We utilize robust, industry-standard cloud architecture to ensure high performance and reliability. While you focus on expanding your portfolio, our dedicated technical team works invisibly in the background to handle updates, patches, and server maintenance.', image: '/images/white-label/6.png', screenshot: '/images/features/content-mudeer/6.jpg' }
       ]
     },
     features: {
@@ -110,16 +102,7 @@ const content = {
       cta1: 'طلب اقتراح',
       cta2: 'التحدث مع المبيعات'
     },
-    whyWhiteLabel: {
-      badge: 'لماذا العلامة البيضاء',
-      title: 'توسع دون صداع',
-      description: 'يستغرق بناء برنامج إدارة العقارات من الصفر سنوات وملايين الدولارات. مع حل العلامة البيضاء لدينا، يمكنك الإطلاق في أسابيع مع منصة مثبتة ومجربة.',
-      items: [
-        { title: 'الوصول إلى السوق بشكل أسرع', desc: 'انطلق في أسابيع، لا سنوات. بنيتنا التحتية جاهزة.' },
-        { title: 'تقليل المخاطر', desc: 'تقنية مثبتة مستخدمة من آلاف الوحدات حول العالم.' },
-        { title: 'التركيز على النمو', desc: 'وجه طاقتك نحو المبيعات والعلاقات، وليس البرمجة.' }
-      ]
-    },
+
     howItWorks: {
       badge: 'كيف يعمل',
       title: 'من الفكرة إلى الإطلاق',
@@ -131,16 +114,16 @@ const content = {
       ]
     },
     benefits: {
-      badge: 'الفوائد',
-      title: 'لماذا تختار العلامة البيضاء؟',
-      subtitle: 'ابنِ علامتك التجارية مع الاستفادة من التقنية المثبتة.',
+      badge: 'لماذا العلامة البيضاء',
+      title: 'نمو بدون صداع',
+      subtitle: 'يستغرق بناء برنامج إدارة العقارات من الصفر سنوات وملايين. مع العلامة البيضاء، أطلق في أسابيع مع منصة مثبتة.',
       items: [
-        { title: 'التحكم الكامل في العلامة التجارية', description: 'شعارك، ألوانك، نطاقك. كل نقطة اتصال تعكس هويتك المؤسسية.', icon: '🎨' },
-        { title: 'النشر السريع', description: 'انطلق في أسابيع، لا سنوات. بنيتنا التحتية جاهزة—فقط أضف علامتك التجارية.', icon: '⚡' },
-        { title: 'أمان المؤسسات', description: 'بنية تحتية معتمدة SOC 2 Type II مع 99.99% اتفاقية مستوى الخدمة.', icon: '🔒' },
-        { title: 'هندسة قابلة للتوسع', description: 'من 100 وحدة إلى 100,000. منصتنا تنمو بسلاسة مع عملك.', icon: '📈' },
-        { title: 'دعم مخصص', description: 'تأهيل متميز ودعم تقني مستمر لفريقك.', icon: '🤝' },
-        { title: 'نمو الإيرادات', description: 'أضف التقنية كخدمة. أنشئ مصادر إيرادات جديدة من العملاء الحاليين.', icon: '💎' }
+        { title: 'نظام العلامة التجارية الخاصة بك في المقدمة', description: 'لا تخفف من قيمة علامتك التجارية. نقدم "تقنية غير مرئية" ملفوفة بالكامل في هويتك.', longDescription: 'لا تخفف من قيمة علامتك التجارية مع شعارات جهات خارجية. نحن نقدم "تقنية غير مرئية" ملفوفة بالكامل في هويتك المؤسسية. من أيقونة متجر التطبيقات إلى لوحة الألوان واسم النطاق، يتفاعل مستأجروك وموظفوك حصريًا مع علامتك التجارية. نحن نبني المحرك؛ وأنت تحصل على الفضل.', image: '/images/white-label/1.png', screenshot: '/images/white-label/1.png' },
+        { title: 'تقنية جاهزة للسوق، صفر مخاطر', description: 'لماذا تنفق الملايين والسنوات في البناء؟ تجاوز مخاطر رأس المال والتطوير مع حلنا الجاهز.', longDescription: 'لماذا تنفق الملايين والسنوات في بناء منصة ملكية من الصفر؟ تجاوز مخاطر رأس المال والتطوير الضخمة. حل العلامة البيضاء لدينا هو منتج جاهز يتيح لك إطلاق نظام بيئي رقمي ناضج ومجرب وغني بالميزات في أسابيع، وليس سنوات.', image: '/images/white-label/2.png', screenshot: '/images/white-label/2.png' },
+        { title: 'تحقيق الدخل من عقاراتك الرقمية', description: 'حوّل محفظتك إلى سوق رقمي هامشي مرتفع مع التحكم الكامل في محرك الإيرادات.', longDescription: 'حوّل محفظتك إلى سوق رقمي هامشي مرتفع. مع التحكم الكامل في "محرك الإيرادات"، يمكنك اختيار شراكات حصرية، وبيع مساحة إعلانية للشركات المحلية، أو تقديم خدمات كونسيرج متميزة تحت رايتك الخاصة، مما يخلق تدفقًا متكررًا للإيرادات يتجاوز الإيجار.', image: '/images/white-label/3.png', screenshot: '/images/white-label/3.png' },
+        { title: 'امتلك البيانات، امتلك العميل', description: 'احتفظ بالسيادة الكاملة على البيانات. احصد تحليلات عميقة حول سلوك المستأجرين لاتخاذ قرارات أكثر ذكاءً.', longDescription: 'في عصر رقمي، البيانات هي أصلك الأكثر قيمة. على عكس منصات SaaS القياسية التي تحتفظ بمعلوماتك، يضمن حل العلامة البيضاء لدينا احتفاظك بالسيادة الكاملة على البيانات. احصد تحليلات عميقة حول سلوك المستأجرين واستخدام المرافق واتجاهات الدفع لدفع قرارات استثمارية أكثر ذكاءً وزيادة تقييم العقار.', image: '/images/white-label/4.png', screenshot: '/images/white-label/4.png' },
+        { title: 'تسجيل بيانات سهل وقابلية النقل', description: 'ما عليك سوى تحميل بيانات محفظتك الحالية بكميات كبيرة عبر Excel للبدء فورًا. بياناتك تبقى لك.', longDescription: 'انسَ مشاريع تكامل IT المعقدة والمكلفة التي تمتد لأشهر. تم تصميم نظامنا للنشر الفوري. ما عليك سوى تحميل بيانات محفظتك الحالية بكميات كبيرة عبر Excel للبدء فورًا. هل تحتاج تقارير؟ بياناتك تبقى لك—قابلة للتصدير بسهولة في أي وقت لاحتياجات محاسبتك أو تحليلاتك الداخلية بدون احتكاك.', image: '/images/white-label/5.png', screenshot: '/images/white-label/5.png' },
+        { title: 'قابلية التوسع والدعم على مستوى المؤسسات', description: 'من 100 وحدة إلى 100,000، بنيتنا التحتية تنمو معك. فريقنا التقني يتعامل مع التحديثات بشكل غير مرئي.', longDescription: 'سواء كنت تدير 100 وحدة أو 100,000، بنيتنا التحتية مبنية للنمو معك. نحن نستخدم بنية سحابية قوية وقياسية في الصناعة لضمان الأداء والموثوقية العاليين. بينما تركز على توسيع محفظتك، يعمل فريقنا التقني المخصص في الخلفية بشكل غير مرئي للتعامل مع التحديثات والتصحيحات وصيانة الخادم.', image: '/images/white-label/6.png', screenshot: '/images/white-label/6.png' }
       ]
     },
     features: {
@@ -205,16 +188,7 @@ const content = {
       cta1: 'Minta Proposal',
       cta2: 'Bicara dengan Penjualan'
     },
-    whyWhiteLabel: {
-      badge: 'Mengapa White Label',
-      title: 'Skalakan Tanpa Sakit Kepala',
-      description: 'Membangun perangkat lunak manajemen properti dari nol membutuhkan waktu bertahun-tahun dan jutaan dolar. Dengan solusi white label kami, Anda dapat meluncurkan dalam hitungan minggu dengan platform yang terbukti dan teruji.',
-      items: [
-        { title: 'Lebih Cepat ke Pasar', desc: 'Luncurkan dalam minggu, bukan tahun. Infrastruktur kami siap.' },
-        { title: 'Kurangi Risiko', desc: 'Teknologi terbukti yang digunakan oleh ribuan unit di seluruh dunia.' },
-        { title: 'Fokus pada Pertumbuhan', desc: 'Gunakan energi Anda untuk penjualan dan hubungan, bukan coding.' }
-      ]
-    },
+
     howItWorks: {
       badge: 'Cara Kerja',
       title: 'Dari Konsep hingga Peluncuran',
@@ -226,16 +200,16 @@ const content = {
       ]
     },
     benefits: {
-      badge: 'Manfaat',
-      title: 'Mengapa Memilih White Label?',
-      subtitle: 'Bangun merek Anda sambil memanfaatkan teknologi yang terbukti.',
+      badge: 'Mengapa White Label',
+      title: 'Skalakan Tanpa Sakit Kepala',
+      subtitle: 'Membangun software manajemen properti dari nol membutuhkan waktu bertahun-tahun dan jutaan dolar. Dengan white label, luncurkan dalam minggu dengan platform terbukti.',
       items: [
-        { title: 'Kontrol Merek Lengkap', description: 'Logo Anda, warna Anda, domain Anda. Setiap titik sentuh mencerminkan identitas perusahaan Anda.', icon: '🎨' },
-        { title: 'Penyebaran Cepat', description: 'Go live dalam minggu, bukan tahun. Infrastruktur kami siap—tambahkan merek Anda saja.', icon: '⚡' },
-        { title: 'Keamanan Perusahaan', description: 'Infrastruktur tersertifikasi SOC 2 Type II dengan 99,99% uptime SLA.', icon: '🔒' },
-        { title: 'Arsitektur Skalabel', description: 'Dari 100 unit hingga 100.000. Platform kami tumbuh tanpa batas dengan bisnis Anda.', icon: '📈' },
-        { title: 'Dukungan Khusus', description: 'Onboarding white-glove dan dukungan teknis berkelanjutan untuk tim Anda.', icon: '🤝' },
-        { title: 'Pertumbuhan Pendapatan', description: 'Tambahkan teknologi sebagai layanan. Hasilkan aliran pendapatan baru dari klien yang ada.', icon: '💎' }
+        { title: 'Ekosistem Merek Anda di Pusat Perhatian', description: 'Jangan mencairkan ekuitas merek Anda dengan logo pihak ketiga. Kami sediakan "Teknologi Tak Terlihat" yang seluruhnya dibungkus dalam identitas Anda.', longDescription: 'Jangan mencairkan ekuitas merek Anda dengan logo pihak ketiga. Kami menyediakan "Teknologi Tak Terlihat" yang seluruhnya dibungkus dalam identitas perusahaan Anda. Dari ikon App Store hingga palet warna dashboard dan nama domain, penyewa dan staf Anda berinteraksi secara eksklusif dengan merek Anda. Kami membangun mesinnya; Anda mendapatkan kreditnya.', image: '/images/white-label/1.png', screenshot: '/images/white-label/1.png' },
+        { title: 'Teknologi Siap Pasar, Risiko Nol', description: 'Mengapa menghabiskan jutaan dan tahunan membangun dari nol? Lewati risiko CAPEX dan pengembangan dengan solusi siap pakai kami.', longDescription: 'Mengapa menghabiskan jutaan dan tahunan membangun platform proprietary dari nol? Lewati risiko CAPEX dan pengembangan yang masif. Solusi White Label kami adalah produk siap pakai yang memungkinkan Anda meluncurkan ekosistem digital yang matang, teruji, dan kaya fitur dalam hitungan minggu, bukan tahun.', image: '/images/white-label/2.png', screenshot: '/images/white-label/2.png' },
+        { title: 'Monetisasi Real Estate Digital Anda', description: 'Ubah portofolio Anda menjadi marketplace digital margin tinggi dengan kontrol penuh atas mesin pendapatan.', longDescription: 'Ubah portofolio Anda menjadi marketplace digital margin tinggi. Dengan kontrol penuh atas "Mesin Pendapatan", Anda dapat mengkurasi kemitraan eksklusif, menjual ruang iklan ke bisnis lokal, atau menawarkan layanan concierge premium di bawah spanduk Anda sendiri, menciptakan aliran pendapatan berulang yang melampaui sewa.', image: '/images/white-label/3.png', screenshot: '/images/white-label/3.png' },
+        { title: 'Kuasai Data, Kuasai Pelanggan', description: 'Pertahankan kedaulatan data penuh. Panen analitik mendalam tentang perilaku penyewa untuk mendorong keputusan yang lebih cerdas.', longDescription: 'Di era digital, data adalah aset Anda yang paling berharga. Berbeda dengan platform SaaS standar yang menyimpan informasi Anda, solusi White Label kami memastikan Anda mempertahankan kedaulatan data penuh. Panen analitik mendalam tentang perilaku penyewa, penggunaan fasilitas, dan tren pembayaran untuk mendorong keputusan investasi yang lebih cerdas dan meningkatkan valuasi properti.', image: '/images/white-label/4.png', screenshot: '/images/white-label/4.png' },
+        { title: 'Onboarding Data & Portabilitas Tanpa Usaha', description: 'Cukup unggah data portofolio Anda yang ada secara massal via Excel untuk memulai secara instan. Data tetap menjadi milik Anda.', longDescription: 'Lupakan proyek integrasi IT yang kompleks dan mahal yang berlangsung berbulan-bulan. Sistem kami dirancang untuk deployment segera. Cukup unggah data portofolio Anda yang ada secara massal via Excel untuk memulai secara instan. Butuh laporan? Data Anda tetap menjadi milik Anda—mudah diekspor kapan saja untuk kebutuhan akuntansi atau analisis internal Anda tanpa gesekan.', image: '/images/white-label/5.png', screenshot: '/images/white-label/5.png' },
+        { title: 'Skalabilitas & Dukungan Kelas Perusahaan', description: 'Dari 100 unit hingga 100.000+, infrastruktur kami tumbuh bersama Anda. Tim teknis kami menangani pembaruan secara tak terlihat.', longDescription: 'Baik Anda mengelola 100 unit atau 100.000+, infrastruktur kami dibangun untuk tumbuh bersama Anda. Kami menggunakan arsitektur cloud yang kuat dan standar industri untuk memastikan performa dan keandalan tinggi. Sementara Anda fokus memperluas portofolio, tim teknis khusus kami bekerja di latar belakang secara tak terlihat untuk menangani pembaruan, patch, dan pemeliharaan server.', image: '/images/white-label/6.png', screenshot: '/images/white-label/6.png' }
       ]
     },
     features: {
@@ -391,45 +365,39 @@ export default function WhiteLabelPage() {
         </div>
       </section>
 
-      {/* Why White Label - Sand */}
+      {/* Benefits - Sand */}
       <section className="py-24 px-4 sm:px-6 md:px-[60px] bg-[#F5F3F0]">
         <div className="max-w-[1400px] mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <span className="inline-block text-[10px] sm:text-[11px] tracking-[0.3em] uppercase text-[#0A1628]/60 mb-4">{t.whyWhiteLabel.badge}</span>
-              <h2 className="font-['Cormorant_Garamond'] text-[clamp(32px,4vw,48px)] text-[#0A1628] mb-6">{t.whyWhiteLabel.title}</h2>
-              <p className="text-[#1A2B42]/70 leading-relaxed mb-8">
-                {t.whyWhiteLabel.description}
-              </p>
-              <div className="space-y-6">
-                {t.whyWhiteLabel.items.map((item, i) => (
-                  <div key={i} className={`flex gap-4 ${isRTL ? 'flex-row-reverse text-right' : ''}`}>
-                    <div className="w-12 h-12 rounded-xl bg-[#D4AF37]/10 flex items-center justify-center flex-shrink-0">
-                      <span className="text-[#D4AF37] font-bold">0{i + 1}</span>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-[#0A1628] mb-1">{item.title}</h4>
-                      <p className="text-[#1A2B42]/60 text-sm">{item.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="bg-white rounded-2xl p-8 border border-[#0A1628]/10 shadow-lg">
-              <div className="space-y-4">
-                <div className="h-4 bg-[#D4AF37]/20 rounded w-3/4" />
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="h-24 bg-[#0A1628]/5 rounded" />
-                  <div className="h-24 bg-[#0A1628]/5 rounded" />
+          <div className="text-center mb-16">
+            <span className="inline-block text-[10px] sm:text-[11px] tracking-[0.3em] uppercase text-[#0A1628]/60 mb-4">{t.benefits.badge}</span>
+            <h2 className="font-['Cormorant_Garamond'] text-[clamp(32px,4vw,48px)] text-[#0A1628] mb-4">{t.benefits.title}</h2>
+            <p className="text-[#1A2B42]/70 max-w-2xl mx-auto">{t.benefits.subtitle}</p>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {t.benefits.items.map((benefit, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="bg-white rounded-2xl overflow-hidden border border-[#0A1628]/10 hover:border-[#D4AF37]/30 transition-all text-left shadow-sm group"
+              >
+                <div className="relative w-full h-48 overflow-hidden">
+                  <Image 
+                    src={benefit.image} 
+                    alt={benefit.title}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    unoptimized
+                  />
                 </div>
-                <div className="h-4 bg-[#D4AF37]/20 rounded w-1/2" />
-                <div className="h-32 bg-[#0A1628]/5 rounded" />
-                <div className="flex gap-2">
-                  <div className="h-10 bg-[#D4AF37]/20 rounded flex-1" />
-                  <div className="h-10 bg-[#0A1628]/10 rounded flex-1" />
+                <div className="p-6">
+                  <h3 className="text-lg font-semibold mb-2 text-[#0A1628] group-hover:text-[#D4AF37] transition-colors">{benefit.title}</h3>
+                  <p className="text-[#1A2B42]/70 text-sm leading-relaxed">{benefit.description}</p>
                 </div>
-              </div>
-            </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
@@ -448,33 +416,6 @@ export default function WhiteLabelPage() {
                 <div className="text-6xl font-['Cormorant_Garamond'] text-[#D4AF37]/20 mb-4">{item.step}</div>
                 <h3 className="text-xl font-semibold mb-3">{item.title}</h3>
                 <p className="text-[#9CA3AF]">{item.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Benefits - Sand */}
-      <section className="py-24 px-4 sm:px-6 md:px-[60px] bg-[#F5F3F0]">
-        <div className="max-w-[1400px] mx-auto">
-          <div className="text-center mb-16">
-            <span className="inline-block text-[10px] sm:text-[11px] tracking-[0.3em] uppercase text-[#0A1628]/60 mb-4">{t.benefits.badge}</span>
-            <h2 className="font-['Cormorant_Garamond'] text-[clamp(32px,4vw,48px)] text-[#0A1628] mb-4">{t.benefits.title}</h2>
-            <p className="text-[#1A2B42]/70 max-w-2xl mx-auto">{t.benefits.subtitle}</p>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {t.benefits.items.map((benefit, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="bg-white rounded-2xl p-8 border border-[#0A1628]/10 hover:border-[#D4AF37]/30 transition-all text-left shadow-sm"
-              >
-                <div className="text-4xl mb-4">{benefit.icon}</div>
-                <h3 className="text-xl font-semibold mb-3 text-[#0A1628]">{benefit.title}</h3>
-                <p className="text-[#1A2B42]/70 text-sm leading-relaxed">{benefit.description}</p>
               </motion.div>
             ))}
           </div>
@@ -559,7 +500,7 @@ export default function WhiteLabelPage() {
         </div>
       </section>
 
-      {/* Form Modal -->
+      {/* Form Modal */}
       {showContactForm && (
         <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
           <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="bg-gradient-to-br from-[#0F1D2F] to-[#1A2B42] border border-[#D4AF37]/30 rounded-2xl p-8 max-w-lg w-full max-h-[90vh] overflow-y-auto">

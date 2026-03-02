@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 40" fill="none">
+  <!-- Background (transparent) -->
+  <rect width="200" height="40" fill="none"/>
+  
+  <!-- Logo Text -->
+  <text 
+    x="50%" 
+    y="50%" 
+    dominant-baseline="middle" 
+    text-anchor="middle"
+    font-family="Outfit, sans-serif"
+    font-size="18"
+    font-weight="600"
+    letter-spacing="0.15em"
+    fill="#F8F9FA"
+  >
+    THE MUDEER
+  </text>
+  
+  <!-- Decorative Gold Accent Line -->
+  <line 
+    x1="75" 
+    y1="32" 
+    x2="125" 
+    y2="32" 
+    stroke="#D4AF37" 
+    stroke-width="1.5"
+    stroke-linecap="round"
+  />
+</svg>

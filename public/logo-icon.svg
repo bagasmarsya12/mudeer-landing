@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
+  <!-- Background Circle -->
+  <circle cx="24" cy="24" r="24" fill="#0A1628"/>
+  
+  <!-- M Monogram -->
+  <text 
+    x="50%" 
+    y="52%" 
+    dominant-baseline="middle" 
+    text-anchor="middle"
+    font-family="Outfit, sans-serif"
+    font-size="24"
+    font-weight="700"
+    fill="#F8F9FA"
+  >
+    M
+  </text>
+  
+  <!-- Gold Accent Dot -->
+  <circle cx="38" cy="38" r="4" fill="#D4AF37"/>
+</svg>
