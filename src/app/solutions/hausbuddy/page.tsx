@@ -5,6 +5,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
 import { Header } from '@/components/Header';
+import { SiteFooter } from '@/components/SiteFooter';
+import { CtaPopup } from '@/components/CtaPopup';
 import { useLanguage } from '@/lib/LanguageContext';
 
 const content = {
@@ -190,12 +192,17 @@ const content = {
 export default function HausbuddyPage() {
   const { language } = useLanguage();
   const [showContactForm, setShowContactForm] = useState(false);
+  const [contactTitle, setContactTitle] = useState(content[language].modal.title);
   const [selectedFeature, setSelectedFeature] = useState<typeof content.EN.features[0] | null>(null);
+  const [zoomedImage, setZoomedImage] = useState<string | null>(null);
 
   const t = content[language];
   const isRTL = language === 'AR';
 
-  const openContact = () => setShowContactForm(true);
+  const openContact = (title?: string) => {
+    setContactTitle(title || t.modal.title);
+    setShowContactForm(true);
+  };
 
   // Contact Section Content
   const contactContent = {
@@ -238,8 +245,8 @@ export default function HausbuddyPage() {
       <Header onContactClick={openContact} />
 
       {/* Hero - Navy */}
-      <section className="pt-32 pb-20 px-4 sm:px-6 md:px-[60px] bg-[#0A1628]">
-        <div className="max-w-[1400px] mx-auto">
+      <section className="pt-32 pb-20 bg-[#0A1628]">
+        <div className="page-container">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }}>
               <span className="text-[#00A79D] text-sm tracking-[0.2em] uppercase">{t.hero.badge}</span>
@@ -250,7 +257,7 @@ export default function HausbuddyPage() {
                 {t.hero.description}
               </p>
               <div className={`flex flex-wrap gap-4 ${isRTL ? 'flex-row-reverse' : ''}`}>
-                <button onClick={() => setShowContactForm(true)} className="px-8 py-4 bg-[#00A79D] text-white font-semibold rounded-lg hover:bg-[#008B82] transition-colors">
+                <button onClick={() => openContact(t.hero.cta1)} className="px-8 py-4 bg-[#00A79D] text-white font-semibold rounded-lg hover:bg-[#008B82] transition-colors">
                   {t.hero.cta1}
                 </button>
                 <Link href="#features" className="px-8 py-4 border border-[#00A79D]/30 text-[#F8F9FA] rounded-lg hover:bg-[#00A79D]/10 transition-colors">
@@ -289,7 +296,7 @@ export default function HausbuddyPage() {
 
       {/* Stats - Navy with border */}
       <section className="py-16 border-y border-[#00A79D]/10 bg-[#0A1628]">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-[60px]">
+        <div className="page-container">
           <div className="grid grid-cols-3 gap-8">
             {t.stats.map((stat, i) => (
               <motion.div key={i} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.1 }} className="text-center">
@@ -302,8 +309,8 @@ export default function HausbuddyPage() {
       </section>
 
       {/* Features Grid - Sand */}
-      <section id="features" className="py-24 px-4 sm:px-6 md:px-[60px] bg-[#F5F3F0]">
-        <div className="max-w-[1400px] mx-auto">
+      <section id="features" className="py-24 bg-[#F5F3F0]">
+        <div className="page-container">
           <div className="text-center mb-16">
             <span className="inline-block text-[10px] sm:text-[11px] tracking-[0.3em] uppercase text-[#0A1628]/60 mb-4">Features</span>
             <h2 className="font-['Cormorant_Garamond'] text-[clamp(32px,4vw,48px)] text-[#0A1628] mb-4">{t.featuresTitle}</h2>
@@ -317,7 +324,10 @@ export default function HausbuddyPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                onClick={() => setSelectedFeature(feature)}
+                onClick={() => {
+                  setSelectedFeature(feature);
+                  setZoomedImage(null);
+                }}
                 className="bg-white rounded-2xl overflow-hidden border border-[#0A1628]/10 hover:border-[#00A79D]/30 transition-all text-left shadow-sm cursor-pointer group"
               >
                 <div className="relative w-full h-48 overflow-hidden">
@@ -352,7 +362,10 @@ export default function HausbuddyPage() {
             <div className="sticky top-0 bg-gradient-to-br from-[#0F1D2F] to-[#1A2B42] border-b border-[#00A79D]/20 p-6 flex justify-between items-center z-10">
               <h3 className="text-2xl font-['Cormorant_Garamond'] text-[#00A79D]">{selectedFeature.title}</h3>
               <button 
-                onClick={() => setSelectedFeature(null)} 
+                onClick={() => {
+                  setSelectedFeature(null);
+                  setZoomedImage(null);
+                }} 
                 className="w-10 h-10 flex items-center justify-center rounded-full bg-[#00A79D]/10 text-[#00A79D] hover:bg-[#00A79D]/20 transition-colors"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -363,32 +376,54 @@ export default function HausbuddyPage() {
             
             {/* Content - 2 Column Layout */}
             <div className="p-6 sm:p-8">
-              <div className="grid lg:grid-cols-2 gap-8 lg:gap-10 lg:items-center">
-                {/* Left: Description */}
-                <div className="prose prose-invert max-w-none lg:pr-4">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00A79D]/10 border border-[#00A79D]/20 mb-4">
+              <div className="grid lg:grid-cols-[1.05fr_1fr] gap-8 lg:gap-10 lg:items-start">
+                {/* Left: Screenshot */}
+                <div className="flex justify-center lg:justify-start">
+                  <button
+                    type="button"
+                    onClick={() => setZoomedImage(selectedFeature.screenshot)}
+                    className="relative w-full max-w-[500px] h-[460px] sm:h-[560px] overflow-hidden cursor-zoom-in"
+                    aria-label="Zoom image"
+                  >
+                    <Image
+                      src={selectedFeature.screenshot}
+                      alt={`${selectedFeature.title} screenshot`}
+                      fill
+                      className="object-contain object-center"
+                      unoptimized
+                    />
+                    <span className="absolute top-3 right-3 text-[11px] px-2.5 py-1 rounded-full bg-black/55 text-white/90 border border-white/20">
+                      Zoom
+                    </span>
+                  </button>
+                </div>
+
+                {/* Right: Description */}
+                <div className="space-y-5 lg:pt-2">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00A79D]/10 border border-[#00A79D]/20">
                     <span className="w-2 h-2 rounded-full bg-[#00A79D]" />
-                    <span className="text-xs tracking-[0.18em] uppercase text-[#7CE3DD]">Feature Highlight</span>
+                    <span className="text-xs tracking-[0.18em] uppercase text-[#7CE3DD]">Feature Overview</span>
                   </div>
-                  <p className="text-[17px] sm:text-lg text-[#CBC5CE] leading-relaxed m-0">
+
+                  <div className="rounded-2xl border border-[#00A79D]/20 bg-[#00A79D]/5 p-4">
+                    <p className="text-[#E6FFFB] text-base sm:text-lg leading-relaxed">{selectedFeature.description}</p>
+                  </div>
+
+                  <p className="text-[15px] sm:text-base text-[#CBC5CE] leading-relaxed">
                     {selectedFeature.longDescription}
                   </p>
-                </div>
-                
-                {/* Right: Screenshot */}
-                <div className="flex justify-center lg:justify-end">
-                  <div className="relative w-full max-w-[420px] rounded-[2rem] border border-[#00A79D]/25 bg-[#0A1628]/70 p-4 sm:p-5 shadow-[0_20px_50px_rgba(0,0,0,0.45)] overflow-hidden">
-                    <div className="pointer-events-none absolute -top-14 -right-14 w-36 h-36 rounded-full bg-[#00A79D]/20 blur-3xl" />
-                    <div className="pointer-events-none absolute -bottom-14 -left-10 w-32 h-32 rounded-full bg-[#22D3EE]/15 blur-3xl" />
-                    <div className="relative w-full h-[420px] sm:h-[460px] rounded-[1.5rem] bg-[#020617]/70 ring-1 ring-white/10 overflow-hidden">
-                      <Image 
-                        src={selectedFeature.screenshot} 
-                        alt={`${selectedFeature.title} screenshot`}
-                        fill
-                        className="object-contain"
-                        unoptimized
-                      />
-                    </div>
+
+                  <div className="space-y-3 pt-1">
+                    {selectedFeature.longDescription
+                      .split('. ')
+                      .filter(Boolean)
+                      .slice(0, 3)
+                      .map((point, i) => (
+                        <div key={i} className="flex items-start gap-3">
+                          <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#00A79D]" />
+                          <p className="text-sm text-[#A7B0BE] leading-relaxed">{point.trim().endsWith('.') ? point.trim() : `${point.trim()}.`}</p>
+                        </div>
+                      ))}
                   </div>
                 </div>
               </div>
@@ -397,9 +432,31 @@ export default function HausbuddyPage() {
         </div>
       )}
 
+      {zoomedImage && (
+        <div
+          className="fixed inset-0 z-[60] bg-black/95 backdrop-blur-md p-4 sm:p-8 flex items-center justify-center"
+          onClick={() => setZoomedImage(null)}
+        >
+          <button
+            type="button"
+            onClick={() => setZoomedImage(null)}
+            className="absolute top-5 right-5 w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center"
+            aria-label="Close zoom"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+
+          <div className="relative w-full h-full max-w-6xl max-h-[90vh]" onClick={(e) => e.stopPropagation()}>
+            <Image src={zoomedImage} alt="Feature screenshot zoomed" fill className="object-contain" unoptimized />
+          </div>
+        </div>
+      )}
+
       {/* How It Works - Navy -->
-      <section className="py-24 px-4 sm:px-6 md:px-[60px] bg-[#0A1628]">
-        <div className="max-w-[1400px] mx-auto">
+      <section className="py-24 bg-[#0A1628]">
+        <div className="page-container">
           <div className="text-center mb-16">
             <span className="inline-block text-[10px] sm:text-[11px] tracking-[0.3em] uppercase text-[#00A79D] mb-4">{t.howItWorks.badge}</span>
             <h2 className="font-['Cormorant_Garamond'] text-[clamp(32px,4vw,48px)] mb-4">{t.howItWorks.title}</h2>
@@ -424,8 +481,8 @@ export default function HausbuddyPage() {
       </section>
 
       {/* Testimonial + Retention - Sand */}
-      <section className="py-24 px-4 sm:px-6 md:px-[60px] bg-[#F5F3F0]">
-        <div className="max-w-[1400px] mx-auto">
+      <section className="py-24 bg-[#F5F3F0]">
+        <div className="page-container">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className={`${isRTL ? 'order-2' : ''}`}>
               <div className="bg-white rounded-2xl p-8 border border-[#0A1628]/10 shadow-sm">
@@ -469,35 +526,17 @@ export default function HausbuddyPage() {
         </div>
       </section>
 
-      {/* Form Modal -->
-      {showContactForm && (
-        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="bg-gradient-to-br from-[#0F1D2F] to-[#1A2B42] border border-[#00A79D]/30 rounded-2xl p-8 max-w-md w-full">
-            <div className="flex justify-between items-center mb-6">
-              <h3 className="text-2xl font-['Cormorant_Garamond'] text-[#00A79D]">{t.modal.title}</h3>
-              <button onClick={() => setShowContactForm(false)} className="text-[#9CA3AF] hover:text-[#F8F9FA]">{t.modal.close}</button>
-            </div>
-            <form className="space-y-4">
-              <input type="text" placeholder={t.modal.name} className="w-full px-4 py-3 bg-[#0A1628] border border-[#00A79D]/20 rounded-lg text-[#F8F9FA] focus:outline-none focus:border-[#00A79D]" />
-              <input type="email" placeholder={t.modal.email} className="w-full px-4 py-3 bg-[#0A1628] border border-[#00A79D]/20 rounded-lg text-[#F8F9FA] focus:outline-none focus:border-[#00A79D]" />
-              <select className="w-full px-4 py-3 bg-[#0A1628] border border-[#00A79D]/20 rounded-lg text-[#9CA3AF] focus:outline-none focus:border-[#00A79D]">
-                <option>{t.modal.role}</option>
-                {t.modal.roles.map((role, i) => (
-                  <option key={i}>{role}</option>
-                ))}
-              </select>
-              <button type="submit" className="w-full py-4 bg-[#00A79D] text-white font-semibold rounded-lg hover:bg-[#008B82] transition-colors">
-                {t.modal.submit}
-              </button>
-            </form>
-          </motion.div>
-        </div>
-      )}
+      <CtaPopup
+        isOpen={showContactForm}
+        onClose={() => setShowContactForm(false)}
+        language={language}
+        title={contactTitle}
+      />
 
       {/* Let's Talk Section */}
       <section id="contact" className="py-20 sm:py-32 bg-[#0A1628] relative overflow-hidden">
         <div className="absolute inset-0" style={{ backgroundImage: `radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.1) 0%, transparent 50%)` }} />
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-[60px] relative z-10">
+        <div className="page-container relative z-10">
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className={`text-center mb-12 sm:mb-16`}>
             <span className="inline-block text-[10px] sm:text-[11px] tracking-[0.3em] uppercase text-[#D4AF37] mb-4 sm:mb-6">{ct.badge}</span>
             <h2 className="font-['Cormorant_Garamond'] text-[clamp(28px,5vw,56px)] mb-4 sm:mb-6">{ct.title}</h2>
@@ -508,7 +547,7 @@ export default function HausbuddyPage() {
             {ct.methods.map((item, i) => {
               const CardWrapper = i === 0 ? motion.button : motion.a;
               const cardProps = i === 0 
-                ? { onClick: () => setShowContactForm(true) } 
+                ? { onClick: () => openContact(item.title) } 
                 : { href: item.href, target: '_blank', rel: 'noopener noreferrer' };
               
               return (
@@ -539,36 +578,8 @@ export default function HausbuddyPage() {
         </div>
       </section>
 
-      {/* Contact Form Modal */}
-      {showContactForm && (
-        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="bg-gradient-to-br from-[#0F1D2F] to-[#1A2B42] border border-[#D4AF37]/30 rounded-2xl p-8 max-w-lg w-full max-h-[90vh] overflow-y-auto">
-            <div className="flex justify-between items-center mb-6">
-              <h3 className="text-2xl font-['Cormorant_Garamond'] text-[#D4AF37]">{language === 'AR' ? 'نموذج التواصل' : language === 'ID' ? 'Form Kontak' : 'Contact Form'}</h3>
-              <button onClick={() => setShowContactForm(false)} className="text-[#9CA3AF] hover:text-[#F8F9FA]">{t.modal.close}</button>
-            </div>
-            <form className="space-y-4">
-              <div className="grid sm:grid-cols-2 gap-4">
-                <input type="text" placeholder={language === 'AR' ? 'الاسم الأول' : language === 'ID' ? 'Nama Depan' : 'First Name'} className="w-full px-4 py-3 bg-[#0A1628] border border-[#D4AF37]/20 rounded-lg text-[#F8F9FA] focus:outline-none focus:border-[#D4AF37]" />
-                <input type="text" placeholder={language === 'AR' ? 'اسم العائلة' : language === 'ID' ? 'Nama Belakang' : 'Last Name'} className="w-full px-4 py-3 bg-[#0A1628] border border-[#D4AF37]/20 rounded-lg text-[#F8F9FA] focus:outline-none focus:border-[#D4AF37]" />
-              </div>
-              <input type="tel" placeholder={language === 'AR' ? 'الهاتف' : language === 'ID' ? 'Telepon' : 'Phone'} className="w-full px-4 py-3 bg-[#0A1628] border border-[#D4AF37]/20 rounded-lg text-[#F8F9FA] focus:outline-none focus:border-[#D4AF37]" />
-              <input type="email" placeholder={language === 'AR' ? 'البريد' : language === 'ID' ? 'Email' : 'Email'} className="w-full px-4 py-3 bg-[#0A1628] border border-[#D4AF37]/20 rounded-lg text-[#F8F9FA] focus:outline-none focus:border-[#D4AF37]" />
-              <textarea rows={4} placeholder={language === 'AR' ? 'الرسالة' : language === 'ID' ? 'Pesan' : 'Message'} className="w-full px-4 py-3 bg-[#0A1628] border border-[#D4AF37]/20 rounded-lg text-[#F8F9FA] focus:outline-none focus:border-[#D4AF37] resize-none" />
-              <button type="submit" className="w-full py-4 bg-[#D4AF37] text-[#0A1628] font-semibold rounded-lg hover:bg-[#E8C968] transition-colors">
-                {language === 'AR' ? 'إرسال' : language === 'ID' ? 'Kirim' : 'Submit'}
-              </button>
-            </form>
-          </motion.div>
-        </div>
-      )}
-
       {/* Footer */}
-      <footer className="bg-[#0F1D2F] py-8 border-t border-[#00A79D]/10">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-[60px] text-center text-[#9CA3AF] text-sm">
-          {t.footer}
-        </div>
-      </footer>
+      <SiteFooter />
     </main>
   );
 }

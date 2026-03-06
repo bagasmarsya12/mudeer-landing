@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { useLanguage } from '@/lib/LanguageContext';
 import { Header } from '@/components/Header';
+import { SiteFooter } from '@/components/SiteFooter';
 
 // ============================================
 // CONTACT MODAL COMPONENT
@@ -405,12 +406,17 @@ const ThreePillarsSection = ({ onWhiteLabelClick }: { onWhiteLabelClick: () => v
                       <div className="w-2 h-2 rounded-full bg-[#febc2e]" />
                       <div className="w-2 h-2 rounded-full bg-[#28c840]" />
                     </div>
-                    <div className="mt-5 sm:mt-6 space-y-1.5 sm:space-y-2">
-                      <div className="h-1.5 sm:h-2 bg-[#D4AF37]/30 rounded w-3/4" />
-                      <div className="h-1.5 sm:h-2 bg-[#D4AF37]/20 rounded w-1/2" />
-                      <div className="grid grid-cols-2 gap-1.5 sm:gap-2 mt-3 sm:mt-4">
-                        <div className="h-10 sm:h-16 bg-[#D4AF37]/10 rounded" />
-                        <div className="h-10 sm:h-16 bg-[#D4AF37]/10 rounded" />
+                    <div className="mt-5 sm:mt-6">
+                      <div className="text-[10px] sm:text-xs text-[#D4AF37] mb-2">{isRTL ? 'نظرة عامة على المحفظة' : 'Portfolio Overview'}</div>
+                      <div className="grid grid-cols-2 gap-1.5 sm:gap-2">
+                        <div className="bg-[#D4AF37]/10 rounded p-2 sm:p-3 border border-[#D4AF37]/20">
+                          <div className="text-[#D4AF37] text-xs sm:text-sm font-semibold">98%</div>
+                          <div className="text-[9px] sm:text-[10px] text-[#CBC5CE]">{isRTL ? 'معدل التحصيل' : 'Collection Rate'}</div>
+                        </div>
+                        <div className="bg-[#D4AF37]/10 rounded p-2 sm:p-3 border border-[#D4AF37]/20">
+                          <div className="text-[#D4AF37] text-xs sm:text-sm font-semibold">124</div>
+                          <div className="text-[9px] sm:text-[10px] text-[#CBC5CE]">{isRTL ? 'تذكرة نشطة' : 'Active Tickets'}</div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -419,10 +425,14 @@ const ThreePillarsSection = ({ onWhiteLabelClick }: { onWhiteLabelClick: () => v
                   <div className="relative w-full h-full flex items-center justify-center">
                     <div className="w-14 sm:w-20 h-24 sm:h-36 bg-gradient-to-b from-[#1A2B42] to-[#0A1628] rounded-xl border border-[#00A79D]/30 p-1">
                       <div className="w-full h-full bg-[#0F1D2F] rounded-lg p-1.5 sm:p-2">
-                        <div className="w-full h-1.5 sm:h-2 bg-[#00A79D]/30 rounded mb-1.5 sm:mb-2" />
-                        <div className="space-y-1 sm:space-y-2">
-                          <div className="h-4 sm:h-6 bg-[#00A79D]/10 rounded" />
-                          <div className="h-4 sm:h-6 bg-[#00A79D]/10 rounded" />
+                        <div className="text-[8px] sm:text-[9px] text-[#00A79D] mb-1.5 sm:mb-2">Hausbuddy</div>
+                        <div className="space-y-1 sm:space-y-2 text-[7px] sm:text-[8px]">
+                          <div className="bg-[#00A79D]/10 rounded p-1 border border-[#00A79D]/20 text-[#E6FFFD]">
+                            {isRTL ? 'موعد الدفع القادم: 12 مارس' : 'Next Payment Date: 12 Mar'}
+                          </div>
+                          <div className="bg-[#00A79D]/10 rounded p-1 border border-[#00A79D]/20 text-[#E6FFFD]">
+                            {isRTL ? 'طلب صيانة #1948' : 'Ticket #1948 In Progress'}
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -631,86 +641,9 @@ const ContactSection = ({ onContactClick }: { onContactClick: (type: ModalType) 
 // ============================================
 // FOOTER
 // ============================================
-const Footer = ({ onContactClick }: { onContactClick: (type: ModalType) => void }) => {
-  const { language } = useLanguage();
-
-  const content = {
-    EN: {
-      tagline: 'Refined property management solutions for discerning professionals.',
-      solutions: 'Solutions',
-      solutionLinks: ['Platform B2B', 'Hausbuddy B2C', 'White Label'],
-      contact: 'Contact',
-      copyright: '© 2025 The Mudeer. All rights reserved.',
-      privacy: 'Privacy',
-      terms: 'Terms'
-    },
-    AR: {
-      tagline: 'حلول إدارة عقارات راقية للمحترفين المتميزين.',
-      solutions: 'الحلول',
-      solutionLinks: ['المنصة B2B', 'هاوس بادي B2C', 'العلامة البيضاء'],
-      contact: 'تواصل معنا',
-      copyright: '© 2025 المدير. جميع الحقوق محفوظة.',
-      privacy: 'الخصوصية',
-      terms: 'الشروط'
-    },
-    ID: {
-      tagline: 'Solusi manajemen properti yang halus untuk profesional yang cerdas.',
-      solutions: 'Solusi',
-      solutionLinks: ['Platform B2B', 'Hausbuddy B2C', 'White Label'],
-      contact: 'Kontak',
-      copyright: '© 2025 The Mudeer. Hak cipta dilindungi.',
-      privacy: 'Privasi',
-      terms: 'Ketentuan'
-    }
-  };
-
-  const t = content[language];
-
+const Footer = ({ onContactClick }: { onContactClick: (type: 'lets-talk' | 'email') => void }) => {
   return (
-    <footer className="bg-[#0F1D2F] pt-12 sm:pt-16 pb-6 sm:pb-8 border-t border-[#D4AF37]/10">
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-[60px]">
-        <div className={`grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-12 mb-8 sm:mb-12 text-left`}>
-          <div className="col-span-2 md:col-span-2">
-            <Link href="/page2" className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
-              <svg className="w-7 h-7 sm:w-9 sm:h-9" viewBox="0 0 44 44" fill="none">
-                <rect x="6" y="8" width="32" height="6" rx="2" fill="#D4AF37"/>
-                <rect x="6" y="19" width="26" height="6" rx="2" fill="#D4AF37"/>
-                <rect x="6" y="30" width="20" height="6" rx="2" fill="#D4AF37"/>
-              </svg>
-              <span className="font-['Outfit'] font-semibold text-xs sm:text-sm tracking-[0.2em] text-[#F8F9FA] uppercase">The Mudeer</span>
-            </Link>
-            <p className="text-xs sm:text-sm text-[#9CA3AF] leading-relaxed max-w-xs">{t.tagline}</p>
-          </div>
-          <div>
-            <h4 className="text-[10px] sm:text-xs font-semibold tracking-[0.15em] uppercase text-[#D4AF37] mb-3 sm:mb-4">{t.solutions}</h4>
-            <ul className="space-y-2 sm:space-y-3">
-              {t.solutionLinks.map((link, i) => (
-                <li key={i}>
-                  <Link href={`/solutions/${['platform', 'hausbuddy', 'white-label'][i]}`} className="text-xs sm:text-sm text-[#9CA3AF] hover:text-[#D4AF37] transition-colors">
-                    {link}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h4 className="text-[10px] sm:text-xs font-semibold tracking-[0.15em] uppercase text-[#D4AF37] mb-3 sm:mb-4">{t.contact}</h4>
-            <ul className="space-y-2 sm:space-y-3">
-              <li><button onClick={() => onContactClick('lets-talk')} className="text-xs sm:text-sm text-[#9CA3AF] hover:text-[#D4AF37] transition-colors">{language === 'AR' ? 'دعنا نتحدث' : language === 'ID' ? 'Mari Bicara' : "Let's Talk"}</button></li>
-              <li><button onClick={() => onContactClick('email')} className="text-xs sm:text-sm text-[#9CA3AF] hover:text-[#D4AF37] transition-colors">{language === 'AR' ? 'راسلنا' : language === 'ID' ? 'Email Kami' : 'Email Us'}</button></li>
-              <li><span className="text-xs sm:text-sm text-[#9CA3AF]">Dubai, UAE</span></li>
-            </ul>
-          </div>
-        </div>
-        <div className="pt-6 sm:pt-8 border-t border-white/5 flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-4">
-          <div className="text-xs text-[#9CA3AF]">{t.copyright}</div>
-          <div className="flex gap-4 sm:gap-6">
-            <a href="#" className="text-xs text-[#9CA3AF] hover:text-[#D4AF37] transition-colors">{t.privacy}</a>
-            <a href="#" className="text-xs text-[#9CA3AF] hover:text-[#D4AF37] transition-colors">{t.terms}</a>
-          </div>
-        </div>
-      </div>
-    </footer>
+    <SiteFooter onContactClick={onContactClick} />
   );
 };
 
@@ -738,7 +671,7 @@ export default function Page2() {
       <ThreePillarsSection onWhiteLabelClick={() => setWhiteLabelOpen(true)} />
       <HowItWorksSection />
       <ContactSection onContactClick={openContact} />
-      <Footer onContactClick={openContact} />
+      <Footer onContactClick={(type) => openContact(type)} />
     </main>
   );
 }

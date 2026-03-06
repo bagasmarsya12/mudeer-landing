@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
 import { Header } from '@/components/Header';
+import { SiteFooter } from '@/components/SiteFooter';
 import { useLanguage } from '@/lib/LanguageContext';
 
 const content = {
@@ -287,8 +288,18 @@ export default function PlatformPage() {
   
   const [showContactForm, setShowContactForm] = useState(false);
   const [selectedFeature, setSelectedFeature] = useState<typeof t.features[0] | null>(null);
+  const [zoomedImage, setZoomedImage] = useState<string | null>(null);
+  const selectedFeatureIndex = selectedFeature ? t.features.findIndex((feature) => feature.title === selectedFeature.title) : -1;
+  const popupVariant = selectedFeatureIndex >= 0 ? selectedFeatureIndex % 6 : 0;
 
   const openContact = () => setShowContactForm(true);
+  const getFeaturePoints = (text: string, limit = 4) =>
+    text
+      .split('. ')
+      .map((point) => point.trim())
+      .filter(Boolean)
+      .slice(0, limit)
+      .map((point) => (point.endsWith('.') ? point : `${point}.`));
 
   // Contact Section Content
   const contactContent = {
@@ -325,6 +336,74 @@ export default function PlatformPage() {
   };
 
   const ct = contactContent[language];
+  const heroMockup = {
+    EN: {
+      appName: 'The Mudeer Console',
+      cards: [
+        { title: 'Service Requests', value: '124', note: '18 high priority' },
+        { title: 'Resolved This Week', value: '86', note: '+12% vs last week' }
+      ],
+      metrics: [
+        { label: 'Occupancy', value: '96%' },
+        { label: 'Avg. Response', value: '12m' }
+      ]
+    },
+    AR: {
+      appName: 'لوحة المدير',
+      cards: [
+        { title: 'طلبات الخدمة', value: '124', note: '18 أولوية عالية' },
+        { title: 'المغلقة هذا الأسبوع', value: '86', note: '+12% مقارنة بالأسبوع الماضي' }
+      ],
+      metrics: [
+        { label: 'الإشغال', value: '96%' },
+        { label: 'متوسط الاستجابة', value: '12د' }
+      ]
+    },
+    ID: {
+      appName: 'Konsol The Mudeer',
+      cards: [
+        { title: 'Permintaan Layanan', value: '124', note: '18 prioritas tinggi' },
+        { title: 'Selesai Minggu Ini', value: '86', note: '+12% vs minggu lalu' }
+      ],
+      metrics: [
+        { label: 'Hunian', value: '96%' },
+        { label: 'Respon Rata-rata', value: '12m' }
+      ]
+    }
+  }[language];
+
+  const dashboardMockup = {
+    EN: {
+      title: 'Live Portfolio Board',
+      summary: 'North Tower • 248 units • 96% occupied',
+      stats: [
+        { label: 'Response Time', value: '12m avg' },
+        { label: 'Tickets', value: '32 Open' },
+        { label: 'SLA', value: '99.9%' }
+      ],
+      activity: ['Unit A-120 lease renewed', 'Water leak ticket assigned', 'Monthly report exported']
+    },
+    AR: {
+      title: 'لوحة المحفظة المباشرة',
+      summary: 'برج الشمال • 248 وحدة • إشغال 96%',
+      stats: [
+        { label: 'زمن الاستجابة', value: '12د متوسط' },
+        { label: 'التذاكر', value: '32 مفتوحة' },
+        { label: 'SLA', value: '99.9%' }
+      ],
+      activity: ['تجديد عقد الوحدة A-120', 'تعيين بلاغ تسرب مياه', 'تصدير التقرير الشهري']
+    },
+    ID: {
+      title: 'Papan Portofolio Live',
+      summary: 'North Tower • 248 unit • 96% terisi',
+      stats: [
+        { label: 'Waktu Respon', value: '12m rata-rata' },
+        { label: 'Tiket', value: '32 Open' },
+        { label: 'SLA', value: '99.9%' }
+      ],
+      activity: ['Sewa unit A-120 diperpanjang', 'Tiket kebocoran air ditugaskan', 'Laporan bulanan diekspor']
+    }
+  }[language];
 
   return (
     <main className="min-h-screen bg-[#0A1628] text-[#F8F9FA] font-['Outfit']" dir={isRTL ? 'rtl' : 'ltr'}>
@@ -346,9 +425,6 @@ export default function PlatformPage() {
                 <button onClick={() => setShowContactForm(true)} className="px-8 py-4 bg-[#D4AF37] text-[#0A1628] font-semibold rounded-lg hover:bg-[#E8C968] transition-colors">
                   {t.hero.cta1}
                 </button>
-                <Link href="/page2#contact" className="px-8 py-4 border border-[#D4AF37]/30 text-[#F8F9FA] rounded-lg hover:bg-[#D4AF37]/10 transition-colors">
-                  {t.hero.cta2}
-                </Link>
               </div>
             </motion.div>
             <motion.div initial={{ opacity: 0, x: isRTL ? -50 : 50 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.2 }} className="relative">
@@ -364,14 +440,23 @@ export default function PlatformPage() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
                     </svg>
                   </div>
-                  <div className="text-[#D4AF37] font-semibold">The Mudeer</div>
+                  <div className="text-[#D4AF37] font-semibold">{heroMockup.appName}</div>
                 </div>
                 <div className="space-y-3">
-                  <div className="h-20 bg-[#D4AF37]/10 rounded-xl" />
-                  <div className="h-20 bg-[#D4AF37]/10 rounded-xl" />
+                  {heroMockup.cards.map((card, i) => (
+                    <div key={i} className="p-4 bg-[#D4AF37]/10 rounded-xl border border-[#D4AF37]/20">
+                      <div className="text-xs text-[#CBC5CE] mb-1">{card.title}</div>
+                      <div className="text-lg font-semibold text-[#F8F9FA]">{card.value}</div>
+                      <div className="text-[11px] text-[#D4AF37] mt-1">{card.note}</div>
+                    </div>
+                  ))}
                   <div className="grid grid-cols-2 gap-3">
-                    <div className="h-24 bg-[#D4AF37]/10 rounded-xl" />
-                    <div className="h-24 bg-[#D4AF37]/10 rounded-xl" />
+                    {heroMockup.metrics.map((metric, i) => (
+                      <div key={i} className="p-4 bg-[#D4AF37]/10 rounded-xl border border-[#D4AF37]/20">
+                        <div className="text-xl font-bold text-[#D4AF37]">{metric.value}</div>
+                        <div className="text-xs text-[#CBC5CE] mt-1">{metric.label}</div>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -410,7 +495,10 @@ export default function PlatformPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                onClick={() => setSelectedFeature(feature)}
+                onClick={() => {
+                  setSelectedFeature(feature);
+                  setZoomedImage(null);
+                }}
                 className="bg-white rounded-2xl overflow-hidden border border-[#0A1628]/10 hover:border-[#D4AF37]/30 transition-all text-left shadow-sm cursor-pointer group"
               >
                 <div className="relative w-full h-40 overflow-hidden">
@@ -457,15 +545,23 @@ export default function PlatformPage() {
               </div>
             </div>
             <div className="bg-gradient-to-br from-[#0F1D2F] to-[#1A2B42] rounded-2xl p-8 border border-[#D4AF37]/20">
-              <div className="space-y-4">
-                <div className="h-4 bg-[#D4AF37]/20 rounded w-3/4" />
-                <div className="grid grid-cols-3 gap-4">
-                  <div className="h-20 bg-[#D4AF37]/10 rounded" />
-                  <div className="h-20 bg-[#D4AF37]/10 rounded" />
-                  <div className="h-20 bg-[#D4AF37]/10 rounded" />
-                </div>
-                <div className="h-32 bg-[#D4AF37]/5 rounded" />
-                <div className="h-4 bg-[#D4AF37]/20 rounded w-1/2" />
+              <div className="text-xs tracking-[0.2em] uppercase text-[#D4AF37]/80 mb-2">{dashboardMockup.title}</div>
+              <div className="text-sm text-[#CBC5CE] mb-4">{dashboardMockup.summary}</div>
+              <div className="grid grid-cols-3 gap-3 mb-4">
+                {dashboardMockup.stats.map((item, i) => (
+                  <div key={i} className="rounded-lg border border-[#D4AF37]/20 bg-[#D4AF37]/10 p-3">
+                    <div className="text-[11px] text-[#CBC5CE]">{item.label}</div>
+                    <div className="text-sm font-semibold text-[#F8F9FA] mt-1">{item.value}</div>
+                  </div>
+                ))}
+              </div>
+              <div className="rounded-lg border border-[#D4AF37]/15 bg-[#D4AF37]/5 p-3 space-y-2">
+                {dashboardMockup.activity.map((item, i) => (
+                  <div key={i} className={`flex items-center gap-2 text-xs text-[#CBC5CE] ${isRTL ? 'flex-row-reverse text-right' : ''}`}>
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#D4AF37] flex-shrink-0" />
+                    <span>{item}</span>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -575,54 +671,210 @@ export default function PlatformPage() {
             <div className="sticky top-0 bg-gradient-to-br from-[#0F1D2F] to-[#1A2B42] border-b border-[#D4AF37]/20 p-6 flex justify-between items-center z-10">
               <h3 className="text-2xl font-['Cormorant_Garamond'] text-[#D4AF37]">{selectedFeature.title}</h3>
               <button 
-                onClick={() => setSelectedFeature(null)} 
+                onClick={() => {
+                  setSelectedFeature(null);
+                  setZoomedImage(null);
+                }} 
                 className="w-10 h-10 flex items-center justify-center rounded-full bg-[#D4AF37]/10 text-[#D4AF37] hover:bg-[#D4AF37]/20 transition-colors"
               >
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
               </button>
             </div>
 
-            {/* Content - 2 Column Layout */}
+            {/* Content - 6 Layout Variants */}
             <div className="p-6 sm:p-8">
-              <div className="grid lg:grid-cols-2 gap-8 lg:gap-10 lg:items-center">
-                {/* Left: Text Description */}
-                <div className="prose prose-invert max-w-none lg:pr-4">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#D4AF37]/10 border border-[#D4AF37]/20 mb-4">
-                    <span className="w-2 h-2 rounded-full bg-[#D4AF37]" />
-                    <span className="text-xs tracking-[0.18em] uppercase text-[#F2D98A]">Feature Highlight</span>
-                  </div>
-                  <p className="text-[17px] sm:text-lg text-[#CBC5CE] leading-relaxed m-0">{selectedFeature.longDescription}</p>
-                </div>
+              {(() => {
+                const points = getFeaturePoints(selectedFeature.longDescription, 5);
 
-                {/* Right: Screenshot */}
-                <div className="flex justify-center lg:justify-end">
-                  <div className="relative w-full max-w-[420px] rounded-2xl border border-[#D4AF37]/25 bg-[#0A1628]/70 p-4 sm:p-5 shadow-[0_20px_50px_rgba(0,0,0,0.45)] overflow-hidden">
-                    <div className="pointer-events-none absolute -top-16 -right-16 w-40 h-40 rounded-full bg-[#D4AF37]/20 blur-3xl" />
-                    <div className="pointer-events-none absolute -bottom-16 -left-10 w-36 h-36 rounded-full bg-[#F59E0B]/15 blur-3xl" />
-                    <div className="relative w-full h-[420px] sm:h-[460px] rounded-xl bg-[#020617]/70 ring-1 ring-white/10 overflow-hidden">
-                      <Image 
-                        src={selectedFeature.screenshot} 
-                        alt={`${selectedFeature.title} screenshot`}
-                        fill
-                        className="object-contain"
-                        unoptimized
-                      />
+                if (popupVariant === 0) {
+                  return (
+                    <div className="grid lg:grid-cols-[1.05fr_1fr] gap-8 lg:gap-10 lg:items-start">
+                      <div className="flex justify-center lg:justify-start">
+                        <button type="button" onClick={() => setZoomedImage(selectedFeature.screenshot)} className="relative w-full max-w-[500px] h-[460px] sm:h-[560px] overflow-hidden cursor-zoom-in rounded-2xl border border-[#D4AF37]/20 bg-[#0A1628]/50" aria-label="Zoom image">
+                          <Image src={selectedFeature.screenshot} alt={`${selectedFeature.title} screenshot`} fill className="object-contain object-center" unoptimized />
+                          <span className="absolute top-3 right-3 text-[11px] px-2.5 py-1 rounded-full bg-black/55 text-white/90 border border-white/20">Zoom</span>
+                        </button>
+                      </div>
+                      <div className="space-y-5 lg:pt-2">
+                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#D4AF37]/10 border border-[#D4AF37]/20">
+                          <span className="w-2 h-2 rounded-full bg-[#D4AF37]" />
+                          <span className="text-xs tracking-[0.18em] uppercase text-[#F2D98A]">Overview Layout</span>
+                        </div>
+                        <div className="rounded-2xl border border-[#D4AF37]/20 bg-[#D4AF37]/5 p-4">
+                          <p className="text-[#F8F0D3] text-base sm:text-lg leading-relaxed">{selectedFeature.description}</p>
+                        </div>
+                        <div className="space-y-3 pt-1">
+                          {points.slice(0, 3).map((point, i) => (
+                            <div key={i} className={`flex items-start gap-3 ${isRTL ? 'flex-row-reverse text-right' : ''}`}>
+                              <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#D4AF37]" />
+                              <p className="text-sm text-[#A7B0BE] leading-relaxed">{point}</p>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
                     </div>
+                  );
+                }
+
+                if (popupVariant === 1) {
+                  return (
+                    <div className="space-y-6">
+                      <div className="text-center">
+                        <div className="text-xs tracking-[0.18em] uppercase text-[#D4AF37]/80 mb-2">Story Layout</div>
+                        <p className="text-[#F8F0D3] text-lg">{selectedFeature.description}</p>
+                      </div>
+                      <button type="button" onClick={() => setZoomedImage(selectedFeature.screenshot)} className="relative w-full h-[300px] sm:h-[420px] rounded-2xl overflow-hidden border border-[#D4AF37]/25 bg-[#0A1628]/50 cursor-zoom-in" aria-label="Zoom image">
+                        <Image src={selectedFeature.screenshot} alt={`${selectedFeature.title} screenshot`} fill className="object-contain" unoptimized />
+                        <span className="absolute top-3 right-3 text-[11px] px-2.5 py-1 rounded-full bg-black/55 text-white/90 border border-white/20">Zoom</span>
+                      </button>
+                      <div className="grid sm:grid-cols-3 gap-3">
+                        {points.slice(0, 3).map((point, i) => (
+                          <div key={i} className="rounded-xl border border-[#D4AF37]/20 bg-[#D4AF37]/8 p-3">
+                            <div className="text-[#D4AF37] text-[11px] uppercase tracking-[0.16em] mb-1">Key {i + 1}</div>
+                            <p className="text-xs text-[#C9D0DB] leading-relaxed">{point}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                }
+
+                if (popupVariant === 2) {
+                  return (
+                    <div className="grid lg:grid-cols-[1fr_1.1fr] gap-6 items-start">
+                      <div className="space-y-4">
+                        <div className="text-xs tracking-[0.18em] uppercase text-[#D4AF37]/80">Checklist Layout</div>
+                        <p className="text-[#F8F0D3] text-base leading-relaxed">{selectedFeature.description}</p>
+                        <div className="rounded-2xl border border-[#D4AF37]/20 bg-[#D4AF37]/5 p-4 space-y-3">
+                          {points.slice(0, 4).map((point, i) => (
+                            <div key={i} className={`flex items-start gap-3 ${isRTL ? 'flex-row-reverse text-right' : ''}`}>
+                              <div className="w-5 h-5 rounded-full border border-[#D4AF37]/40 text-[#D4AF37] text-[10px] flex items-center justify-center flex-shrink-0 mt-0.5">{i + 1}</div>
+                              <p className="text-sm text-[#CBD3DE]">{point}</p>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                      <button type="button" onClick={() => setZoomedImage(selectedFeature.screenshot)} className="relative w-full h-[360px] sm:h-[500px] rounded-2xl overflow-hidden border border-[#D4AF37]/25 bg-[#0A1628]/50 cursor-zoom-in" aria-label="Zoom image">
+                        <Image src={selectedFeature.screenshot} alt={`${selectedFeature.title} screenshot`} fill className="object-contain" unoptimized />
+                        <div className="absolute left-3 right-3 bottom-3 bg-black/55 border border-white/10 rounded-lg p-2 text-[11px] text-white/90">{isRTL ? 'لقطة شاشة تفاعلية — انقر للتكبير' : 'Interactive screenshot — click to zoom'}</div>
+                      </button>
+                    </div>
+                  );
+                }
+
+                if (popupVariant === 3) {
+                  return (
+                    <div className="space-y-6">
+                      <div className="grid md:grid-cols-2 gap-4">
+                        <div className="rounded-2xl border border-[#D4AF37]/20 bg-[#D4AF37]/8 p-4">
+                          <div className="text-xs tracking-[0.16em] uppercase text-[#D4AF37]/90 mb-2">Problem</div>
+                          <p className="text-sm text-[#C9D1DB]">{selectedFeature.description}</p>
+                        </div>
+                        <div className="rounded-2xl border border-[#D4AF37]/20 bg-[#D4AF37]/8 p-4">
+                          <div className="text-xs tracking-[0.16em] uppercase text-[#D4AF37]/90 mb-2">Solution Flow</div>
+                          <p className="text-sm text-[#C9D1DB]">{points[0] || selectedFeature.longDescription}</p>
+                        </div>
+                      </div>
+                      <button type="button" onClick={() => setZoomedImage(selectedFeature.screenshot)} className="relative w-full h-[320px] sm:h-[420px] rounded-2xl overflow-hidden border border-[#D4AF37]/25 bg-[#0A1628]/50 cursor-zoom-in" aria-label="Zoom image">
+                        <Image src={selectedFeature.screenshot} alt={`${selectedFeature.title} screenshot`} fill className="object-contain" unoptimized />
+                        <span className="absolute top-3 right-3 text-[11px] px-2.5 py-1 rounded-full bg-black/55 text-white/90 border border-white/20">Zoom</span>
+                      </button>
+                      <div className="grid sm:grid-cols-2 gap-3">
+                        {points.slice(1, 5).map((point, i) => (
+                          <div key={i} className="rounded-xl border border-[#D4AF37]/15 bg-[#0A1628]/40 p-3 text-xs text-[#AEB8C7]">{point}</div>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                }
+
+                if (popupVariant === 4) {
+                  return (
+                    <div className="grid lg:grid-cols-[1.1fr_1fr] gap-6">
+                      <button type="button" onClick={() => setZoomedImage(selectedFeature.screenshot)} className="relative w-full h-[340px] sm:h-[500px] rounded-2xl overflow-hidden border border-[#D4AF37]/25 bg-[#0A1628]/50 cursor-zoom-in" aria-label="Zoom image">
+                        <Image src={selectedFeature.screenshot} alt={`${selectedFeature.title} screenshot`} fill className="object-contain" unoptimized />
+                        <span className="absolute top-3 right-3 text-[11px] px-2.5 py-1 rounded-full bg-black/55 text-white/90 border border-white/20">Zoom</span>
+                      </button>
+                      <div className="space-y-4">
+                        <div className="text-xs tracking-[0.18em] uppercase text-[#D4AF37]/80">Comparison Layout</div>
+                        <div className="rounded-2xl border border-[#D4AF37]/20 overflow-hidden">
+                          <div className="grid grid-cols-2 text-xs">
+                            <div className="bg-[#8B1E1E]/20 text-[#F7B4B4] p-3 border-b border-[#D4AF37]/15">{isRTL ? 'قبل' : 'Before'}</div>
+                            <div className="bg-[#1A5D3A]/25 text-[#BCECCB] p-3 border-b border-[#D4AF37]/15">{isRTL ? 'بعد' : 'After'}</div>
+                            <div className="p-3 text-[#C6CED9] border-r border-[#D4AF37]/10">{points[0] || selectedFeature.description}</div>
+                            <div className="p-3 text-[#C6CED9]">{points[1] || selectedFeature.longDescription}</div>
+                          </div>
+                        </div>
+                        <div className="rounded-xl border border-[#D4AF37]/15 bg-[#D4AF37]/5 p-3 text-sm text-[#CBD3DE]">{points[2] || selectedFeature.longDescription}</div>
+                      </div>
+                    </div>
+                  );
+                }
+
+                return (
+                  <div className="space-y-6">
+                    <div className="grid md:grid-cols-[1.2fr_1fr] gap-6">
+                      <div className="rounded-2xl border border-[#D4AF37]/20 bg-[#D4AF37]/5 p-5">
+                        <div className="text-xs tracking-[0.16em] uppercase text-[#D4AF37]/80 mb-3">Executive Summary Layout</div>
+                        <p className="text-[#F8F0D3] leading-relaxed mb-4">{selectedFeature.description}</p>
+                        <div className="space-y-2">
+                          {points.slice(0, 3).map((point, i) => (
+                            <div key={i} className={`flex items-start gap-2 ${isRTL ? 'flex-row-reverse text-right' : ''}`}>
+                              <span className="mt-1 text-[#D4AF37]">•</span>
+                              <span className="text-sm text-[#BEC8D6]">{point}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                      <div className="rounded-2xl border border-[#D4AF37]/20 bg-[#0A1628]/40 p-4 space-y-3">
+                        <div className="text-xs tracking-[0.16em] uppercase text-[#D4AF37]/75">Scorecard</div>
+                        <div className="grid grid-cols-2 gap-2">
+                          {[{ label: 'Clarity', value: 'High' }, { label: 'Adoption', value: 'Fast' }, { label: 'Scalable', value: 'Yes' }, { label: 'Team Fit', value: 'Strong' }].map((item, i) => (
+                            <div key={i} className="rounded-lg border border-[#D4AF37]/15 bg-[#D4AF37]/8 p-2">
+                              <div className="text-[10px] text-[#AEB8C7]">{item.label}</div>
+                              <div className="text-xs text-[#F8F9FA] mt-0.5">{item.value}</div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                    <button type="button" onClick={() => setZoomedImage(selectedFeature.screenshot)} className="relative w-full h-[300px] sm:h-[430px] rounded-2xl overflow-hidden border border-[#D4AF37]/25 bg-[#0A1628]/50 cursor-zoom-in" aria-label="Zoom image">
+                      <Image src={selectedFeature.screenshot} alt={`${selectedFeature.title} screenshot`} fill className="object-contain" unoptimized />
+                      <span className="absolute top-3 right-3 text-[11px] px-2.5 py-1 rounded-full bg-black/55 text-white/90 border border-white/20">Zoom</span>
+                    </button>
                   </div>
-                </div>
-              </div>
+                );
+              })()}
             </div>
           </motion.div>
+        </div>
+      )}
+
+      {zoomedImage && (
+        <div
+          className="fixed inset-0 z-[60] bg-black/95 backdrop-blur-md p-4 sm:p-8 flex items-center justify-center"
+          onClick={() => setZoomedImage(null)}
+        >
+          <button
+            type="button"
+            onClick={() => setZoomedImage(null)}
+            className="absolute top-5 right-5 w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center"
+            aria-label="Close zoom"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+
+          <div className="relative w-full h-full max-w-6xl max-h-[90vh]" onClick={(e) => e.stopPropagation()}>
+            <Image src={zoomedImage} alt="Feature screenshot zoomed" fill className="object-contain" unoptimized />
+          </div>
         </div>
       )}
       </AnimatePresence>
 
       {/* Footer */}
-      <footer className="bg-[#0F1D2F] py-8 border-t border-[#D4AF37]/10">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-[60px] text-center text-[#9CA3AF] text-sm">
-          {t.footer}
-        </div>
-      </footer>
+      <SiteFooter />
     </main>
   );
 }

@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
 import { Header } from '@/components/Header';
+import { SiteFooter } from '@/components/SiteFooter';
 import { useLanguage } from '@/lib/LanguageContext';
 
 const content = {
@@ -42,23 +43,32 @@ const content = {
     },
     features: {
       title: 'Everything Included',
-      description: 'Our white label package comes with everything you need to launch your own property management platform. No hidden costs, no surprises.',
+      description: 'Our default white label package includes everything you need to launch quickly with zero setup complexity.',
       items: [
         'Custom domain and SSL',
         'Branded mobile apps (iOS & Android)',
         'White-labeled admin dashboard',
         'Custom email templates',
         'API access',
-        'Dedicated server options',
         'Custom integrations',
         'Priority support'
       ],
       package: {
-        badge: 'White Label Package',
-        price: 'Custom Pricing',
-        subtitle: 'Tailored to your needs',
+        badge: 'Default Package',
+        price: 'Included',
+        subtitle: 'Ready-to-launch core stack',
         includes: ['Complete brand customization', 'Unlimited properties', 'Full feature access', 'Dedicated account manager', '99.99% uptime SLA'],
         cta: 'Request Proposal'
+      },
+      custom: {
+        title: 'Custom Pricing & Feature Request',
+        description: 'Need advanced modules? Choose what you need and send us your custom requirements.',
+        options: ['Custom Tenant Journeys', 'API Extensions'],
+        extraChecks: ['Feature request workshop with product team', 'Custom module scoping & estimation'],
+        noteLabel: 'Custom Feature Notes',
+        notePlaceholder: 'Example: We need valet car workflow with booking slots, driver assignment, pickup/drop-off status, and monthly report export.',
+        selectedLabel: 'selected',
+        cta: 'Request Custom Proposal'
       }
     },
     successStory: {
@@ -128,23 +138,32 @@ const content = {
     },
     features: {
       title: 'كل شيء متضمن',
-      description: 'يأتي حزمة العلامة البيضاء الخاصة بنا مع كل ما تحتاجه لإطلاق منصة إدارة العقارات الخاصة بك. لا تكاليف خفية، لا مفاجآت.',
+      description: 'تتضمن باقة العلامة البيضاء الافتراضية كل ما تحتاجه للإطلاق بسرعة وبدون تعقيد في الإعداد.',
       items: [
         'نطاق مخصص وSSL',
         'تطبيقات جوال ذات علامة تجارية (iOS وAndroid)',
         'لوحة تحكم إدارية بيضاء',
         'قوالب بريد مخصصة',
         'الوصول إلى API',
-        'خيارات خادم مخصصة',
         'تكاملات مخصصة',
         'دعم ذو أولوية'
       ],
       package: {
-        badge: 'حزمة العلامة البيضاء',
-        price: 'تسعير مخصص',
-        subtitle: 'مصمم حسب احتياجاتك',
+        badge: 'الباقة الافتراضية',
+        price: 'متضمن',
+        subtitle: 'حزمة أساسية جاهزة للإطلاق',
         includes: ['تخصيص علامة تجارية كامل', 'عقارات غير محدودة', 'الوصول الكامل للميزات', 'مدير حساب مخصص', '99.99% اتفاقية مستوى الخدمة'],
         cta: 'طلب اقتراح'
+      },
+      custom: {
+        title: 'تسعير مخصص وطلب ميزات',
+        description: 'تحتاج وحدات متقدمة؟ اختر ما تحتاجه وأرسل متطلباتك المخصصة.',
+        options: ['رحلات مستأجر مخصصة', 'توسعات API'],
+        extraChecks: ['جلسة طلب ميزات مع فريق المنتج', 'تحديد نطاق وتقدير الوحدات المخصصة'],
+        noteLabel: 'ملاحظات الميزات المخصصة',
+        notePlaceholder: 'مثال: نحتاج سير عمل لصف السيارات يشمل الحجز، تعيين السائق، حالة الاستلام/التسليم، وتصدير التقارير الشهرية.',
+        selectedLabel: 'تم الاختيار',
+        cta: 'طلب اقتراح مخصص'
       }
     },
     successStory: {
@@ -214,23 +233,32 @@ const content = {
     },
     features: {
       title: 'Semua Termasuk',
-      description: 'Paket white label kami datang dengan semua yang Anda butuhkan untuk meluncurkan platform manajemen properti Anda sendiri. Tanpa biaya tersembunyi, tanpa kejutan.',
+      description: 'Paket white label default kami berisi semua yang Anda butuhkan untuk meluncur cepat tanpa setup yang rumit.',
       items: [
         'Domain kustom dan SSL',
         'Aplikasi seluler bermerek (iOS & Android)',
         'Dashboard admin white-label',
         'Template email kustom',
         'Akses API',
-        'Opsi server khusus',
         'Integrasi kustom',
         'Dukungan prioritas'
       ],
       package: {
-        badge: 'Paket White Label',
-        price: 'Harga Kustom',
-        subtitle: 'Disesuaikan dengan kebutuhan Anda',
+        badge: 'Paket Default',
+        price: 'Termasuk',
+        subtitle: 'Core stack siap diluncurkan',
         includes: ['Kustomisasi merek lengkap', 'Properti tak terbatas', 'Akses fitur penuh', 'Manajer akun khusus', '99,99% uptime SLA'],
         cta: 'Minta Proposal'
+      },
+      custom: {
+        title: 'Harga Kustom & Permintaan Fitur',
+        description: 'Butuh modul lanjutan? Pilih kebutuhan Anda dan kirim requirement kustom.',
+        options: ['Tenant Journey Kustom', 'Ekstensi API'],
+        extraChecks: ['Sesi feature request bersama tim produk', 'Scope & estimasi modul kustom'],
+        noteLabel: 'Catatan Fitur Kustom',
+        notePlaceholder: 'Contoh: Kami butuh alur valet mobil dengan slot booking, penugasan driver, status pick-up/drop-off, dan ekspor laporan bulanan.',
+        selectedLabel: 'dipilih',
+        cta: 'Minta Proposal Kustom'
       }
     },
     successStory: {
@@ -274,6 +302,8 @@ export default function WhiteLabelPage() {
 
   const t = content[language];
   const isRTL = language === 'AR';
+  const defaultChecklist = [...t.features.items, ...t.features.package.includes];
+  const customChecklist = [...defaultChecklist, ...t.features.custom.options, ...t.features.custom.extraChecks];
 
   const openContact = () => setShowContactForm(true);
 
@@ -312,6 +342,42 @@ export default function WhiteLabelPage() {
   };
 
   const ct = contactContent[language];
+  const mockupContent = {
+    EN: {
+      product: 'Resident App + Manager Dashboard',
+      cards: [
+        { title: 'Branding', desc: 'Your logo, domain, color system' },
+        { title: 'Operations', desc: 'Tickets, payments, announcements' }
+      ],
+      metrics: [
+        { label: 'Launch', value: '4-8 Weeks' },
+        { label: 'Uptime', value: '99.9%' }
+      ]
+    },
+    AR: {
+      product: 'تطبيق السكان + لوحة المدير',
+      cards: [
+        { title: 'الهوية', desc: 'شعارك، نطاقك، ألوان علامتك' },
+        { title: 'العمليات', desc: 'البلاغات، الدفعات، الإعلانات' }
+      ],
+      metrics: [
+        { label: 'الإطلاق', value: '4-8 أسابيع' },
+        { label: 'الجاهزية', value: '99.9%' }
+      ]
+    },
+    ID: {
+      product: 'Aplikasi Penghuni + Dashboard Manajer',
+      cards: [
+        { title: 'Branding', desc: 'Logo, domain, dan warna brand Anda' },
+        { title: 'Operasional', desc: 'Tiket, pembayaran, pengumuman' }
+      ],
+      metrics: [
+        { label: 'Go Live', value: '4-8 Minggu' },
+        { label: 'Uptime', value: '99.9%' }
+      ]
+    }
+  };
+  const ui = mockupContent[language];
 
   return (
     <main className="min-h-screen bg-[#0A1628] text-[#F8F9FA] font-['Outfit']" dir={isRTL ? 'rtl' : 'ltr'}>
@@ -333,9 +399,6 @@ export default function WhiteLabelPage() {
                 <button onClick={() => setShowContactForm(true)} className="px-8 py-4 bg-[#D4AF37] text-[#0A1628] font-semibold rounded-lg hover:bg-[#E8C968] transition-colors">
                   {t.hero.cta1}
                 </button>
-                <Link href="/page2#contact" className="px-8 py-4 border border-[#D4AF37]/30 text-[#F8F9FA] rounded-lg hover:bg-[#D4AF37]/10 transition-colors">
-                  {t.hero.cta2}
-                </Link>
               </div>
             </motion.div>
             <motion.div initial={{ opacity: 0, x: isRTL ? -50 : 50 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.2 }} className="relative">
@@ -347,16 +410,24 @@ export default function WhiteLabelPage() {
                 </div>
                 <div className="flex items-center gap-3 mb-6">
                   <div className="w-10 h-10 bg-[#D4AF37]/20 rounded-xl flex items-center justify-center border border-[#D4AF37]/30">
-                    <span className="text-[#D4AF37] text-[10px] font-semibold">Your Logo</span>
+                    <span className="text-[#D4AF37] text-[10px] font-semibold text-center">Your Logo</span>
                   </div>
-                  <div className="h-3 bg-[#D4AF37]/30 rounded w-28" />
+                  <div className="text-xs text-[#D4AF37] tracking-[0.12em] uppercase">{ui.product}</div>
                 </div>
                 <div className="space-y-3">
-                  <div className="h-20 bg-[#D4AF37]/10 rounded-xl" />
-                  <div className="h-20 bg-[#D4AF37]/10 rounded-xl" />
+                  {ui.cards.map((item, i) => (
+                    <div key={i} className="p-4 bg-[#D4AF37]/10 rounded-xl border border-[#D4AF37]/15">
+                      <div className="text-sm text-[#F8F9FA] font-semibold mb-1">{item.title}</div>
+                      <div className="text-xs text-[#CBC5CE]">{item.desc}</div>
+                    </div>
+                  ))}
                   <div className="grid grid-cols-2 gap-3">
-                    <div className="h-24 bg-[#D4AF37]/10 rounded-xl" />
-                    <div className="h-24 bg-[#D4AF37]/10 rounded-xl" />
+                    {ui.metrics.map((item, i) => (
+                      <div key={i} className="p-4 bg-[#D4AF37]/10 rounded-xl border border-[#D4AF37]/15">
+                        <div className="text-xl font-bold text-[#D4AF37]">{item.value}</div>
+                        <div className="text-xs text-[#CBC5CE] mt-1">{item.label}</div>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -413,7 +484,7 @@ export default function WhiteLabelPage() {
           <div className="grid md:grid-cols-3 gap-8">
             {t.howItWorks.steps.map((item, i) => (
               <motion.div key={i} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="text-center">
-                <div className="text-6xl font-['Cormorant_Garamond'] text-[#D4AF37]/20 mb-4">{item.step}</div>
+                <div className="text-6xl font-['Cormorant_Garamond'] font-semibold text-[#D4AF37]/65 mb-4">{item.step}</div>
                 <h3 className="text-xl font-semibold mb-3">{item.title}</h3>
                 <p className="text-[#9CA3AF]">{item.desc}</p>
               </motion.div>
@@ -422,35 +493,25 @@ export default function WhiteLabelPage() {
         </div>
       </section>
 
-      {/* Features List - Navy */}
-      <section className="py-24 px-4 sm:px-6 md:px-[60px] bg-[#0A1628]">
+      {/* Features List - Sand */}
+      <section className="py-24 px-4 sm:px-6 md:px-[60px] bg-[#F5F3F0]">
         <div className="max-w-[1400px] mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className={isRTL ? 'order-2' : ''}>
-              <h2 className="font-['Cormorant_Garamond'] text-[clamp(32px,4vw,48px)] mb-6">{t.features.title}</h2>
-              <p className="text-[#CBC5CE] leading-relaxed mb-8">
-                {t.features.description}
-              </p>
-              <div className="grid sm:grid-cols-2 gap-4">
-                {t.features.items.map((feature, i) => (
-                  <div key={i} className={`flex items-center gap-3 text-[#CBC5CE] ${isRTL ? 'flex-row-reverse' : ''}`}>
-                    <svg className="w-5 h-5 text-[#D4AF37] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="text-sm">{feature}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className={`bg-gradient-to-br from-[#0F1D2F] to-[#1A2B42] rounded-2xl p-8 border border-[#D4AF37]/20 ${isRTL ? 'order-1' : ''}`}>
+          <div className="text-center mb-10">
+            <h2 className="font-['Cormorant_Garamond'] text-[clamp(32px,4vw,48px)] text-[#0A1628] mb-4">{t.features.title}</h2>
+            <p className="text-[#1A2B42]/70 max-w-3xl mx-auto">{t.features.description}</p>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-8 items-stretch">
+            <div className="bg-white rounded-2xl p-6 sm:p-8 border border-[#0A1628]/10 shadow-lg h-full flex flex-col">
               <div className="text-center mb-6">
                 <div className="inline-block px-4 py-1 bg-[#D4AF37]/10 rounded-full text-[#D4AF37] text-sm mb-4">{t.features.package.badge}</div>
-                <div className="text-4xl font-bold text-[#F8F9FA]">{t.features.package.price}</div>
-                <p className="text-[#9CA3AF] mt-2">{t.features.package.subtitle}</p>
+                <div className="text-4xl font-bold text-[#0A1628]">{t.features.package.price}</div>
+                <p className="text-[#1A2B42]/60 mt-2">{t.features.package.subtitle}</p>
               </div>
+
               <ul className="space-y-3 mb-8">
-                {t.features.package.includes.map((item, i) => (
-                  <li key={i} className={`flex items-center gap-3 text-[#CBC5CE] text-sm ${isRTL ? 'flex-row-reverse' : ''}`}>
+                {defaultChecklist.map((item, i) => (
+                  <li key={i} className={`flex items-start gap-3 text-[#1A2B42]/80 text-sm leading-relaxed ${isRTL ? 'flex-row-reverse' : ''}`}>
                     <svg className="w-4 h-4 text-[#D4AF37] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
@@ -458,45 +519,37 @@ export default function WhiteLabelPage() {
                   </li>
                 ))}
               </ul>
-              <button onClick={() => setShowContactForm(true)} className="w-full py-4 bg-[#D4AF37] text-[#0A1628] font-semibold rounded-lg hover:bg-[#E8C968] transition-colors">
-                {t.features.package.cta}
-              </button>
+              <div className="mt-auto pt-2 flex justify-center">
+                <button onClick={() => setShowContactForm(true)} className="px-5 py-2.5 bg-[#D4AF37] text-[#0A1628] text-sm font-semibold rounded-lg hover:bg-[#E8C968] transition-colors">
+                  {t.features.package.cta}
+                </button>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-2xl p-6 sm:p-8 border border-[#0A1628]/10 shadow-lg h-full flex flex-col">
+              <div className="text-center mb-6">
+              <h3 className="font-['Cormorant_Garamond'] text-[clamp(28px,3vw,40px)] text-[#0A1628] mb-3">{t.features.custom.title}</h3>
+              <p className="text-[#1A2B42]/70">{t.features.custom.description}</p>
+              </div>
+
+              <ul className="space-y-3 mb-8">
+                {customChecklist.map((item, i) => (
+                  <li key={i} className={`flex items-start gap-3 text-[#1A2B42]/80 text-sm leading-relaxed ${isRTL ? 'flex-row-reverse' : ''}`}>
+                    <svg className="w-4 h-4 text-[#D4AF37] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+
+              <div className="mt-auto pt-2 flex flex-col items-center gap-3">
+                <button onClick={() => setShowContactForm(true)} className="px-5 py-2.5 bg-[#D4AF37] text-[#0A1628] text-sm font-semibold rounded-lg hover:bg-[#E8C968] transition-colors">
+                  {t.features.custom.cta}
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* Success Story - Sand */}
-      <section className="py-24 px-4 sm:px-6 md:px-[60px] bg-[#F5F3F0]">
-        <div className="max-w-[1400px] mx-auto">
-          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="bg-white rounded-3xl p-8 sm:p-12 border border-[#0A1628]/10 shadow-lg">
-            <div className="grid lg:grid-cols-2 gap-8 items-center">
-              <div>
-                <h3 className="text-[#D4AF37] text-sm tracking-[0.2em] uppercase mb-4">{t.successStory.badge}</h3>
-                <h4 className="font-['Cormorant_Garamond'] text-3xl sm:text-4xl text-[#0A1628] mb-6">{t.successStory.title}</h4>
-                <p className="text-[#1A2B42]/70 leading-relaxed mb-6">
-                  {t.successStory.quote}
-                </p>
-                <div className={`flex items-center gap-4 ${isRTL ? 'flex-row-reverse' : ''}`}>
-                  <div className="w-12 h-12 bg-[#D4AF37] rounded-full flex items-center justify-center text-[#0A1628] font-bold">
-                    {t.successStory.author.split(' ').map(n => n[0]).join('')}
-                  </div>
-                  <div>
-                    <div className="font-semibold text-[#0A1628]">{t.successStory.author}</div>
-                    <div className="text-sm text-[#1A2B42]/60">{t.successStory.role}</div>
-                  </div>
-                </div>
-              </div>
-              <div className="grid grid-cols-2 gap-4">
-                {t.successStory.stats.map((stat, i) => (
-                  <div key={i} className="bg-[#F5F3F0] rounded-xl p-6 text-center border border-[#0A1628]/5">
-                    <div className="text-3xl font-bold text-[#D4AF37]">{stat.value}</div>
-                    <div className="text-sm text-[#1A2B42]/60 mt-1">{stat.label}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </motion.div>
         </div>
       </section>
 
@@ -601,11 +654,7 @@ export default function WhiteLabelPage() {
       )}
 
       {/* Footer */}
-      <footer className="bg-[#0F1D2F] py-8 border-t border-[#D4AF37]/10">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-[60px] text-center text-[#9CA3AF] text-sm">
-          {t.footer}
-        </div>
-      </footer>
+      <SiteFooter />
     </main>
   );
 }

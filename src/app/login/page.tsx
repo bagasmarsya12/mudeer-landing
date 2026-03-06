@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { Header } from '@/components/Header';
 import { useLanguage } from '@/lib/LanguageContext';
 
 const content = {
@@ -353,7 +352,7 @@ const BackgroundAnimation = () => {
 // LOGO COMPONENT
 // ============================================
 const Logo = () => (
-  <Link href="/page2" className="flex items-center gap-3 group">
+  <Link href="/" className="flex items-center gap-3 group">
     <motion.div
       whileHover={{ scale: 1.05 }}
       className="relative"
@@ -390,8 +389,6 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen bg-[#0A1628] text-[#F8F9FA] font-['Outfit'] relative overflow-hidden flex flex-col">
-      <Header />
-      
       <div className="flex-1 flex" dir={isRTL ? 'rtl' : 'ltr'}>
         {/* Left Side - Decorative */}
         <div className="hidden lg:block w-1/2 relative">

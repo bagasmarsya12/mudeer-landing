@@ -67,7 +67,7 @@ const LanguageDropdown = () => {
 // SHARED HEADER COMPONENT
 // ============================================
 interface HeaderProps {
-  onContactClick?: () => void;
+  onContactClick?: (label?: string) => void;
 }
 
 export const Header = ({ onContactClick }: HeaderProps) => {
@@ -83,23 +83,23 @@ export const Header = ({ onContactClick }: HeaderProps) => {
 
   const navItems = isRTL 
     ? [
-        { label: 'الحلول', href: '/page2' },
+        { label: 'الحلول', href: '/' },
         { label: 'المنصة B2B', href: '/solutions/platform' },
         { label: 'هاوس بادي B2C', href: '/solutions/hausbuddy' },
         { label: 'العلامة البيضاء', href: '/solutions/white-label' },
         { label: 'اتصل بنا', href: '#contact' },
       ]
     : [
-        { label: 'Solutions', href: '/page2' },
+        { label: 'Solutions', href: '/' },
         { label: 'Platform B2B', href: '/solutions/platform' },
         { label: 'Hausbuddy B2C', href: '/solutions/hausbuddy' },
         { label: 'White Label', href: '/solutions/white-label' },
         { label: 'Contact', href: '#contact' },
       ];
 
-  const handleNavClick = () => {
+  const handleNavClick = (label?: string) => {
     if (onContactClick) {
-      onContactClick();
+      onContactClick(label);
     }
     setIsMobileMenuOpen(false);
   };
@@ -115,9 +115,9 @@ export const Header = ({ onContactClick }: HeaderProps) => {
         }`}
         dir="ltr"
       >
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-[60px]">
+        <div className="page-container">
           <div className="flex items-center justify-between" dir="ltr">
-            <Link href="/page2" className="flex items-center gap-3 group">
+            <Link href="/" className="flex items-center gap-3 group">
               <svg className="w-8 h-8 sm:w-11 sm:h-11" viewBox="0 0 44 44" fill="none">
                 <rect x="6" y="8" width="32" height="6" rx="2" fill="#D4AF37"/>
                 <rect x="6" y="19" width="26" height="6" rx="2" fill="#D4AF37"/>
@@ -138,7 +138,7 @@ export const Header = ({ onContactClick }: HeaderProps) => {
                   onClick={(e) => { 
                     if (item.href === '#contact' && onContactClick) { 
                       e.preventDefault(); 
-                      handleNavClick(); 
+                      handleNavClick(item.label); 
                     } 
                   }}
                   className="text-[#F8F9FA] text-sm font-normal tracking-[0.05em] relative group cursor-pointer h-10 flex items-center" 
@@ -191,7 +191,7 @@ export const Header = ({ onContactClick }: HeaderProps) => {
                   onClick={(e) => { 
                     if (item.href === '#contact' && onContactClick) { 
                       e.preventDefault(); 
-                      handleNavClick(); 
+                      handleNavClick(item.label); 
                     } else {
                       setIsMobileMenuOpen(false);
                     }

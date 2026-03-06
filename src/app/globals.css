@@ -25,6 +25,14 @@ body {
   font-family: 'Outfit', 'Inter', system-ui, sans-serif;
   background-color: var(--deep-navy);
   color: white;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+@layer utilities {
+  .page-container {
+    @apply w-full max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-14 2xl:px-20;
+  }
 }
 
 /* Custom scrollbar */
