@@ -1,7 +1,6 @@
 'use client';
 
 import { motion, AnimatePresence } from 'framer-motion';
-import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
 import { Header } from '@/components/Header';
@@ -30,7 +29,7 @@ const content = {
         description: 'Gain a powerful, centralized command center that puts your entire portfolio on the map.',
         longDescription: 'Gain a powerful, centralized command center that puts your entire portfolio on the map. From filtering properties by street to monitoring real-time ticket status—maximum oversight and intuitive navigation for every unit you manage. View occupancy rates, track revenue trends, and access key metrics updated in real-time. The dashboard provides a bird\'s eye view of your entire operation, allowing you to drill down into specific properties or units with just a few clicks.',
         image: '/images/features/dashboard.png',
-        screenshot: '/images/features/content-mudeer/1.jpg'
+        screenshot: '/images/features/content-mudeer/Feature_1.png'
       },
       { 
         title: 'Unified Communication Hub', 
@@ -120,7 +119,7 @@ const content = {
         description: 'احصل على مركز قيادة مركزي قوي يضع محفظتك بأكملها على الخريطة.',
         longDescription: 'احصل على مركز قيادة مركزي قوي يضع محفظتك بأكملها على الخريطة. من تصفية العقارات حسب الشارع إلى مراقبة حالة التذاكر في الوقت الفعلي—إشراف أقصى وتنقل بديهي لكل وحدة تديرها. اعرض معدلات الإشغال، وتتبع اتجاهات الإيرادات، واستخدم المقاييس الرئيسية المحدثة في الوقت الفعلي. توفر لوحة التحكم نظرة شاملة على عملياتك بأكملها، مما يسمح لك بالتعمق في عقارات أو وحدات محددة بنقرات قليلة.',
         image: '/images/features/dashboard.png',
-        screenshot: '/images/features/dashboard-screenshot.jpg'
+        screenshot: '/images/features/content-mudeer/Feature_1.png'
       },
       { 
         title: 'مركز التواصل الموحد', 
@@ -210,7 +209,7 @@ const content = {
         description: 'Dapatkan pusat komando terpusat yang powerful yang menempatkan seluruh portofolio Anda pada peta.',
         longDescription: 'Dapatkan pusat komando terpusat yang powerful yang menempatkan seluruh portofolio Anda pada peta. Dari menyaring properti berdasarkan jalan hingga memantau status tiket real-time—pengawasan maksimum dan navigasi intuitif untuk setiap unit yang Anda kelola. Lihat tingkat hunian, lacak tren pendapatan, dan akses metrik kunci yang diperbarui secara real-time. Dashboard menyediakan pandangan mata burung atas seluruh operasi Anda, memungkinkan Anda untuk mendalami properti atau unit tertentu dengan beberapa klik.',
         image: '/images/features/dashboard.png',
-        screenshot: '/images/features/dashboard-screenshot.jpg'
+        screenshot: '/images/features/content-mudeer/Feature_1.png'
       },
       { 
         title: 'Pusat Komunikasi Terpadu', 
@@ -289,6 +288,7 @@ export default function PlatformPage() {
   const [showContactForm, setShowContactForm] = useState(false);
   const [selectedFeature, setSelectedFeature] = useState<typeof t.features[0] | null>(null);
   const [zoomedImage, setZoomedImage] = useState<string | null>(null);
+  const [activeHotspotId, setActiveHotspotId] = useState<string | null>(null);
   const selectedFeatureIndex = selectedFeature ? t.features.findIndex((feature) => feature.title === selectedFeature.title) : -1;
   const popupVariant = selectedFeatureIndex >= 0 ? selectedFeatureIndex % 6 : 0;
 
@@ -336,6 +336,111 @@ export default function PlatformPage() {
   };
 
   const ct = contactContent[language];
+  const dashboardHotspots = {
+    EN: [
+      {
+        id: 'toggle-view',
+        label: 'A',
+        x: 78,
+        y: 11,
+        title: 'Grid/Table View Toggle',
+        description: 'Switch instantly between visual grid view and structured table view for faster portfolio scanning.'
+      },
+      {
+        id: 'orchid-building',
+        label: 'B',
+        x: 43,
+        y: 30,
+        title: 'Allocation Management Section',
+        description: 'A dedicated area to track which buildings are already assigned to folders and which are still unassigned, then move them quickly with simple drag-and-drop.'
+      },
+      {
+        id: 'dubai-folder',
+        label: 'C',
+        x: 20,
+        y: 42,
+        title: 'Folder-Based Building Management',
+        description: 'Manage multiple buildings within one folder to make reviewing, organizing, and operating each building much more efficient.'
+      },
+      {
+        id: 'abu-dhabi-add-building',
+        label: 'D',
+        x: 70,
+        y: 80,
+        title: 'Add Building to Folder',
+        description: 'Add buildings directly into a specific folder to keep your portfolio structure clean, clear, and easier to manage at scale.'
+      }
+    ],
+    AR: [
+      {
+        id: 'toggle-view',
+        label: 'A',
+        x: 78,
+        y: 11,
+        title: 'مبدّل العرض شبكة/جدول',
+        description: 'بدّل فوراً بين عرض الشبكة البصري وعرض الجدول المنظم لمراجعة المحفظة بسرعة.'
+      },
+      {
+        id: 'orchid-building',
+        label: 'B',
+        x: 43,
+        y: 30,
+        title: 'قسم مبنى أوركيد',
+        description: 'يعرض هذا القسم حالة مبنى أوركيد ومؤشرات الأداء والإجراءات الرئيسية في مكان واحد.'
+      },
+      {
+        id: 'dubai-folder',
+        label: 'C',
+        x: 20,
+        y: 42,
+        title: 'أيقونة مجلد دبي',
+        description: 'افتح مجلد دبي للتركيز على العقارات والوحدات والسجلات التشغيلية الخاصة بالمدينة.'
+      },
+      {
+        id: 'abu-dhabi-add-building',
+        label: 'D',
+        x: 70,
+        y: 80,
+        title: 'زر إضافة مبنى (أبوظبي)',
+        description: 'استخدم هذا الزر داخل قسم أبوظبي لإضافة مبنى جديد وتوسيع نطاق الإدارة.'
+      }
+    ],
+    ID: [
+      {
+        id: 'toggle-view',
+        label: 'A',
+        x: 78,
+        y: 11,
+        title: 'Toggle Grid/Table View',
+        description: 'Ganti cepat antara tampilan grid visual dan tabel terstruktur untuk membaca portofolio lebih cepat.'
+      },
+      {
+        id: 'orchid-building',
+        label: 'B',
+        x: 43,
+        y: 30,
+        title: 'Section Orchid Building',
+        description: 'Bagian ini menampilkan status Orchid Building, performa, dan aksi penting dalam satu panel.'
+      },
+      {
+        id: 'dubai-folder',
+        label: 'C',
+        x: 20,
+        y: 42,
+        title: 'Icon Folder Dubai',
+        description: 'Buka folder Dubai untuk fokus ke properti, unit, dan data operasional khusus area tersebut.'
+      },
+      {
+        id: 'abu-dhabi-add-building',
+        label: 'D',
+        x: 70,
+        y: 80,
+        title: 'CTA Add Building (Abu Dhabi)',
+        description: 'Gunakan CTA ini di section Abu Dhabi untuk menambahkan building baru ke portofolio Anda.'
+      }
+    ]
+  }[language];
+  const activeHotspot = dashboardHotspots.find((item) => item.id === activeHotspotId) || null;
   const heroMockup = {
     EN: {
       appName: 'The Mudeer Console',
@@ -498,6 +603,7 @@ export default function PlatformPage() {
                 onClick={() => {
                   setSelectedFeature(feature);
                   setZoomedImage(null);
+                  setActiveHotspotId(null);
                 }}
                 className="bg-white rounded-2xl overflow-hidden border border-[#0A1628]/10 hover:border-[#D4AF37]/30 transition-all text-left shadow-sm cursor-pointer group"
               >
@@ -674,6 +780,7 @@ export default function PlatformPage() {
                 onClick={() => {
                   setSelectedFeature(null);
                   setZoomedImage(null);
+                  setActiveHotspotId(null);
                 }} 
                 className="w-10 h-10 flex items-center justify-center rounded-full bg-[#D4AF37]/10 text-[#D4AF37] hover:bg-[#D4AF37]/20 transition-colors"
               >
@@ -687,6 +794,66 @@ export default function PlatformPage() {
                 const points = getFeaturePoints(selectedFeature.longDescription, 5);
 
                 if (popupVariant === 0) {
+                  if (selectedFeatureIndex === 0) {
+                    const isHotspotActive = Boolean(activeHotspot);
+
+                    return (
+                      <div className="space-y-4">
+                        <div className="relative w-full rounded-2xl border border-[#D4AF37]/25 bg-[#0A1628]/60 overflow-hidden">
+                          <button
+                            type="button"
+                            onClick={() => setZoomedImage('/images/features/content-mudeer/Feature_1.png')}
+                            className="relative w-full h-[420px] sm:h-[560px] lg:h-[640px] cursor-zoom-in"
+                            aria-label="Zoom dashboard image"
+                          >
+                            <Image
+                              src="/images/features/content-mudeer/Feature_1.png"
+                              alt={`${selectedFeature.title} interactive dashboard`}
+                              fill
+                              className="object-contain"
+                              unoptimized
+                            />
+                            <span className="absolute top-3 right-3 text-[11px] px-2.5 py-1 rounded-full bg-black/55 text-white/90 border border-white/20">Zoom</span>
+                          </button>
+
+                          {dashboardHotspots.map((hotspot) => (
+                            <button
+                              key={hotspot.id}
+                              type="button"
+                              onClick={() => setActiveHotspotId((current) => (current === hotspot.id ? null : hotspot.id))}
+                              className={`absolute -translate-x-1/2 -translate-y-1/2 w-8 h-8 sm:w-9 sm:h-9 rounded-full border text-xs font-semibold transition-all ${
+                                activeHotspotId === hotspot.id
+                                  ? 'bg-[#D4AF37] text-[#0A1628] border-[#D4AF37] scale-110'
+                                  : 'bg-[#0A1628]/85 text-[#F8F9FA] border-[#D4AF37]/60 hover:bg-[#D4AF37]/20'
+                              }`}
+                              style={{ left: `${hotspot.x}%`, top: `${hotspot.y}%` }}
+                              aria-label={hotspot.title}
+                            >
+                              {hotspot.label}
+                            </button>
+                          ))}
+
+                          {isHotspotActive && activeHotspot && (
+                            <div
+                              className={`absolute z-10 max-w-[280px] sm:max-w-[320px] bg-[#0A1628]/95 border border-[#D4AF37]/35 rounded-xl p-4 shadow-2xl ${isRTL ? 'text-right' : 'text-left'}`}
+                              style={{
+                                left: `${activeHotspot.x}%`,
+                                top: `${activeHotspot.y}%`,
+                                transform: `translate(${activeHotspot.x > 65 ? '-100%' : '0%'}, ${activeHotspot.y > 68 ? '-100%' : '0%'})`,
+                                marginLeft: activeHotspot.x > 65 ? '-14px' : '14px',
+                                marginTop: activeHotspot.y > 68 ? '-14px' : '14px'
+                              }}
+                            >
+                              <div className="text-[11px] tracking-[0.16em] uppercase text-[#D4AF37]/80 mb-2">Hotspot {activeHotspot.label}</div>
+                              <h4 className="text-sm sm:text-base text-[#F8F9FA] font-semibold mb-1.5">{activeHotspot.title}</h4>
+                              <p className="text-xs sm:text-sm text-[#C7D0DE] leading-relaxed">{activeHotspot.description}</p>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    );
+                  }
+
                   return (
                     <div className="grid lg:grid-cols-[1.05fr_1fr] gap-8 lg:gap-10 lg:items-start">
                       <div className="flex justify-center lg:justify-start">
