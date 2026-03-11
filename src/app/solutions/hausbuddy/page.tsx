@@ -26,12 +26,54 @@ const content = {
     featuresTitle: 'Features Tenants Love',
     featuresSubtitle: 'Everything your tenants need to feel at home, right in their pocket.',
     features: [
-      { title: 'The Digital "Blackboard"', description: 'Never miss an update again. Receive instant push notifications for urgent water shut-offs, elevator maintenance, or community events.', longDescription: 'Transform how you communicate with residents. The Digital Blackboard replaces outdated paper notices with instant push notifications delivered directly to tenants phones. Whether it is an urgent water shut-off, elevator maintenance schedule, or upcoming community events, your messages reach residents immediately with 100% reliability.', image: '/images/hausbuddy/1.png', screenshot: '/images/hausbuddy/content-hausbuddy/1.png' },
-      { title: 'The Social Butterfly', description: 'Make your building a home. Connect with neighbors to organize playdates, study sessions, or prayer and sports groups.', longDescription: 'Turn your building into a thriving community. The Social Butterfly feature provides a dedicated platform where residents can connect, organize activities, and build meaningful relationships. From arranging playdates for children to coordinating study groups or sports activities.', image: '/images/hausbuddy/2.png', screenshot: '/images/hausbuddy/content-hausbuddy/2.png' },
-      { title: 'Direct "One-Stop" Chat', description: 'Stop wasting time on hold. Open a direct, secure line to your property manager for quick questions about rent, contracts, or keys.', longDescription: 'Eliminate communication friction with instant messaging. The Direct One-Stop Chat creates a secure, organized channel between tenants and property managers. No more waiting on hold or playing phone tag—tenants get quick answers to questions about rent, contracts, keys, or any concerns.', image: '/images/hausbuddy/3.png', screenshot: '/images/hausbuddy/content-hausbuddy/3.png' },
-      { title: 'Smart Damage Reporting', description: 'Report issues in seconds. Snap a photo, hit send, and track repair status in real-time from "Received" to "Resolved."', longDescription: 'Revolutionize maintenance requests with a seamless 3-click process. Tenants simply snap a photo of any issue—whether it is a broken light, leaking faucet, or any defect—add a brief description, and submit. Track the entire journey from "Received" to "In Progress" to "Resolved" in real-time.', image: '/images/hausbuddy/4.png', screenshot: '/images/hausbuddy/content-hausbuddy/4.png' },
-      { title: 'Integrated Service Marketplace', description: 'Get a lifestyle upgrade. Access exclusive deals and services like on-demand apartment cleaning right from the app.', longDescription: 'Offer more than just housing—provide a complete lifestyle solution. The Integrated Service Marketplace gives tenants access to exclusive deals and premium services directly through the app. From on-demand apartment cleaning to laundry services, handyman repairs to moving assistance.', image: '/images/hausbuddy/5.png', screenshot: '/images/hausbuddy/content-hausbuddy/5.png' },
-      { title: 'Documents in Your Pocket', description: 'Enjoy 24/7 access to your vital home information. Rental contracts, utility statements, and house rules safely stored.', longDescription: 'Never lose important documents again. The Documents feature provides secure, 24/7 access to all essential home information. Rental contracts, utility statements, house rules, insurance documents—everything is safely stored in the cloud and retrievable instantly.', image: '/images/hausbuddy/6.png', screenshot: '/images/hausbuddy/content-hausbuddy/6.png' }
+      { title: 'The Digital "Blackboard"', description: 'Never miss an update again. Receive instant push notifications for urgent water shut-offs, elevator maintenance, or community events.', longDescription: 'Transform how you communicate with residents. The Digital Blackboard replaces outdated paper notices with instant push notifications delivered directly to tenants phones. Whether it is an urgent water shut-off, elevator maintenance schedule, or upcoming community events, your messages reach residents immediately with 100% reliability.', image: '/images/hausbuddy/1.png', screenshot: '/images/hausbuddy/content-hausbuddy/hb_1.png',
+        points: [
+          'Urgent alerts, maintenance schedules, and community events — delivered instantly to every resident.',
+          'No more lost paper notices or missed announcements on a crowded board.',
+          'Push targeted updates to specific floors, units, or your entire building at once.',
+          'Residents stay informed. You stay in control.'
+        ]
+      },
+      { title: 'The Social Butterfly', description: 'Make your building a home. Connect with neighbors to organize playdates, study sessions, or prayer and sports groups.', longDescription: 'Turn your building into a thriving community. The Social Butterfly feature provides a dedicated platform where residents can connect, organize activities, and build meaningful relationships. From arranging playdates for children to coordinating study groups or sports activities.', image: '/images/hausbuddy/2.png', screenshot: '/images/hausbuddy/content-hausbuddy/hb_2.png',
+        points: [
+          'Connect with neighbors and organize activities right inside the app — no group chats needed.',
+          'Discover sports groups, study sessions, parenting circles, and community events near you.',
+          'Build a sense of belonging that turns residents into long-term community members.',
+          'Your building becomes more than four walls — it becomes a community.'
+        ]
+      },
+      { title: 'Direct "One-Stop" Chat', description: 'Stop wasting time on hold. Open a direct, secure line to your property manager for quick questions about rent, contracts, or keys.', longDescription: 'Eliminate communication friction with instant messaging. The Direct One-Stop Chat creates a secure, organized channel between tenants and property managers. No more waiting on hold or playing phone tag—tenants get quick answers to questions about rent, contracts, keys, or any concerns.', image: '/images/hausbuddy/3.png', screenshot: '/images/hausbuddy/content-hausbuddy/hb_3.png',
+        points: [
+          'Message your property manager directly — no phone tags, no waiting on hold.',
+          'All conversations in one thread: rent, contracts, requests, and more.',
+          'Faster response times mean happier tenants and fewer escalations.',
+          'Full conversation history — safe, searchable, and always at your fingertips.'
+        ]
+      },
+      { title: 'Smart Damage Reporting', description: 'Report issues in seconds. Snap a photo, hit send, and track repair status in real-time from "Received" to "Resolved."', longDescription: 'Revolutionize maintenance requests with a seamless 3-click process. Tenants simply snap a photo of any issue—whether it is a broken light, leaking faucet, or any defect—add a brief description, and submit. Track the entire journey from "Received" to "In Progress" to "Resolved" in real-time.', image: '/images/hausbuddy/4.png', screenshot: '/images/hausbuddy/content-hausbuddy/hb_4.png',
+        points: [
+          'Snap a photo, add a note, and submit a repair request in under 30 seconds.',
+          'Track every issue from "Received" to "In Progress" to "Resolved" in real-time.',
+          'No follow-up calls needed — you always know the status of your request.',
+          'Property managers get structured reports. Tenants get peace of mind.'
+        ]
+      },
+      { title: 'Integrated Service Marketplace', description: 'Get a lifestyle upgrade. Access exclusive deals and services like on-demand apartment cleaning right from the app.', longDescription: 'Offer more than just housing—provide a complete lifestyle solution. The Integrated Service Marketplace gives tenants access to exclusive deals and premium services directly through the app. From on-demand apartment cleaning to laundry services, handyman repairs to moving assistance.', image: '/images/hausbuddy/5.png', screenshot: '/images/hausbuddy/content-hausbuddy/hb_5.png',
+        points: [
+          'Book cleaning, laundry, or handyman services directly from your apartment app.',
+          'Exclusive resident-only deals curated for your building lifestyle.',
+          'One-tap booking — no calls, no searching, no middlemen.',
+          'More than a home. Your everyday services, always one step away.'
+        ]
+      },
+      { title: 'Documents in Your Pocket', description: 'Enjoy 24/7 access to your vital home information. Rental contracts, utility statements, and house rules safely stored.', longDescription: 'Never lose important documents again. The Documents feature provides secure, 24/7 access to all essential home information. Rental contracts, utility statements, house rules, insurance documents—everything is safely stored in the cloud and retrievable instantly.', image: '/images/hausbuddy/6.png', screenshot: '/images/hausbuddy/content-hausbuddy/hb_6.png',
+        points: [
+          'Your lease, utility bills, and house rules — stored securely and always within reach.',
+          'No more searching drawers or emailing management for a copy of your contract.',
+          'Access any document in seconds, 24/7, from anywhere.',
+          'Paperless, organized, and always up to date.'
+        ]
+      }
     ],
     howItWorks: {
       badge: 'How It Works',
@@ -85,12 +127,54 @@ const content = {
     featuresTitle: 'الميزات التي يحبها المستأجرون',
     featuresSubtitle: 'كل ما يحتاجه مستأجروك للشعور بالراحة في المنزل، في جيبهم.',
     features: [
-      { title: 'السبورة الرقمية', description: 'لا تفوت أي تحديث. استلم إشعارات فورية لإغلاق المياه، أو صيانة المصعد، أو فعاليات المجتمع.', longDescription: 'حوّل طريقة تواصلك مع السكان. السبورة الرقمية تحل محل إشعارات الورق القديمة بإشعارات فورية تصل مباشرة إلى هواتف المستأجرين. سواء كان إغلاقاً عاجلاً للمياه، أو جدولة صيانة المصعد، أو فعاليات المجتمع القادمة.', image: '/images/hausbuddy/1.png', screenshot: '/images/hausbuddy/content-hausbuddy/1.png' },
-      { title: 'التواصل الاجتماعي', description: 'اجعل مبناك وطناً. تواصل مع الجيران لتنظيم مواعيد اللعب، أو جلسات الدراسة، أو مجموعات الصلاة.', longDescription: 'حوّل مبناك إلى مجتمع نابض بالحياة. ميزة التواصل الاجتماعي توفر منصة مخصصة حيث يمكن للسكان التواصل وتنظيم الأنشطة وبناء علاقات هادفة. من ترتيب مواعيد اللعب للأطفال إلى تنسيق مجموعات الدراسة.', image: '/images/hausbuddy/2.png', screenshot: '/images/hausbuddy/content-hausbuddy/2.png' },
-      { title: 'دردشة مباشرة', description: 'توقف عن الانتظار. افتح خط اتصال آمن مع مدير العقارة لأسئلة سريعة.', longDescription: 'أزل احتكاك التواصل مع الرسائل الفورية. الدردشة المباشرة تخلق قناة آمنة ومنظمة بين المستأجرين ومديري العقارات. لا مزيد من الانتظار على الخط—يحصل المستأجرون على إجابات سريعة حول الإيجار أو العقود.', image: '/images/hausbuddy/3.png', screenshot: '/images/hausbuddy/content-hausbuddy/3.png' },
-      { title: 'الإبلاغ الذكي عن الأضرار', description: 'أبلغ عن المشكلات في ثوانٍ. التقط صورة، اضغط إرسال، وتتبع حالة الإصلاح.', longDescription: 'أحدث ثورة في طلبات الصيانة بعملية سلسة من 3 نقرات. يلتقط المستأجرون ببساطة صورة لأي مشكلة—سواء كان مصباحاً مكسوراً أو صنبوراً متسرباً—يضيفون وصفاً موجزاً ويرسلون. تتبع الرحلة بأكملها من "مستلم" إلى "تم الحل".', image: '/images/hausbuddy/4.png', screenshot: '/images/hausbuddy/content-hausbuddy/4.png' },
-      { title: 'سوق الخدمات المتكامل', description: 'احصل على ترقية لنمط حياتك. استفد من عروض وخدمات حصرية مثل تنظيف الشقق.', longDescription: 'قدّم أكثر من مجرد سكن—قدّم حلًا كاملاً للحياة. سوق الخدمات المتكامل يمنح المستأجرين إمكانية الوصول إلى صفقات حصرية وخدمات متميزة مباشرة من خلال التطبيق. من تنظيف الشقق عند الطلب إلى خدمات الغسيل.', image: '/images/hausbuddy/5.png', screenshot: '/images/hausbuddy/content-hausbuddy/5.png' },
-      { title: 'المستندات في جيبك', description: 'استمتع بالوصول على مدار الساعة. عقود الإيجار وكشوفات الخدمات مخزنة بأمان.', longDescription: 'لا تفقد المستندات المهمة مرة أخرى. ميزة المستندات توفر وصولاً آمنًا على مدار الساعة إلى جميع معلومات المنزل الأساسية. عقود الإيجار، كشوفات الخدمات، قواعد المنزل، وثائق التأمين—كل شيء مخزن بأمان.', image: '/images/hausbuddy/6.png', screenshot: '/images/hausbuddy/content-hausbuddy/6.png' }
+      { title: 'السبورة الرقمية', description: 'لا تفوت أي تحديث. استلم إشعارات فورية لإغلاق المياه، أو صيانة المصعد، أو فعاليات المجتمع.', longDescription: 'حوّل طريقة تواصلك مع السكان. السبورة الرقمية تحل محل إشعارات الورق القديمة بإشعارات فورية تصل مباشرة إلى هواتف المستأجرين. سواء كان إغلاقاً عاجلاً للمياه، أو جدولة صيانة المصعد، أو فعاليات المجتمع القادمة.', image: '/images/hausbuddy/1.png', screenshot: '/images/hausbuddy/content-hausbuddy/hb_1.png',
+        points: [
+          'تنبيهات عاجلة وجداول صيانة وفعاليات — تصل فوراً إلى كل ساكن.',
+          'لا مزيد من الإشعارات الورقية الضائعة أو اللوحات المزدحمة.',
+          'أرسل تحديثات مستهدفة لطوابق أو وحدات بعينها أو للمبنى كاملاً.',
+          'السكان دائماً على علم. وأنت دائماً في السيطرة.'
+        ]
+      },
+      { title: 'التواصل الاجتماعي', description: 'اجعل مبناك وطناً. تواصل مع الجيران لتنظيم مواعيد اللعب، أو جلسات الدراسة، أو مجموعات الصلاة.', longDescription: 'حوّل مبناك إلى مجتمع نابض بالحياة. ميزة التواصل الاجتماعي توفر منصة مخصصة حيث يمكن للسكان التواصل وتنظيم الأنشطة وبناء علاقات هادفة. من ترتيب مواعيد اللعب للأطفال إلى تنسيق مجموعات الدراسة.', image: '/images/hausbuddy/2.png', screenshot: '/images/hausbuddy/content-hausbuddy/hb_2.png',
+        points: [
+          'تواصل مع الجيران ونظّم الأنشطة مباشرة من التطبيق — بدون مجموعات دردشة منفصلة.',
+          'اكتشف مجموعات رياضية ودراسية وعائلية وفعاليات مجتمعية قريبة منك.',
+          'ابنِ روح الانتماء التي تحوّل السكان إلى أعضاء مجتمع دائمين.',
+          'مبناك يصبح أكثر من أربعة جدران — يصبح مجتمعاً حقيقياً.'
+        ]
+      },
+      { title: 'دردشة مباشرة', description: 'توقف عن الانتظار. افتح خط اتصال آمن مع مدير العقارة لأسئلة سريعة.', longDescription: 'أزل احتكاك التواصل مع الرسائل الفورية. الدردشة المباشرة تخلق قناة آمنة ومنظمة بين المستأجرين ومديري العقارات. لا مزيد من الانتظار على الخط—يحصل المستأجرون على إجابات سريعة حول الإيجار أو العقود.', image: '/images/hausbuddy/3.png', screenshot: '/images/hausbuddy/content-hausbuddy/hb_3.png',
+        points: [
+          'راسل مدير عقاراتك مباشرة — لا انتظار، لا مرور عبر وسيط.',
+          'كل المحادثات في خيط واحد: الإيجار والعقود والطلبات وأكثر.',
+          'أوقات استجابة أسرع تعني مستأجرين أكثر رضاً وتصعيدات أقل.',
+          'سجل المحادثات الكامل محفوظ وقابل للبحث في كل وقت.'
+        ]
+      },
+      { title: 'الإبلاغ الذكي عن الأضرار', description: 'أبلغ عن المشكلات في ثوانٍ. التقط صورة، اضغط إرسال، وتتبع حالة الإصلاح.', longDescription: 'أحدث ثورة في طلبات الصيانة بعملية سلسة من 3 نقرات. يلتقط المستأجرون ببساطة صورة لأي مشكلة—سواء كان مصباحاً مكسوراً أو صنبوراً متسرباً—يضيفون وصفاً موجزاً ويرسلون. تتبع الرحلة بأكملها من "مستلم" إلى "تم الحل".', image: '/images/hausbuddy/4.png', screenshot: '/images/hausbuddy/content-hausbuddy/hb_4.png',
+        points: [
+          'التقط صورة، أضف ملاحظة، وأرسل طلب إصلاح في أقل من 30 ثانية.',
+          'تابع كل مشكلة من "مستلم" إلى "جاري التنفيذ" إلى "تم الحل" في الوقت الفعلي.',
+          'لا حاجة لمتابعة هاتفية — أنت دائماً على علم بحالة طلبك.',
+          'مديرو العقارات يحصلون على تقارير منظمة. والمستأجرون يحصلون على راحة بال.'
+        ]
+      },
+      { title: 'سوق الخدمات المتكامل', description: 'احصل على ترقية لنمط حياتك. استفد من عروض وخدمات حصرية مثل تنظيف الشقق.', longDescription: 'قدّم أكثر من مجرد سكن—قدّم حلًا كاملاً للحياة. سوق الخدمات المتكامل يمنح المستأجرين إمكانية الوصول إلى صفقات حصرية وخدمات متميزة مباشرة من خلال التطبيق. من تنظيف الشقق عند الطلب إلى خدمات الغسيل.', image: '/images/hausbuddy/5.png', screenshot: '/images/hausbuddy/content-hausbuddy/hb_5.png',
+        points: [
+          'احجز خدمات التنظيف والغسيل والصيانة مباشرة من تطبيق شقتك.',
+          'عروض حصرية للسكان فقط، مختارة لتناسب أسلوب حياة مبناك.',
+          'حجز بنقرة واحدة — بدون مكالمات، بدون بحث، بدون وسطاء.',
+          'أكثر من منزل. خدماتك اليومية دائماً على بعد خطوة.'
+        ]
+      },
+      { title: 'المستندات في جيبك', description: 'استمتع بالوصول على مدار الساعة. عقود الإيجار وكشوفات الخدمات مخزنة بأمان.', longDescription: 'لا تفقد المستندات المهمة مرة أخرى. ميزة المستندات توفر وصولاً آمنًا على مدار الساعة إلى جميع معلومات المنزل الأساسية. عقود الإيجار، كشوفات الخدمات، قواعد المنزل، وثائق التأمين—كل شيء مخزن بأمان.', image: '/images/hausbuddy/6.png', screenshot: '/images/hausbuddy/content-hausbuddy/hb_6.png',
+        points: [
+          'عقدك وفواتيرك وقواعد المنزل — محفوظة بأمان وفي متناولك دائماً.',
+          'لا مزيد من البحث في الأدراج أو مراسلة الإدارة للحصول على نسخة عقدك.',
+          'استرجع أي مستند في ثوانٍ، 24/7، من أي مكان.',
+          'بلا ورق، منظم، وحديث دائماً.'
+        ]
+      }
     ],
     howItWorks: {
       badge: 'كيف يعمل',
@@ -144,12 +228,54 @@ const content = {
     featuresTitle: 'Fitur yang Disukai Penyewa',
     featuresSubtitle: 'Semua yang dibutuhkan penyewa Anda untuk merasa seperti di rumah, tepat di saku mereka.',
     features: [
-      { title: 'Papan Pengumuman Digital', description: 'Jangan lewatkan update. Terima notifikasi instan untuk pemadaman air, perawatan lift, atau acara komunitas.', longDescription: 'Ubah cara Anda berkomunikasi dengan penghuni. Papan Pengumuman Digital menggantikan pemberitahuan kertas yang usang dengan notifikasi push instan yang dikirim langsung ke ponsel penyewa. Baik itu pemadaman air darurat, jadwal perawatan lift, atau acara komunitas yang akan datang.', image: '/images/hausbuddy/1.png', screenshot: '/images/hausbuddy/content-hausbuddy/1.png' },
-      { title: 'Komunitas Sosial', description: 'Jadikan gedung Anda rumah. Terhubung dengan tetangga untuk playdate, sesi belajar, atau grup olahraga.', longDescription: 'Ubah gedung Anda menjadi komunitas yang berkembang. Fitur Komunitas Sosial menyediakan platform khusus di mana penghuni dapat terhubung, mengorganisir aktivitas, dan membangun hubungan yang bermakna. Dari mengatur playdate untuk anak-anak hingga mengoordinasikan kelompok belajar.', image: '/images/hausbuddy/2.png', screenshot: '/images/hausbuddy/content-hausbuddy/2.png' },
-      { title: 'Chat Langsung', description: 'Berhenti membuang waktu. Buka jalur aman ke manajer properti untuk pertanyaan cepat.', longDescription: 'Hilangkan hambatan komunikasi dengan pesan instan. Chat Langsung menciptakan saluran aman dan terorganisir antara penyewa dan manajer properti. Tidak ada lagi menunggu di telepon—penyewa mendapat jawaban cepat untuk pertanyaan tentang sewa, kontrak, atau kunci.', image: '/images/hausbuddy/3.png', screenshot: '/images/hausbuddy/content-hausbuddy/3.png' },
-      { title: 'Pelaporan Kerusakan Cerdas', description: 'Laporkan masalah dalam detik. Ambil foto, kirim, dan lacak status perbaikan real-time.', longDescription: 'Revolusi permintaan perawatan dengan proses mulus 3-klik. Penyewa cukup mengambil foto masalah apa pun—baik itu lampu rusak, keran bocor, atau cacat lainnya—menambahkan deskripsi singkat, dan mengirimkan. Lacak seluruh perjalanan dari "Diterima" ke "Sedang Dikerjakan".', image: '/images/hausbuddy/4.png', screenshot: '/images/hausbuddy/content-hausbuddy/4.png' },
-      { title: 'Marketplace Layanan', description: 'Dapatkan peningkatan gaya hidup. Akses penawaran eksklusif seperti pembersihan apartemen.', longDescription: 'Tawarkan lebih dari sekadar perumahan—berikan solusi gaya hidup lengkap. Marketplace Layanan memberi penyewa akses ke penawaran eksklusif dan layanan premium langsung melalui aplikasi. Dari pembersihan apartemen sesuai permintaan hingga layanan laundry dan perbaikan.', image: '/images/hausbuddy/5.png', screenshot: '/images/hausbuddy/content-hausbuddy/5.png' },
-      { title: 'Dokumen di Saku', description: 'Akses 24/7 ke informasi penting. Kontrak sewa dan tagihan tersimpan dengan aman.', longDescription: 'Jangan pernah kehilangan dokumen penting lagi. Fitur Dokumen menyediakan akses aman 24/7 ke semua informasi rumah penting. Kontrak sewa, pernyataan utilitas, aturan rumah, dokumen asuransi—semuanya tersimpan dengan aman di cloud dan dapat diambil secara instan.', image: '/images/hausbuddy/6.png', screenshot: '/images/hausbuddy/content-hausbuddy/6.png' }
+      { title: 'Papan Pengumuman Digital', description: 'Jangan lewatkan update. Terima notifikasi instan untuk pemadaman air, perawatan lift, atau acara komunitas.', longDescription: 'Ubah cara Anda berkomunikasi dengan penghuni. Papan Pengumuman Digital menggantikan pemberitahuan kertas yang usang dengan notifikasi push instan yang dikirim langsung ke ponsel penyewa. Baik itu pemadaman air darurat, jadwal perawatan lift, atau acara komunitas yang akan datang.', image: '/images/hausbuddy/1.png', screenshot: '/images/hausbuddy/content-hausbuddy/hb_1.png',
+        points: [
+          'Peringatan mendesak, jadwal pemeliharaan, dan acara komunitas — terkirim instan ke setiap penghuni.',
+          'Tidak ada lagi pemberitahuan kertas yang hilang atau papan pengumuman yang penuh sesak.',
+          'Kirim pembaruan tertarget ke lantai, unit, atau seluruh gedung sekaligus.',
+          'Penghuni selalu terinformasi. Anda selalu memegang kendali.'
+        ]
+      },
+      { title: 'Komunitas Sosial', description: 'Jadikan gedung Anda rumah. Terhubung dengan tetangga untuk playdate, sesi belajar, atau grup olahraga.', longDescription: 'Ubah gedung Anda menjadi komunitas yang berkembang. Fitur Komunitas Sosial menyediakan platform khusus di mana penghuni dapat terhubung, mengorganisir aktivitas, dan membangun hubungan yang bermakna. Dari mengatur playdate untuk anak-anak hingga mengoordinasikan kelompok belajar.', image: '/images/hausbuddy/2.png', screenshot: '/images/hausbuddy/content-hausbuddy/hb_2.png',
+        points: [
+          'Terhubung dengan tetangga dan atur aktivitas langsung di dalam aplikasi — tanpa perlu grup chat terpisah.',
+          'Temukan grup olahraga, belajar, parenting, atau acara komunitas di dekat Anda.',
+          'Bangun rasa kebersamaan yang mengubah penghuni menjadi anggota komunitas jangka panjang.',
+          'Gedung Anda menjadi lebih dari sekadar empat dinding — ia menjadi komunitas.'
+        ]
+      },
+      { title: 'Chat Langsung', description: 'Berhenti membuang waktu. Buka jalur aman ke manajer properti untuk pertanyaan cepat.', longDescription: 'Hilangkan hambatan komunikasi dengan pesan instan. Chat Langsung menciptakan saluran aman dan terorganisir antara penyewa dan manajer properti. Tidak ada lagi menunggu di telepon—penyewa mendapat jawaban cepat untuk pertanyaan tentang sewa, kontrak, atau kunci.', image: '/images/hausbuddy/3.png', screenshot: '/images/hausbuddy/content-hausbuddy/hb_3.png',
+        points: [
+          'Kirim pesan ke manajer properti Anda langsung — tidak perlu menelepon, tidak perlu menunggu.',
+          'Semua percakapan dalam satu thread: masalah sewa, kontrak, permintaan, dan lainnya.',
+          'Waktu respons lebih cepat berarti penyewa lebih puas dan lebih sedikit eskalasi.',
+          'Riwayat percakapan lengkap tersimpan aman dan dapat dicari kapan saja.'
+        ]
+      },
+      { title: 'Pelaporan Kerusakan Cerdas', description: 'Laporkan masalah dalam detik. Ambil foto, kirim, dan lacak status perbaikan real-time.', longDescription: 'Revolusi permintaan perawatan dengan proses mulus 3-klik. Penyewa cukup mengambil foto masalah apa pun—baik itu lampu rusak, keran bocor, atau cacat lainnya—menambahkan deskripsi singkat, dan mengirimkan. Lacak seluruh perjalanan dari "Diterima" ke "Sedang Dikerjakan".', image: '/images/hausbuddy/4.png', screenshot: '/images/hausbuddy/content-hausbuddy/hb_4.png',
+        points: [
+          'Ambil foto, tambahkan catatan, dan kirim permintaan perbaikan dalam waktu kurang dari 30 detik.',
+          'Lacak setiap masalah dari "Diterima" ke "Sedang Dikerjakan" ke "Selesai" secara real-time.',
+          'Tidak perlu follow-up via telepon — Anda selalu tahu status permintaan Anda.',
+          'Manajer properti mendapat laporan terstruktur. Penyewa mendapat ketenangan pikiran.'
+        ]
+      },
+      { title: 'Marketplace Layanan', description: 'Dapatkan peningkatan gaya hidup. Akses penawaran eksklusif seperti pembersihan apartemen.', longDescription: 'Tawarkan lebih dari sekadar perumahan—berikan solusi gaya hidup lengkap. Marketplace Layanan memberi penyewa akses ke penawaran eksklusif dan layanan premium langsung melalui aplikasi. Dari pembersihan apartemen sesuai permintaan hingga layanan laundry dan perbaikan.', image: '/images/hausbuddy/5.png', screenshot: '/images/hausbuddy/content-hausbuddy/hb_5.png',
+        points: [
+          'Pesan layanan kebersihan, laundry, atau handyman langsung dari aplikasi apartemen Anda.',
+          'Penawaran eksklusif khusus penghuni yang dikurasi untuk gaya hidup gedung Anda.',
+          'Booking satu ketukan — tidak perlu menelepon, tidak perlu mencari, tidak ada perantara.',
+          'Lebih dari sekadar rumah. Layanan harian Anda, selalu selangkah lebih dekat.'
+        ]
+      },
+      { title: 'Dokumen di Saku', description: 'Akses 24/7 ke informasi penting. Kontrak sewa dan tagihan tersimpan dengan aman.', longDescription: 'Jangan pernah kehilangan dokumen penting lagi. Fitur Dokumen menyediakan akses aman 24/7 ke semua informasi rumah penting. Kontrak sewa, pernyataan utilitas, aturan rumah, dokumen asuransi—semuanya tersimpan dengan aman di cloud dan dapat diambil secara instan.', image: '/images/hausbuddy/6.png', screenshot: '/images/hausbuddy/content-hausbuddy/hb_6.png',
+        points: [
+          'Kontrak, tagihan, dan aturan rumah Anda — tersimpan aman dan selalu dalam jangkauan.',
+          'Tidak perlu lagi menggeledah laci atau menghubungi manajemen untuk salinan kontrak Anda.',
+          'Akses dokumen apa pun dalam hitungan detik, 24/7, dari mana saja.',
+          'Tanpa kertas, terorganisir, dan selalu mutakhir.'
+        ]
+      }
     ],
     howItWorks: {
       badge: 'Cara Kerja',
@@ -194,7 +320,6 @@ export default function HausbuddyPage() {
   const [showContactForm, setShowContactForm] = useState(false);
   const [contactTitle, setContactTitle] = useState(content[language].modal.title);
   const [selectedFeature, setSelectedFeature] = useState<typeof content.EN.features[0] | null>(null);
-  const [zoomedImage, setZoomedImage] = useState<string | null>(null);
 
   const t = content[language];
   const isRTL = language === 'AR';
@@ -265,48 +390,89 @@ export default function HausbuddyPage() {
                 </Link>
               </div>
             </motion.div>
-            <motion.div initial={{ opacity: 0, x: isRTL ? -50 : 50 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.2 }} className="relative">
-              <div className="relative mx-auto w-full max-w-[420px] h-[420px] bg-gradient-to-br from-[#0F1D2F] to-[#1A2B42] rounded-3xl border border-[#00A79D]/20 shadow-2xl overflow-hidden p-6">
-                <div className="flex items-center gap-2 mb-4">
-                  <div className="w-3 h-3 rounded-full bg-[#ff5f57]" />
-                  <div className="w-3 h-3 rounded-full bg-[#febc2e]" />
-                  <div className="w-3 h-3 rounded-full bg-[#28c840]" />
-                </div>
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-10 h-10 bg-[#00A79D] rounded-xl flex items-center justify-center">
-                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                    </svg>
+            <motion.div initial={{ opacity: 0, x: isRTL ? -50 : 50 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.2 }} className="relative flex justify-center">
+              {/* Phone frame */}
+              <div className="relative w-[240px] h-[500px] bg-gradient-to-br from-[#0F1D2F] to-[#1A2B42] rounded-[3rem] border-[3px] border-[#00A79D]/30 shadow-2xl overflow-hidden">
+                {/* Notch */}
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-16 h-5 bg-[#0A1628] rounded-b-2xl z-10" />
+                {/* Screen */}
+                <div className="pt-8 px-4 pb-6 h-full flex flex-col">
+                  {/* Status bar */}
+                  <div className="flex justify-between items-center mb-4 px-1">
+                    <div className="w-8 h-1.5 bg-[#00A79D]/30 rounded-full" />
+                    <div className="flex gap-1">
+                      <div className="w-3 h-1.5 bg-[#00A79D]/30 rounded-full" />
+                      <div className="w-3 h-1.5 bg-[#00A79D]/30 rounded-full" />
+                      <div className="w-3 h-1.5 bg-[#00A79D]/30 rounded-full" />
+                    </div>
                   </div>
-                  <div className="text-[#00A79D] font-semibold">Hausbuddy</div>
-                </div>
-                <div className="space-y-3">
-                  <div className="h-20 bg-[#00A79D]/10 rounded-xl" />
-                  <div className="h-20 bg-[#00A79D]/10 rounded-xl" />
-                  <div className="grid grid-cols-2 gap-3">
-                    <div className="h-24 bg-[#00A79D]/10 rounded-xl" />
-                    <div className="h-24 bg-[#00A79D]/10 rounded-xl" />
+                  {/* App header */}
+                  <div className="flex items-center gap-2 mb-5">
+                    <div className="w-7 h-7 bg-[#00A79D] rounded-lg flex items-center justify-center shrink-0">
+                      <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                      </svg>
+                    </div>
+                    <div className="text-[#00A79D] text-sm font-semibold">Hausbuddy</div>
+                    <div className="ml-auto w-5 h-5 bg-[#00A79D]/20 rounded-full" />
+                  </div>
+                  {/* App content */}
+                  <div className="flex-1 space-y-2.5 overflow-hidden">
+                    {/* Announcement banner */}
+                    <div className="bg-[#00A79D]/10 rounded-2xl px-3 py-3 border border-[#00A79D]/20">
+                      <p className="text-[9px] text-[#00A79D]/60 uppercase tracking-widest mb-1">Announcement</p>
+                      <p className="text-[10px] font-semibold text-[#F8F9FA]/80 leading-snug">Water maintenance on 14 Mar, 8–10 AM</p>
+                      <p className="text-[9px] text-[#A7B0BE]/60 mt-1">Tap to read more →</p>
+                    </div>
+                    {/* Two quick-action tiles */}
+                    <div className="grid grid-cols-2 gap-2">
+                      <div className="bg-[#00A79D]/10 rounded-xl px-2.5 py-2.5 border border-[#00A79D]/15">
+                        <p className="text-[9px] text-[#00A79D]/70 uppercase tracking-wider mb-1">Payments</p>
+                        <p className="text-[11px] font-bold text-[#F8F9FA]/80">AED 4,200</p>
+                        <p className="text-[8px] text-[#A7B0BE]/50 mt-0.5">Due Apr 1</p>
+                      </div>
+                      <div className="bg-[#00A79D]/10 rounded-xl px-2.5 py-2.5 border border-[#00A79D]/15">
+                        <p className="text-[9px] text-[#00A79D]/70 uppercase tracking-wider mb-1">Requests</p>
+                        <p className="text-[11px] font-bold text-[#F8F9FA]/80">2 Open</p>
+                        <p className="text-[8px] text-[#A7B0BE]/50 mt-0.5">In progress</p>
+                      </div>
+                    </div>
+                    {/* Chat preview rows */}
+                    <div className="bg-[#00A79D]/10 rounded-xl px-3 py-2 flex items-center gap-2 border border-[#00A79D]/15">
+                      <div className="w-5 h-5 bg-[#00A79D]/40 rounded-full shrink-0 flex items-center justify-center">
+                        <span className="text-[7px] text-white font-bold">M</span>
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-[9px] font-semibold text-[#F8F9FA]/80">Management</p>
+                        <p className="text-[8px] text-[#A7B0BE]/60 truncate">Your AC unit has been scheduled…</p>
+                      </div>
+                    </div>
+                    <div className="bg-[#00A79D]/10 rounded-xl px-3 py-2 flex items-center gap-2 border border-[#00A79D]/15">
+                      <div className="w-5 h-5 bg-[#00A79D]/40 rounded-full shrink-0 flex items-center justify-center">
+                        <span className="text-[7px] text-white font-bold">N</span>
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-[9px] font-semibold text-[#F8F9FA]/80">Neighbour Chat</p>
+                        <p className="text-[8px] text-[#A7B0BE]/60 truncate">Anyone joining the rooftop BBQ?</p>
+                      </div>
+                    </div>
+                  </div>
+                  {/* Bottom nav */}
+                  <div className="mt-4 flex justify-around items-center pt-3 border-t border-[#00A79D]/10">
+                    {[0, 1, 2, 3].map((i) => (
+                      <div key={i} className={`w-6 h-6 rounded-lg ${i === 0 ? 'bg-[#00A79D]/40' : 'bg-[#00A79D]/15'}`} />
+                    ))}
                   </div>
                 </div>
+                {/* Home indicator */}
+                <div className="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-16 h-1 bg-[#00A79D]/30 rounded-full" />
               </div>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Stats - Navy with border */}
-      <section className="py-16 border-y border-[#00A79D]/10 bg-[#0A1628]">
-        <div className="page-container">
-          <div className="grid grid-cols-3 gap-8">
-            {t.stats.map((stat, i) => (
-              <motion.div key={i} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.1 }} className="text-center">
-                <div className="text-4xl sm:text-5xl font-bold text-[#00A79D]">{stat.value}</div>
-                <div className="text-sm text-[#9CA3AF] mt-2 uppercase tracking-wider">{stat.label}</div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+
 
       {/* Features Grid - Sand */}
       <section id="features" className="py-24 bg-[#F5F3F0]">
@@ -326,7 +492,6 @@ export default function HausbuddyPage() {
                 transition={{ delay: i * 0.1 }}
                 onClick={() => {
                   setSelectedFeature(feature);
-                  setZoomedImage(null);
                 }}
                 className="bg-white rounded-2xl overflow-hidden border border-[#0A1628]/10 hover:border-[#00A79D]/30 transition-all text-left shadow-sm cursor-pointer group"
               >
@@ -356,15 +521,14 @@ export default function HausbuddyPage() {
             initial={{ opacity: 0, scale: 0.95 }} 
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
-            className="bg-gradient-to-br from-[#0F1D2F] to-[#1A2B42] border border-[#00A79D]/30 rounded-3xl w-full max-w-5xl max-h-[90vh] overflow-y-auto"
+            className="bg-gradient-to-br from-[#0F1D2F] to-[#1A2B42] border border-[#00A79D]/30 rounded-2xl lg:rounded-3xl w-full max-w-5xl max-h-[92vh] overflow-hidden flex flex-col"
           >
             {/* Header */}
-            <div className="sticky top-0 bg-gradient-to-br from-[#0F1D2F] to-[#1A2B42] border-b border-[#00A79D]/20 p-6 flex justify-between items-center z-10">
+            <div className="bg-gradient-to-br from-[#0F1D2F] to-[#1A2B42] border-b border-[#00A79D]/20 px-6 sm:px-8 py-5 sm:py-6 flex justify-between items-center shrink-0">
               <h3 className="text-2xl font-['Cormorant_Garamond'] text-[#00A79D]">{selectedFeature.title}</h3>
               <button 
                 onClick={() => {
                   setSelectedFeature(null);
-                  setZoomedImage(null);
                 }} 
                 className="w-10 h-10 flex items-center justify-center rounded-full bg-[#00A79D]/10 text-[#00A79D] hover:bg-[#00A79D]/20 transition-colors"
               >
@@ -375,16 +539,11 @@ export default function HausbuddyPage() {
             </div>
             
             {/* Content - 2 Column Layout */}
-            <div className="p-6 sm:p-8">
-              <div className="grid lg:grid-cols-[1.05fr_1fr] gap-8 lg:gap-10 lg:items-start">
-                {/* Left: Screenshot */}
-                <div className="flex justify-center lg:justify-start">
-                  <button
-                    type="button"
-                    onClick={() => setZoomedImage(selectedFeature.screenshot)}
-                    className="relative w-full max-w-[500px] h-[460px] sm:h-[560px] overflow-hidden cursor-zoom-in"
-                    aria-label="Zoom image"
-                  >
+            <div className="px-5 sm:px-8 pt-5 sm:pt-8 pb-4 flex-1 min-h-0 overflow-y-auto">
+              <div className="flex flex-col gap-5 lg:grid lg:grid-cols-[1fr_1.2fr] lg:gap-0 lg:h-full lg:items-stretch">
+                {/* Image — top on mobile, left col on desktop */}
+                <div className="w-full lg:self-stretch lg:min-h-0 flex items-center justify-center lg:pr-6">
+                  <div className="relative w-full aspect-[4/3] lg:aspect-auto lg:h-full">
                     <Image
                       src={selectedFeature.screenshot}
                       alt={`${selectedFeature.title} screenshot`}
@@ -392,65 +551,21 @@ export default function HausbuddyPage() {
                       className="object-contain object-center"
                       unoptimized
                     />
-                    <span className="absolute top-3 right-3 text-[11px] px-2.5 py-1 rounded-full bg-black/55 text-white/90 border border-white/20">
-                      Zoom
-                    </span>
-                  </button>
+                  </div>
                 </div>
 
-                {/* Right: Description */}
-                <div className="space-y-5 lg:pt-2">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00A79D]/10 border border-[#00A79D]/20">
-                    <span className="w-2 h-2 rounded-full bg-[#00A79D]" />
-                    <span className="text-xs tracking-[0.18em] uppercase text-[#7CE3DD]">Feature Overview</span>
-                  </div>
-
-                  <div className="rounded-2xl border border-[#00A79D]/20 bg-[#00A79D]/5 p-4">
-                    <p className="text-[#E6FFFB] text-base sm:text-lg leading-relaxed">{selectedFeature.description}</p>
-                  </div>
-
-                  <p className="text-[15px] sm:text-base text-[#CBC5CE] leading-relaxed">
-                    {selectedFeature.longDescription}
-                  </p>
-
-                  <div className="space-y-3 pt-1">
-                    {selectedFeature.longDescription
-                      .split('. ')
-                      .filter(Boolean)
-                      .slice(0, 3)
-                      .map((point, i) => (
-                        <div key={i} className="flex items-start gap-3">
-                          <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#00A79D]" />
-                          <p className="text-sm text-[#A7B0BE] leading-relaxed">{point.trim().endsWith('.') ? point.trim() : `${point.trim()}.`}</p>
-                        </div>
-                      ))}
-                  </div>
+                {/* Bullets — below image on mobile, right col on desktop */}
+                <div className="space-y-3 lg:self-stretch lg:flex lg:flex-col lg:justify-center lg:pl-6">
+                  {selectedFeature.points.map((point, i) => (
+                    <div key={i} className="flex items-start gap-3">
+                      <span className="mt-2 w-1.5 h-1.5 shrink-0 rounded-full bg-[#00A79D]" />
+                      <p className="text-sm text-[#A7B0BE] leading-relaxed">{point}</p>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
           </motion.div>
-        </div>
-      )}
-
-      {zoomedImage && (
-        <div
-          className="fixed inset-0 z-[60] bg-black/95 backdrop-blur-md p-4 sm:p-8 flex items-center justify-center"
-          onClick={() => setZoomedImage(null)}
-        >
-          <button
-            type="button"
-            onClick={() => setZoomedImage(null)}
-            className="absolute top-5 right-5 w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center"
-            aria-label="Close zoom"
-          >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
-
-          <div className="relative w-full h-full max-w-6xl max-h-[90vh]" onClick={(e) => e.stopPropagation()}>
-            <Image src={zoomedImage} alt="Feature screenshot zoomed" fill className="object-contain" unoptimized />
-          </div>
         </div>
       )}
 
