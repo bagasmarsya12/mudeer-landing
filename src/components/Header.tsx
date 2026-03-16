@@ -156,7 +156,7 @@ export const Header = ({ onContactClick }: HeaderProps) => {
                 <motion.button 
                   whileHover={{ scale: 1.02 }} 
                   whileTap={{ scale: 0.98 }} 
-                  className="px-5 py-2.5 bg-[#D4AF37] text-[#0A1628] text-sm font-medium rounded-lg hover:bg-[#E8C968] transition-colors h-10 flex items-center justify-center min-w-[120px]"
+                  className="px-5 bg-[#D4AF37] text-[#0A1628] text-sm font-medium rounded-lg hover:bg-[#E8C968] transition-colors h-10 flex items-center justify-center min-w-[120px]"
                 >
                   {isRTL ? 'دخول العملاء' : 'Client Login'}
                 </motion.button>
@@ -171,45 +171,45 @@ export const Header = ({ onContactClick }: HeaderProps) => {
             </div>
           </div>
         </div>
-      </motion.header>
 
-      {/* Mobile Navigation Menu */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.2 }}
-            className="fixed top-[72px] left-0 right-0 z-30 bg-[#0A1628]/98 backdrop-blur-lg border-b border-[#D4AF37]/10 lg:hidden"
-          >
-            <nav className="flex flex-col py-4 px-4">
-              {navItems.map((item, i) => (
-                <a
-                  key={i}
-                  href={item.href}
-                  onClick={(e) => { 
-                    if (item.href === '#contact' && onContactClick) { 
-                      e.preventDefault(); 
-                      handleNavClick(item.label); 
-                    } else {
-                      setIsMobileMenuOpen(false);
-                    }
-                  }}
-                  className="py-3 px-4 text-[#F8F9FA] text-base hover:text-[#D4AF37] hover:bg-[#D4AF37]/10 rounded-lg transition-colors border-b border-[#D4AF37]/10 last:border-0"
-                >
-                  {item.label}
-                </a>
-              ))}
-              <Link href="/login" className="mt-4 sm:hidden">
-                <button className="w-full py-3 bg-[#D4AF37] text-[#0A1628] font-medium rounded-lg hover:bg-[#E8C968] transition-colors h-12">
-                  {isRTL ? 'دخول العملاء' : 'Client Login'}
-                </button>
-              </Link>
-            </nav>
-          </motion.div>
-        )}
-      </AnimatePresence>
+        {/* Mobile Navigation Menu — inside header so top-full always flush */}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.2 }}
+              className="absolute top-full left-0 right-0 bg-[#0A1628] border-b border-[#D4AF37]/10 lg:hidden"
+            >
+              <nav className="flex flex-col py-4 px-4">
+                {navItems.map((item, i) => (
+                  <a
+                    key={i}
+                    href={item.href}
+                    onClick={(e) => { 
+                      if (item.href === '#contact' && onContactClick) { 
+                        e.preventDefault(); 
+                        handleNavClick(item.label); 
+                      } else {
+                        setIsMobileMenuOpen(false);
+                      }
+                    }}
+                    className="py-3 px-4 text-[#F8F9FA] text-base hover:text-[#D4AF37] hover:bg-[#D4AF37]/10 rounded-lg transition-colors border-b border-[#D4AF37]/10 last:border-0"
+                  >
+                    {item.label}
+                  </a>
+                ))}
+                <Link href="/login" className="mt-4 sm:hidden">
+                  <button className="w-full py-3 bg-[#D4AF37] text-[#0A1628] font-medium rounded-lg hover:bg-[#E8C968] transition-colors h-12">
+                    {isRTL ? 'دخول العملاء' : 'Client Login'}
+                  </button>
+                </Link>
+              </nav>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.header>
     </>
   );
 };

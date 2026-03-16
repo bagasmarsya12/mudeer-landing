@@ -60,10 +60,11 @@ const content = {
         cta: 'Request Proposal'
       },
       custom: {
-        title: 'Custom Pricing & Feature Request',
-        description: 'Need advanced modules? Choose what you need and send us your custom requirements.',
-        options: ['Custom Tenant Journeys', 'API Extensions'],
-        extraChecks: ['Feature request workshop with product team', 'Custom module scoping & estimation'],
+        badge: 'Custom Package',
+        title: 'Custom Product & Feature Request',
+        description: 'Choose what you need and send us your custom requirements.',
+        options: [],
+        extraChecks: ['Full Core Stack Included', 'Feature Request with Product Team', 'Valet Parking Workflow', 'Third-party System Integration', 'Custom Analytics Dashboard', 'Custom Features for Your Business Needs'],
         noteLabel: 'Custom Feature Notes',
         notePlaceholder: 'Example: We need valet car workflow with booking slots, driver assignment, pickup/drop-off status, and monthly report export.',
         selectedLabel: 'selected',
@@ -155,10 +156,11 @@ const content = {
         cta: 'طلب اقتراح'
       },
       custom: {
-        title: 'تسعير مخصص وطلب ميزات',
-        description: 'تحتاج وحدات متقدمة؟ اختر ما تحتاجه وأرسل متطلباتك المخصصة.',
-        options: ['رحلات مستأجر مخصصة', 'توسعات API'],
-        extraChecks: ['جلسة طلب ميزات مع فريق المنتج', 'تحديد نطاق وتقدير الوحدات المخصصة'],
+        badge: 'باقة مخصصة',
+        title: 'منتج مخصص وطلب ميزات',
+        description: 'اختر ما تحتاجه وأرسل متطلباتك المخصصة.',
+        options: [],
+        extraChecks: ['الحزمة الأساسية مشمولة', 'جلسة طلب ميزات مع فريق المنتج', 'سير عمل صف السيارات', 'تكامل مع أنظمة خارجية', 'لوحة تحليلات مخصصة', 'ميزات مخصصة لاحتياجات عملك'],
         noteLabel: 'ملاحظات الميزات المخصصة',
         notePlaceholder: 'مثال: نحتاج سير عمل لصف السيارات يشمل الحجز، تعيين السائق، حالة الاستلام/التسليم، وتصدير التقارير الشهرية.',
         selectedLabel: 'تم الاختيار',
@@ -250,10 +252,11 @@ const content = {
         cta: 'Minta Proposal'
       },
       custom: {
-        title: 'Harga Kustom & Permintaan Fitur',
-        description: 'Butuh modul lanjutan? Pilih kebutuhan Anda dan kirim requirement kustom.',
-        options: ['Tenant Journey Kustom', 'Ekstensi API'],
-        extraChecks: ['Sesi feature request bersama tim produk', 'Scope & estimasi modul kustom'],
+        badge: 'Paket Kustom',
+        title: 'Produk Kustom & Permintaan Fitur',
+        description: 'Pilih kebutuhan Anda dan kirim requirement kustom.',
+        options: [],
+        extraChecks: ['Core Stack Termasuk', 'Sesi Feature Request bersama Tim Produk', 'Alur Valet Parkir', 'Integrasi Sistem Pihak Ketiga', 'Dashboard Analitik Kustom', 'Fitur Kustom untuk Kebutuhan Bisnismu'],
         noteLabel: 'Catatan Fitur Kustom',
         notePlaceholder: 'Contoh: Kami butuh alur valet mobil dengan slot booking, penugasan driver, status pick-up/drop-off, dan ekspor laporan bulanan.',
         selectedLabel: 'dipilih',
@@ -302,7 +305,7 @@ export default function WhiteLabelPage() {
   const t = content[language];
   const isRTL = language === 'AR';
   const defaultChecklist = [...t.features.items, ...t.features.package.includes];
-  const customChecklist = [...defaultChecklist, ...t.features.custom.options, ...t.features.custom.extraChecks];
+  const customChecklist = [...t.features.custom.options, ...t.features.custom.extraChecks];
 
   const openContact = () => setShowContactForm(true);
 
@@ -504,49 +507,39 @@ export default function WhiteLabelPage() {
             <div className="bg-white rounded-2xl p-6 sm:p-8 border border-[#0A1628]/10 shadow-lg h-full flex flex-col">
               <div className="text-center mb-6">
                 <div className="inline-block px-4 py-1 bg-[#D4AF37]/10 rounded-full text-[#D4AF37] text-sm mb-4">{t.features.package.badge}</div>
-                <div className="text-4xl font-bold text-[#0A1628]">{t.features.package.price}</div>
-                <p className="text-[#1A2B42]/60 mt-2">{t.features.package.subtitle}</p>
+                <div className="text-2xl font-bold text-[#0A1628] leading-tight">{t.features.package.subtitle}</div>
+                <p className="text-[#1A2B42]/60 mt-2">{t.features.package.price}</p>
               </div>
 
-              <ul className="space-y-3 mb-8">
+              <ul className="grid grid-cols-2 gap-x-4 gap-y-3">
                 {defaultChecklist.map((item, i) => (
-                  <li key={i} className={`flex items-start gap-3 text-[#1A2B42]/80 text-sm leading-relaxed ${isRTL ? 'flex-row-reverse' : ''}`}>
-                    <svg className="w-4 h-4 text-[#D4AF37] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <li key={i} className={`flex items-start gap-2 text-[#1A2B42]/80 text-sm leading-relaxed ${isRTL ? 'flex-row-reverse' : ''}`}>
+                    <svg className="w-4 h-4 text-[#D4AF37] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                     {item}
                   </li>
                 ))}
               </ul>
-              <div className="mt-auto pt-2 flex justify-center">
-                <button onClick={() => setShowContactForm(true)} className="px-5 py-2.5 bg-[#D4AF37] text-[#0A1628] text-sm font-semibold rounded-lg hover:bg-[#E8C968] transition-colors">
-                  {t.features.package.cta}
-                </button>
-              </div>
             </div>
 
             <div className="bg-white rounded-2xl p-6 sm:p-8 border border-[#0A1628]/10 shadow-lg h-full flex flex-col">
               <div className="text-center mb-6">
-              <h3 className="font-['Cormorant_Garamond'] text-[clamp(28px,3vw,40px)] text-[#0A1628] mb-3">{t.features.custom.title}</h3>
-              <p className="text-[#1A2B42]/70">{t.features.custom.description}</p>
+                <div className="inline-block px-4 py-1 bg-[#D4AF37]/10 rounded-full text-[#D4AF37] text-sm mb-4">{t.features.custom.badge}</div>
+                <div className="text-2xl font-bold text-[#0A1628] leading-tight">{t.features.custom.title}</div>
+                <p className="text-[#1A2B42]/60 mt-2 text-sm">{t.features.custom.description}</p>
               </div>
 
-              <ul className="space-y-3 mb-8">
+              <ul className="grid grid-cols-2 gap-x-4 gap-y-3">
                 {customChecklist.map((item, i) => (
-                  <li key={i} className={`flex items-start gap-3 text-[#1A2B42]/80 text-sm leading-relaxed ${isRTL ? 'flex-row-reverse' : ''}`}>
-                    <svg className="w-4 h-4 text-[#D4AF37] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <li key={i} className={`flex items-start gap-2 text-[#1A2B42]/80 text-sm leading-relaxed ${isRTL ? 'flex-row-reverse' : ''}`}>
+                    <svg className="w-4 h-4 text-[#D4AF37] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                     {item}
                   </li>
                 ))}
               </ul>
-
-              <div className="mt-auto pt-2 flex flex-col items-center gap-3">
-                <button onClick={() => setShowContactForm(true)} className="px-5 py-2.5 bg-[#D4AF37] text-[#0A1628] text-sm font-semibold rounded-lg hover:bg-[#E8C968] transition-colors">
-                  {t.features.custom.cta}
-                </button>
-              </div>
             </div>
           </div>
         </div>

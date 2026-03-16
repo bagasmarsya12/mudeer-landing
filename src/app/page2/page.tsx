@@ -423,15 +423,20 @@ const ThreePillarsSection = ({ onWhiteLabelClick }: { onWhiteLabelClick: () => v
                 )}
                 {i === 1 && (
                   <div className="relative w-full h-full flex items-center justify-center">
-                    <div className="w-14 sm:w-20 h-24 sm:h-36 bg-gradient-to-b from-[#1A2B42] to-[#0A1628] rounded-xl border border-[#00A79D]/30 p-1">
-                      <div className="w-full h-full bg-[#0F1D2F] rounded-lg p-1.5 sm:p-2">
-                        <div className="text-[8px] sm:text-[9px] text-[#00A79D] mb-1.5 sm:mb-2">Hausbuddy</div>
-                        <div className="space-y-1 sm:space-y-2 text-[7px] sm:text-[8px]">
-                          <div className="bg-[#00A79D]/10 rounded p-1 border border-[#00A79D]/20 text-[#E6FFFD]">
-                            {isRTL ? 'موعد الدفع القادم: 12 مارس' : 'Next Payment Date: 12 Mar'}
+                    <div className="w-[90px] sm:w-[110px] h-[120px] sm:h-[154px] bg-gradient-to-b from-[#1A2B42] to-[#0A1628] rounded-2xl border border-[#00A79D]/30 p-1 overflow-hidden">
+                      <div className="w-full h-full bg-[#0F1D2F] rounded-xl overflow-hidden flex flex-col">
+                        <div className="px-2 py-1.5 border-b border-[#00A79D]/10 flex items-center gap-1">
+                          <div className="w-3 h-3 rounded-full bg-[#00A79D]/40" />
+                          <span className="text-[8px] text-[#00A79D] font-semibold">Hausbuddy</span>
+                        </div>
+                        <div className="flex-1 p-1.5 space-y-1.5 overflow-hidden">
+                          <div className="bg-[#00A79D]/10 rounded-lg p-1.5 border border-[#00A79D]/20">
+                            <div className="text-[7px] text-[#00A79D]/70 mb-0.5">{isRTL ? 'الدفع' : 'Rent'}</div>
+                            <div className="text-[8px] font-semibold text-[#E6FFFD] truncate">{isRTL ? 'AED 4,200' : 'AED 4,200'}</div>
                           </div>
-                          <div className="bg-[#00A79D]/10 rounded p-1 border border-[#00A79D]/20 text-[#E6FFFD]">
-                            {isRTL ? 'طلب صيانة #1948' : 'Ticket #1948 In Progress'}
+                          <div className="bg-[#00A79D]/10 rounded-lg p-1.5 border border-[#00A79D]/20">
+                            <div className="text-[7px] text-[#00A79D]/70 mb-0.5">{isRTL ? 'الصيانة' : 'Request'}</div>
+                            <div className="text-[8px] font-semibold text-[#E6FFFD] truncate">{isRTL ? '#1948 قيد التنفيذ' : '#1948 In Progress'}</div>
                           </div>
                         </div>
                       </div>
@@ -439,11 +444,26 @@ const ThreePillarsSection = ({ onWhiteLabelClick }: { onWhiteLabelClick: () => v
                   </div>
                 )}
                 {i === 2 && (
-                  <div className="relative w-full h-full flex flex-col items-center justify-center">
-                    <div className="w-12 sm:w-16 h-12 sm:h-16 rounded-xl bg-[#D4AF37]/20 border-2 border-dashed border-[#D4AF37] flex items-center justify-center mb-2 sm:mb-3">
-                      <span className="text-[#D4AF37] text-[10px] sm:text-xs">{isRTL ? 'شعارك' : 'Your Logo'}</span>
+                  <div className="relative w-full h-full p-3 sm:p-4 flex flex-col justify-center gap-2 sm:gap-3">
+                    <div className="flex items-center gap-2">
+                      <div className="w-8 sm:w-10 h-8 sm:h-10 rounded-lg bg-[#D4AF37]/20 border-2 border-dashed border-[#D4AF37] flex items-center justify-center shrink-0">
+                        <span className="text-[#D4AF37] text-[8px] sm:text-[9px]">{isRTL ? 'شعار' : 'Logo'}</span>
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="h-2 sm:h-2.5 bg-[#D4AF37]/40 rounded mb-1.5" />
+                        <div className="h-1.5 sm:h-2 bg-[#D4AF37]/20 rounded w-3/4" />
+                      </div>
                     </div>
-                    <div className="w-16 sm:w-24 h-1.5 sm:h-2 bg-[#D4AF37]/30 rounded" />
+                    <div className="flex gap-1.5">
+                      {['#D4AF37','#0A1628','#F8F9FA'].map((c) => (
+                        <div key={c} className="w-5 sm:w-6 h-5 sm:h-6 rounded-md border border-white/10" style={{ backgroundColor: c }} />
+                      ))}
+                      <div className="flex-1 h-5 sm:h-6 bg-[#D4AF37]/10 rounded-md border border-[#D4AF37]/20" />
+                    </div>
+                    <div className="space-y-1">
+                      <div className="h-1.5 bg-[#D4AF37]/25 rounded w-full" />
+                      <div className="h-1.5 bg-[#D4AF37]/15 rounded w-4/5" />
+                    </div>
                   </div>
                 )}
               </div>
@@ -460,10 +480,10 @@ const ThreePillarsSection = ({ onWhiteLabelClick }: { onWhiteLabelClick: () => v
                   ))}
                 </ul>
                 {'action' in pillar && pillar.action === 'wizard' ? (
-                  <button onClick={onWhiteLabelClick} className="text-[#D4AF37] text-xs sm:text-sm font-medium flex items-center gap-2 group-hover:gap-3 transition-all">
+                  <Link href="/solutions/white-label" className="text-[#D4AF37] text-xs sm:text-sm font-medium flex items-center gap-2 group-hover:gap-3 transition-all">
                     {pillar.cta}
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ transform: isRTL ? 'rotate(180deg)' : 'none' }}><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-                  </button>
+                  </Link>
                 ) : (
                   <Link href={('link' in pillar && pillar.link) || '#'} className="text-[#D4AF37] text-xs sm:text-sm font-medium flex items-center gap-2 group-hover:gap-3 transition-all">
                     {pillar.cta}

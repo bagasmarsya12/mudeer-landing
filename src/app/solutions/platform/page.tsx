@@ -288,6 +288,7 @@ export default function PlatformPage() {
   const [showContactForm, setShowContactForm] = useState(false);
   const [selectedFeature, setSelectedFeature] = useState<typeof t.features[0] | null>(null);
   const [activeDashboardSlide, setActiveDashboardSlide] = useState(0);
+  const [lightboxImage, setLightboxImage] = useState<string | null>(null);
   const selectedFeatureIndex = selectedFeature ? t.features.findIndex((feature) => feature.title === selectedFeature.title) : -1;
 
   const openContact = () => setShowContactForm(true);
@@ -603,20 +604,6 @@ export default function PlatformPage() {
         </div>
       </section>
 
-      {/* Stats - Navy with border */}
-      <section className="py-16 border-y border-[#D4AF37]/10 bg-[#0A1628]">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-[60px]">
-          <div className="grid grid-cols-3 gap-8">
-            {t.stats.map((stat, i) => (
-              <motion.div key={i} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.1 }} className="text-center">
-                <div className="text-4xl sm:text-5xl font-bold text-[#D4AF37]">{stat.value}</div>
-                <div className="text-sm text-[#9CA3AF] mt-2 uppercase tracking-wider">{stat.label}</div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Features Grid - Sand */}
       <section className="py-24 px-4 sm:px-6 md:px-[60px] bg-[#F5F3F0]">
         <div className="max-w-[1400px] mx-auto">
@@ -798,29 +785,29 @@ export default function PlatformPage() {
       {/* Feature Detail Modal */}
       <AnimatePresence>
       {selectedFeature && (
-        <div className="fixed inset-0 bg-black/90 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div className="fixed inset-0 bg-black/90 backdrop-blur-sm z-50 flex items-center justify-center lg:p-4">
           <motion.div 
             initial={{ opacity: 0, scale: 0.95 }} 
             animate={{ opacity: 1, scale: 1 }} 
             exit={{ opacity: 0, scale: 0.95 }}
-            className="bg-gradient-to-br from-[#0F1D2F] to-[#1A2B42] border border-[#D4AF37]/30 rounded-2xl lg:rounded-3xl w-full max-w-5xl max-h-[92vh] overflow-hidden flex flex-col"
+            className="bg-gradient-to-br from-[#0F1D2F] to-[#1A2B42] border border-[#D4AF37]/30 lg:rounded-3xl w-full h-full lg:max-w-6xl lg:h-[96vh] overflow-hidden flex flex-col"
           >
             {/* Header */}
-            <div className="bg-gradient-to-br from-[#0F1D2F] to-[#1A2B42] border-b border-[#D4AF37]/20 px-6 sm:px-8 py-5 sm:py-6 flex justify-between items-center shrink-0">
-              <h3 className="text-2xl font-['Cormorant_Garamond'] text-[#D4AF37]">{selectedFeature.title}</h3>
+            <div className="border-b border-[#D4AF37]/20 px-6 sm:px-8 py-4 sm:py-5 flex justify-between items-center shrink-0">
+              <h3 className="text-xl sm:text-2xl font-['Cormorant_Garamond'] text-[#D4AF37]">{selectedFeature.title}</h3>
               <button 
                 onClick={() => {
                   setSelectedFeature(null);
                   setActiveDashboardSlide(0);
                 }} 
-                className="w-10 h-10 flex items-center justify-center rounded-full bg-[#D4AF37]/10 text-[#D4AF37] hover:bg-[#D4AF37]/20 transition-colors"
+                className="w-10 h-10 flex items-center justify-center rounded-full bg-[#D4AF37]/10 text-[#D4AF37] hover:bg-[#D4AF37]/20 transition-colors shrink-0"
               >
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
               </button>
             </div>
 
             {/* Content */}
-            <div className="px-5 sm:px-8 pt-5 sm:pt-8 pb-4 flex-1 min-h-0 overflow-y-auto">
+            <div className="flex-1 min-h-0 flex flex-col lg:flex-row overflow-y-auto lg:overflow-hidden">
               {(() => {
                 const popupPoints =
                   selectedFeatureIndex === 0 ? dashboardFeaturePoints
@@ -839,20 +826,24 @@ export default function PlatformPage() {
                     : selectedFeature.screenshot;
 
                 return (
-                  <div className="flex flex-col gap-5 lg:grid lg:grid-cols-[1fr_1.2fr] lg:gap-0 lg:h-full lg:items-stretch">
-                    {/* Bullets — below image on mobile, left col on desktop */}
-                    <div className={`order-2 lg:order-1 space-y-3 lg:pr-6 lg:self-stretch lg:flex lg:flex-col lg:justify-center ${isRTL ? 'text-right' : ''}`}>
+                  <>
+                    {/* Bullets — below image on mobile, fixed-width left col on desktop */}
+                    <div className={`lg:w-[400px] lg:shrink-0 lg:overflow-y-auto p-5 sm:p-6 lg:border-r border-[#D4AF37]/10 flex flex-col justify-center gap-3 order-2 lg:order-1 ${isRTL ? 'text-right lg:border-r-0 lg:border-l' : ''}`}>
                       {popupPoints.map((point, i) => (
                         <div key={i} className={`flex items-start gap-3 ${isRTL ? 'flex-row-reverse' : ''}`}>
-                          <span className="mt-2 w-1.5 h-1.5 shrink-0 rounded-full bg-[#D4AF37]" />
+                          <span className="mt-[7px] w-1.5 h-1.5 shrink-0 rounded-full bg-[#D4AF37]" />
                           <p className="text-sm text-[#C7D0DE] leading-relaxed">{point}</p>
                         </div>
                       ))}
                     </div>
 
-                    {/* Image — top on mobile, right col on desktop */}
-                    <div className="order-1 lg:order-2 w-full lg:self-stretch lg:min-h-0 flex flex-col">
-                      <div className="relative w-full aspect-[4/3] lg:aspect-auto lg:flex-1 lg:min-h-0">
+                    {/* Image — top on mobile (aspect-video), full-height right panel on desktop */}
+                    <div className="order-1 lg:order-2 lg:flex-1 flex flex-col lg:min-h-0 bg-[#0A1628]/40">
+                      <div
+                        className="relative w-full aspect-video lg:aspect-auto lg:flex-1 lg:min-h-0 cursor-zoom-in"
+                        onClick={() => setLightboxImage(popupImage)}
+                        title="Click to enlarge"
+                      >
                         <Image
                           src={popupImage}
                           alt={`${selectedFeature.title} screenshot`}
@@ -860,10 +851,14 @@ export default function PlatformPage() {
                           className="object-contain"
                           unoptimized
                         />
+                        {/* Enlarge hint */}
+                        <div className="absolute bottom-3 right-3 bg-black/50 rounded-full p-1.5 pointer-events-none">
+                          <svg className="w-4 h-4 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" /></svg>
+                        </div>
                       </div>
 
                       {isDashboardFeature && (
-                        <div className={`mt-3 flex items-center justify-between gap-3 shrink-0 ${isRTL ? 'flex-row-reverse' : ''}`}>
+                        <div className={`px-4 py-3 border-t border-[#D4AF37]/10 flex items-center justify-between gap-3 shrink-0 ${isRTL ? 'flex-row-reverse' : ''}`}>
                           <button
                             type="button"
                             onClick={() => setActiveDashboardSlide((prev) => (prev - 1 + dashboardSlides.length) % dashboardSlides.length)}
@@ -872,7 +867,7 @@ export default function PlatformPage() {
                             {sliderNavText.prev}
                           </button>
 
-                          <div className={`flex items-center gap-2 ${isRTL ? 'flex-row-reverse' : ''}`}>
+                          <div className={`flex items-center gap-2 flex-wrap justify-center ${isRTL ? 'flex-row-reverse' : ''}`}>
                             {dashboardSlides.map((slide, index) => (
                               <button
                                 key={slide.src}
@@ -899,13 +894,48 @@ export default function PlatformPage() {
                         </div>
                       )}
                     </div>
-                  </div>
+                  </>
                 );
               })()}
             </div>
           </motion.div>
         </div>
       )}
+      </AnimatePresence>
+
+      {/* Lightbox */}
+      <AnimatePresence>
+        {lightboxImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/95 z-[60] flex items-center justify-center p-4 cursor-zoom-out"
+            onClick={() => setLightboxImage(null)}
+          >
+            <button
+              onClick={() => setLightboxImage(null)}
+              className="absolute top-4 right-4 w-10 h-10 flex items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors z-10"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+            </button>
+            <motion.div
+              initial={{ scale: 0.9 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.9 }}
+              className="relative w-full h-full max-w-7xl max-h-full"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <Image
+                src={lightboxImage}
+                alt="Fullscreen preview"
+                fill
+                className="object-contain"
+                unoptimized
+              />
+            </motion.div>
+          </motion.div>
+        )}
       </AnimatePresence>
 
       {/* Footer */}
