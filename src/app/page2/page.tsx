@@ -340,7 +340,7 @@ const HeroSection = ({ onContactClick }: { onContactClick: (type: ModalType) => 
 // ============================================
 // THREE PILLARS SECTION
 // ============================================
-const ThreePillarsSection = ({ onWhiteLabelClick }: { onWhiteLabelClick: () => void }) => {
+const ThreePillarsSection = () => {
   const { isRTL } = useLanguage();
 
   const content = {
@@ -688,7 +688,7 @@ export default function Page2() {
       <WhiteLabelWizard isOpen={whiteLabelOpen} onClose={() => setWhiteLabelOpen(false)} />
       <Header onContactClick={() => openContact('lets-talk')} />
       <HeroSection onContactClick={openContact} />
-      <ThreePillarsSection onWhiteLabelClick={() => setWhiteLabelOpen(true)} />
+      <ThreePillarsSection />
       <HowItWorksSection />
       <ContactSection onContactClick={openContact} />
       <Footer onContactClick={(type) => openContact(type)} />
