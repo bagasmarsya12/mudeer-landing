@@ -24,144 +24,13 @@ import {
   MoreHorizontal,
   ListFilter,
 } from 'lucide-react';
+import { navItems } from '@/lib/constants/navigation';
+import type { ServiceProvider } from '@/lib/data/serviceProviders';
+import { providers } from '@/lib/data/serviceProviders';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
-interface ServiceProvider {
-  id: number;
-  category: string;
-  services: string[];
-  companyName: string;
-  phone: string;
-  email: string;
-  city: string;
-  province: string;
-  lastUpdated: string;
-}
 
-// ─── Data ────────────────────────────────────────────────────────────────────
-
-const providers: ServiceProvider[] = [
-  {
-    id: 1,
-    category: 'Plumbing',
-    services: ['Pipe Repair', 'Leak Detection', 'Water Heater Installation', 'Drain Cleaning', 'Toilet Replacement'],
-    companyName: 'AquaFix Plumbing Co.',
-    phone: '+971 50 123 4567',
-    email: 'contact@aquafix.ae',
-    city: 'Dubai',
-    province: 'Dubai',
-    lastUpdated: '06 April 2026, 09:00',
-  },
-  {
-    id: 2,
-    category: 'Electrical',
-    services: ['Wiring Installation', 'Circuit Breaker Repair', 'Lighting Installation', 'Generator Servicing', 'CCTV Wiring', 'Switchboard Upgrade', 'Emergency Repairs'],
-    companyName: 'Volta Electric Services',
-    phone: '+971 52 234 5678',
-    email: 'info@volta-electric.ae',
-    city: 'Abu Dhabi',
-    province: 'Abu Dhabi',
-    lastUpdated: '05 April 2026, 14:30',
-  },
-  {
-    id: 3,
-    category: 'HVAC',
-    services: ['AC Installation', 'AC Maintenance', 'Duct Cleaning', 'Refrigerant Refill'],
-    companyName: 'CoolBreeze HVAC LLC',
-    phone: '+971 55 345 6789',
-    email: 'service@coolbreeze.ae',
-    city: 'Dubai',
-    province: 'Dubai',
-    lastUpdated: '04 April 2026, 11:15',
-  },
-  {
-    id: 4,
-    category: 'Cleaning',
-    services: ['Deep Cleaning', 'Move-in / Move-out Cleaning', 'Window Cleaning', 'Carpet Shampooing', 'Post-Construction Cleaning', 'Regular Maintenance Cleaning'],
-    companyName: 'SparkClean Professional Services',
-    phone: '+971 56 456 7890',
-    email: 'hello@sparkclean.ae',
-    city: 'Sharjah',
-    province: 'Sharjah',
-    lastUpdated: '03 April 2026, 08:45',
-  },
-  {
-    id: 5,
-    category: 'Landscaping',
-    services: ['Garden Maintenance', 'Irrigation Installation', 'Tree Trimming'],
-    companyName: 'GreenEdge Landscaping',
-    phone: '+971 54 567 8901',
-    email: 'info@greenedge.ae',
-    city: 'Abu Dhabi',
-    province: 'Abu Dhabi',
-    lastUpdated: '02 April 2026, 16:00',
-  },
-  {
-    id: 6,
-    category: 'Painting',
-    services: ['Interior Painting', 'Exterior Painting', 'Wallpaper Installation', 'Surface Priming', 'Epoxy Flooring'],
-    companyName: 'PrimePaint Contractors',
-    phone: '+971 50 678 9012',
-    email: 'quotes@primepaint.ae',
-    city: 'Dubai',
-    province: 'Dubai',
-    lastUpdated: '01 April 2026, 10:20',
-  },
-  {
-    id: 7,
-    category: 'Security',
-    services: ['CCTV Installation', 'Access Control Setup', 'Burglar Alarm Installation', 'Security Guard Placement', 'Intercom Systems', 'Remote Monitoring'],
-    companyName: 'ShieldGuard Security Systems',
-    phone: '+971 52 789 0123',
-    email: 'ops@shieldguard.ae',
-    city: 'Dubai',
-    province: 'Dubai',
-    lastUpdated: '31 Mar 2026, 09:10',
-  },
-  {
-    id: 8,
-    category: 'Pest Control',
-    services: ['Rodent Control', 'Cockroach Treatment', 'Termite Inspection', 'Bed Bug Extermination'],
-    companyName: 'SafeZone Pest Control',
-    phone: '+971 55 890 1234',
-    email: 'bookings@safezone-pest.ae',
-    city: 'Ajman',
-    province: 'Ajman',
-    lastUpdated: '30 Mar 2026, 13:55',
-  },
-  {
-    id: 9,
-    category: 'Elevator',
-    services: ['Elevator Installation', 'Annual Maintenance Contract', 'Emergency Call-out', 'Modernization', 'Safety Inspection', 'Hydraulic Repair', 'Escalator Servicing'],
-    companyName: 'LiftTech Emirates',
-    phone: '+971 56 901 2345',
-    email: 'support@lifttech.ae',
-    city: 'Abu Dhabi',
-    province: 'Abu Dhabi',
-    lastUpdated: '29 Mar 2026, 07:30',
-  },
-  {
-    id: 10,
-    category: 'Carpentry',
-    services: ['Custom Furniture', 'Door Repair', 'Cabinet Installation'],
-    companyName: 'WoodCraft Interiors',
-    phone: '+971 50 012 3456',
-    email: 'design@woodcraft.ae',
-    city: 'Ras Al Khaimah',
-    province: 'Ras Al Khaimah',
-    lastUpdated: '28 Mar 2026, 15:40',
-  },
-];
-
-const navItems = [
-  { icon: Users,         label: 'Tenant Management', href: '/dashboard/tenant-management' },
-  { icon: Mail,          label: 'Messages',           href: '/dashboard/messages' },
-  { icon: AlertTriangle, label: 'Damage Reports',     href: '/dashboard/damage-reports' },
-  { icon: FileText,      label: 'Documents',          href: '/dashboard/documents' },
-  { icon: Wrench,        label: 'Service Providers',  href: '/dashboard/service-providers' },
-  { icon: Database,      label: 'Data',               href: '#' },
-];
 
 // ─── Services Tag w/ Tooltip ──────────────────────────────────────────────────
 
@@ -437,7 +306,8 @@ export default function ServiceProvidersPage() {
                         initial={{ opacity: 0, y: 6 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.15, delay: i * 0.04 }}
-                        className={`border-b border-[#f0ebe0] transition-colors ${isChecked ? 'bg-[#fdf8f0]' : 'hover:bg-[#faf8f5]/70'}`}
+                        className={`border-b border-[#f0ebe0] transition-colors cursor-pointer ${isChecked ? 'bg-[#fdf8f0]' : 'hover:bg-[#faf8f5]/70'}`}
+                        onClick={() => window.location.href = `/dashboard/service-providers/${p.id}`}
                       >
                         {/* Checkbox */}
                         <td className="px-4 py-3.5">

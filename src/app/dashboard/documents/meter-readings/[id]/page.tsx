@@ -45,159 +45,17 @@ import {
   Image,
   File,
 } from 'lucide-react';
+import { navItems, docSubItems } from '@/lib/constants/navigation';
+import type { MeterStatus, MeterType, TenantInfo, UploadedFile, MeterReading } from '@/lib/data/documents';
+import { meterUnitMap, meterReadingDetails } from '@/lib/data/documents';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
-type MeterStatus = 'signed' | 'unsigned';
-
-interface TenantInfo {
-  firstName: string;
-  lastName: string;
-  email: string;
-  countryCode: string;
-  phone: string;
-}
-
-interface UploadedFile {
-  id: number;
-  name: string;
-  type: 'pdf' | 'image' | 'doc';
-  size: string;
-}
-
-interface MeterReading {
-  id: number;
-  status: MeterStatus;
-  subject: string;
-  rentalPeriod: string;
-  building: string;
-  tenant: TenantInfo;
-  uploadedFiles: UploadedFile[];
-  description: string;
-  readingDate: string;
-  readingTime: string;
-  electricityReading: string;
-  waterReading: string;
-  gasReading: string;
-  ackSignature: boolean;
-  sendViaHausBuddy: boolean;
-  sendViaEmail: boolean;
-}
-
 // ─── Data ─────────────────────────────────────────────────────────────────────
-
-const meterReadingDetails: Record<number, MeterReading> = {
-  1: {
-    id: 1,
-    status: 'unsigned',
-    subject: 'Annual Meter Reading Q4 2025',
-    rentalPeriod: '01 January 2025 – 31 December 2025',
-    building: 'Ammana Building Dubai',
-    tenant: {
-      firstName: 'Mohammed',
-      lastName: 'Al-Farsi',
-      email: 'mohammed.alfarsi@hausbuddy.com',
-      countryCode: 'AE (+971)',
-      phone: '50 456 7890',
-    },
-    uploadedFiles: [
-      { id: 1, name: 'Meter_Reading_Q4.pdf',   type: 'pdf',   size: '840 KB' },
-      { id: 2, name: 'Electricity_Photo.jpg',   type: 'image', size: '1.2 MB' },
-      { id: 3, name: 'Water_Meter_Photo.jpg',   type: 'image', size: '980 KB' },
-    ],
-    description:
-      'Annual meter reading for Q4 2025 covering electricity, water, and gas consumption for the full calendar year. All readings were taken on-site by a certified technician. The readings reflect actual usage and will be used for billing reconciliation.',
-    readingDate: '20 December 2025',
-    readingTime: '11:00',
-    electricityReading: '12,485 kWh',
-    waterReading: '342 m³',
-    gasReading: '87 m³',
-    ackSignature: false,
-    sendViaHausBuddy: true,
-    sendViaEmail: true,
-  },
-  2: {
-    id: 2,
-    status: 'unsigned',
-    subject: 'Water & Electricity Meter Reading Dec 2025',
-    rentalPeriod: '01 December 2025 – 31 December 2025',
-    building: 'Orchid Building',
-    tenant: {
-      firstName: 'Layla',
-      lastName: 'Ibrahim',
-      email: 'layla.ibrahim@hausbuddy.com',
-      countryCode: 'AE (+971)',
-      phone: '52 567 8901',
-    },
-    uploadedFiles: [
-      { id: 1, name: 'Water_Reading_Dec.pdf',   type: 'pdf',   size: '560 KB' },
-      { id: 2, name: 'Electric_Reading_Dec.pdf', type: 'pdf',   size: '610 KB' },
-    ],
-    description:
-      'Monthly meter reading for December 2025 for water and electricity. Readings taken on the 18th of December. Compared against November readings for variance analysis.',
-    readingDate: '18 December 2025',
-    readingTime: '15:00',
-    electricityReading: '3,210 kWh',
-    waterReading: '28 m³',
-    gasReading: '—',
-    ackSignature: false,
-    sendViaHausBuddy: true,
-    sendViaEmail: false,
-  },
-  3: {
-    id: 3,
-    status: 'signed',
-    subject: 'Monthly Meter Reading November 2025',
-    rentalPeriod: '01 November 2025 – 30 November 2025',
-    building: 'Palm Residences',
-    tenant: {
-      firstName: 'David',
-      lastName: 'Schneider',
-      email: 'david.schneider@hausbuddy.com',
-      countryCode: 'DE (+49)',
-      phone: '170 234 5678',
-    },
-    uploadedFiles: [
-      { id: 1, name: 'Meter_Reading_Nov.pdf',   type: 'pdf',   size: '490 KB' },
-      { id: 2, name: 'All_Meters_Photo.jpg',    type: 'image', size: '2.1 MB' },
-      { id: 3, name: 'Signed_Form.pdf',         type: 'pdf',   size: '320 KB' },
-    ],
-    description:
-      'Monthly meter reading for November 2025. All utilities have been recorded and verified. Tenant has reviewed and confirmed the readings. No disputes raised.',
-    readingDate: '15 November 2025',
-    readingTime: '09:30',
-    electricityReading: '2,890 kWh',
-    waterReading: '24 m³',
-    gasReading: '12 m³',
-    ackSignature: true,
-    sendViaHausBuddy: false,
-    sendViaEmail: true,
-  },
-};
 
 // ─── Nav data ─────────────────────────────────────────────────────────────────
 
-const navItems = [
-  { icon: Users,         label: 'Tenant Management', href: '/dashboard/tenant-management' },
-  { icon: Mail,          label: 'Messages',           href: '/dashboard/messages' },
-  { icon: AlertTriangle, label: 'Damage Reports',     href: '/dashboard/damage-reports' },
-  { icon: FileText,      label: 'Documents',          href: '/dashboard/documents' },
-  { icon: Wrench,        label: 'Service Providers',  href: '/dashboard/service-providers' },
-  { icon: Database,      label: 'Data',               href: '#' },
-];
 
-const docSubItems = [
-  { id: '',                 label: 'All Files',        icon: FolderOpen    },
-  { id: 'rental-contract',  label: 'Rental Contract',  icon: ClipboardList },
-  { id: 'house-rules',      label: 'House Rules',      icon: BookOpen      },
-  { id: 'meter-readings',   label: 'Meter Readings',   icon: Activity      },
-  { id: 'electricity',      label: 'Electricity',      icon: Zap           },
-  { id: 'gas',              label: 'Gas',              icon: Flame         },
-  { id: 'water',            label: 'Water',            icon: Droplets      },
-  { id: 'oil-heating',      label: 'Oil Heating',      icon: Thermometer   },
-  { id: 'service-provider', label: 'Service Provider', icon: Wrench        },
-  { id: 'others',           label: 'Others',           icon: Folder        },
-];
 
 // ─── Sidebar ──────────────────────────────────────────────────────────────────
 
@@ -304,7 +162,7 @@ export default function MeterReadingDetailPage() {
   const [description, setDescription]         = useState(detail?.description ?? '');
   const [ackSignature, setAckSignature]        = useState(detail?.ackSignature ?? false);
   const [readingDateTime, setReadingDateTime]  = useState(detail ? `${detail.readingDate} ${detail.readingTime}` : '');
-  const [meterReading, setMeterReading]        = useState(detail?.electricityReading ?? '');
+  const [meterReading, setMeterReading]        = useState(detail?.readingValue ?? '');
   const [sendViaHausBuddy, setSendViaHausBuddy] = useState(detail?.sendViaHausBuddy ?? false);
   const [sendViaEmail, setSendViaEmail]        = useState(detail?.sendViaEmail ?? false);
 
@@ -568,28 +426,35 @@ export default function MeterReadingDetailPage() {
               <div className="p-7 flex flex-col gap-5">
                 <h3 className="text-[13px] font-bold text-[#1a1814]">Meter Reading Data</h3>
 
-                {/* Date & Time */}
-                <div className="flex flex-col gap-1.5">
-                  <label className="text-[11px] font-semibold text-[#b0aaa2] uppercase tracking-[0.6px]">Date & Time</label>
-                  <input
-                    type="text"
-                    value={readingDateTime}
-                    onChange={e => setReadingDateTime(e.target.value)}
-                    placeholder="e.g. 20 December 2025, 11:00"
-                    className="w-full px-3.5 py-2.5 rounded-[10px] border border-[#e8e4db] bg-[#faf8f5] text-[13px] text-[#1a1814] outline-none focus:border-[#cda460] focus:bg-white transition-colors"
-                  />
-                </div>
+                <div className="grid grid-cols-2 gap-6">
+                  {/* Left 50% — Date & Time */}
+                  <div className="flex flex-col gap-1.5">
+                    <label className="text-[11px] font-semibold text-[#b0aaa2] uppercase tracking-[0.6px]">Date & Time</label>
+                    <input
+                      type="text"
+                      value={readingDateTime}
+                      onChange={e => setReadingDateTime(e.target.value)}
+                      placeholder="e.g. 20 December 2025, 11:00"
+                      className="w-full px-3.5 py-2.5 rounded-[10px] border border-[#e8e4db] bg-[#faf8f5] text-[13px] text-[#1a1814] outline-none focus:border-[#cda460] focus:bg-white transition-colors"
+                    />
+                  </div>
 
-                {/* Meter Reading */}
-                <div className="flex flex-col gap-1.5">
-                  <label className="text-[11px] font-semibold text-[#b0aaa2] uppercase tracking-[0.6px]">Meter Reading</label>
-                  <input
-                    type="text"
-                    value={meterReading}
-                    onChange={e => setMeterReading(e.target.value)}
-                    placeholder="e.g. 12,485 kWh"
-                    className="w-full px-3.5 py-2.5 rounded-[10px] border border-[#e8e4db] bg-[#faf8f5] text-[13px] text-[#1a1814] outline-none focus:border-[#cda460] focus:bg-white transition-colors"
-                  />
+                  {/* Right 50% — Meter Reading with fixed unit */}
+                  <div className="flex flex-col gap-1.5">
+                    <label className="text-[11px] font-semibold text-[#b0aaa2] uppercase tracking-[0.6px]">Meter Reading</label>
+                    <div className="flex items-stretch rounded-[10px] border border-[#e8e4db] bg-[#faf8f5] overflow-hidden focus-within:border-[#cda460] focus-within:bg-white transition-colors">
+                      <input
+                        type="text"
+                        value={meterReading}
+                        onChange={e => setMeterReading(e.target.value)}
+                        placeholder="e.g. 12,485"
+                        className="flex-1 min-w-0 px-3.5 py-2.5 text-[13px] text-[#1a1814] outline-none bg-transparent"
+                      />
+                      <div className="flex items-center px-3.5 bg-[#f0ebe0] border-l border-[#e8e4db] text-[12px] font-bold text-[#7d7870] whitespace-nowrap shrink-0">
+                        {meterUnitMap[detail.meterType]}
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
 

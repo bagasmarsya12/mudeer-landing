@@ -50,222 +50,19 @@ import {
   File,
   X as XIcon,
 } from 'lucide-react';
+import { navItems, docSubItems } from '@/lib/constants/navigation';
+import type { DocActionType, TenantInfo, UploadedFile, ContractDetail } from '@/lib/data/documents';
+import { contractDetails, watermarkText } from '@/lib/data/documents';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
-type DocActionType =
-  | 'signature-unsigned'
-  | 'signature-signed'
-  | 'receipt-unread'
-  | 'receipt-read'
-  | 'share';
-
-interface TenantInfo {
-  firstName: string;
-  lastName: string;
-  email: string;
-  countryCode: string;
-  phone: string;
-}
-
-interface UploadedFile {
-  id: number;
-  name: string;
-  type: 'pdf' | 'image' | 'doc';
-  size: string;
-}
-
-interface ContractDetail {
-  id: number;
-  actionType: DocActionType;
-  subject: string;
-  rentalPeriod: string;
-  building: string;
-  tenant: TenantInfo;
-  uploadedFiles?: UploadedFile[];
-  filePreview?: string;
-  description: string;
-  ackReadReceipt: boolean;
-  ackSignature: boolean;
-  sendViaLink: boolean;
-  sendViaHausBuddy: boolean;
-  sendViaEmail: boolean;
-}
-
 // ─── Rental Contract Data ─────────────────────────────────────────────────────
-
-const contractDetails: Record<number, ContractDetail> = {
-  1: {
-    id: 1,
-    actionType: 'signature-unsigned',
-    subject: 'Residential Lease Agreement 2026',
-    rentalPeriod: '01 January 2026 – 31 December 2026',
-    building: 'Tulip Building',
-    tenant: {
-      firstName: 'Ahmed',
-      lastName: 'Hassan',
-      email: 'ahmed.hassan@hausbuddy.com',
-      countryCode: 'AE (+971)',
-      phone: '50 123 4567',
-    },
-    uploadedFiles: [
-      { id: 1, name: 'Lease_Agreement_2026.pdf',   type: 'pdf',   size: '1.2 MB' },
-      { id: 2, name: 'Tenant_ID_Scan.jpg',          type: 'image', size: '420 KB' },
-      { id: 3, name: 'Signed_Application.pdf',      type: 'pdf',   size: '870 KB' },
-      { id: 4, name: 'Building_Rules.pdf',          type: 'pdf',   size: '540 KB' },
-      { id: 5, name: 'Unit_Photos.jpg',             type: 'image', size: '2.1 MB' },
-      { id: 6, name: 'Payment_Schedule.pdf',        type: 'pdf',   size: '310 KB' },
-      { id: 7, name: 'Maintenance_Log.doc',         type: 'doc',   size: '180 KB' },
-    ],
-    description:
-      'Standard residential lease agreement for Unit 12A at Tulip Building. The tenant agrees to abide by all building regulations, maintenance responsibilities, and community guidelines as outlined in the property policy document. Monthly rent is due on the 1st of each month without exception.',
-    ackReadReceipt: false,
-    ackSignature: true,
-    sendViaLink: false,
-    sendViaHausBuddy: true,
-    sendViaEmail: true,
-  },
-  2: {
-    id: 2,
-    actionType: 'signature-signed',
-    subject: 'Lease Renewal Confirmation',
-    rentalPeriod: '01 February 2026 – 31 January 2027',
-    building: 'Royal Building Dubai',
-    tenant: {
-      firstName: 'Sara',
-      lastName: 'Al-Rashid',
-      email: 'sara.alrashid@hausbuddy.com',
-      countryCode: 'AE (+971)',
-      phone: '52 234 5678',
-    },
-    uploadedFiles: [
-      { id: 1, name: 'Renewal_Contract.pdf',        type: 'pdf',   size: '980 KB' },
-      { id: 2, name: 'Signed_Copy.pdf',             type: 'pdf',   size: '1.1 MB' },
-      { id: 3, name: 'Amendment_Notes.doc',         type: 'doc',   size: '220 KB' },
-    ],
-    description:
-      'Lease renewal confirmation for Unit 7B at Royal Building Dubai. All terms and conditions remain as per the original agreement dated February 1, 2025. Rental amount has been adjusted per the annual review clause. Both parties have agreed to the new terms.',
-    ackReadReceipt: true,
-    ackSignature: true,
-    sendViaLink: false,
-    sendViaHausBuddy: true,
-    sendViaEmail: false,
-  },
-  3: {
-    id: 3,
-    actionType: 'receipt-unread',
-    subject: 'Sublease Permission Notice',
-    rentalPeriod: '05 January 2026 – 05 July 2026',
-    building: 'Cedar Heights',
-    tenant: {
-      firstName: 'James',
-      lastName: 'Miller',
-      email: 'james.miller@hausbuddy.com',
-      countryCode: 'GB (+44)',
-      phone: '7911 123456',
-    },
-    uploadedFiles: [
-      { id: 1, name: 'Sublease_Permission.pdf',     type: 'pdf',   size: '760 KB' },
-      { id: 2, name: 'Sublease_Agreement.pdf',      type: 'pdf',   size: '890 KB' },
-    ],
-    description:
-      'Formal notice granting sublease permission for Unit 3C at Cedar Heights for 6 months. The sublease must adhere to all original lease conditions. Any amendments require prior written approval from the property management office prior to implementation.',
-    ackReadReceipt: true,
-    ackSignature: false,
-    sendViaLink: true,
-    sendViaHausBuddy: false,
-    sendViaEmail: true,
-  },
-  4: {
-    id: 4,
-    actionType: 'receipt-read',
-    subject: 'Move-in Inspection Report 2026',
-    rentalPeriod: '07 January 2026 – 07 January 2027',
-    building: 'Orchid Building',
-    tenant: {
-      firstName: 'Khalid',
-      lastName: 'Al-Nasser',
-      email: 'khalid.nasser@hausbuddy.com',
-      countryCode: 'AE (+971)',
-      phone: '55 678 9012',
-    },
-    uploadedFiles: [
-      { id: 1, name: 'Inspection_Report.pdf',       type: 'pdf',   size: '1.4 MB' },
-      { id: 2, name: 'Pre_existing_Damage.jpg',    type: 'image', size: '3.2 MB' },
-      { id: 3, name: 'Unit_Checklist.doc',         type: 'doc',   size: '140 KB' },
-      { id: 4, name: 'Photos_Kitchen.jpg',         type: 'image', size: '1.8 MB' },
-    ],
-    description:
-      'Move-in inspection report documenting the current condition of Unit 9A at Orchid Building. All fixtures, appliances, and surface conditions have been recorded and photographed. Pre-existing damage has been logged for reference at the end of the tenancy.',
-    ackReadReceipt: true,
-    ackSignature: false,
-    sendViaLink: false,
-    sendViaHausBuddy: true,
-    sendViaEmail: true,
-  },
-  5: {
-    id: 5,
-    actionType: 'share',
-    subject: 'Building Regulations & Compliance Notice',
-    rentalPeriod: '05 January 2026 onwards',
-    building: 'Sky View Tower Dubai',
-    tenant: {
-      firstName: 'Nour',
-      lastName: 'Farhat',
-      email: 'nour.farhat@hausbuddy.com',
-      countryCode: 'AE (+971)',
-      phone: '54 789 0123',
-    },
-    uploadedFiles: [
-      { id: 1, name: 'Building_Regulations_2026.pdf', type: 'pdf',  size: '2.3 MB' },
-      { id: 2, name: 'Fire_Safety_Protocol.pdf',   type: 'pdf',   size: '680 KB' },
-      { id: 3, name: 'Waste_Management.pdf',       type: 'pdf',   size: '420 KB' },
-      { id: 4, name: 'Common_Area_Policy.pdf',     type: 'pdf',   size: '510 KB' },
-      { id: 5, name: 'Compliance_Form.doc',        type: 'doc',   size: '190 KB' },
-    ],
-    description:
-      'Distribution of updated building regulations and compliance requirements effective January 2026. All tenants are required to review and comply with the new fire safety protocols, waste management procedures, and common area usage policies without exception.',
-    ackReadReceipt: false,
-    ackSignature: false,
-    sendViaLink: true,
-    sendViaHausBuddy: true,
-    sendViaEmail: true,
-  },
-};
 
 // ─── Watermark text per action type ──────────────────────────────────────────
 
-const watermarkText: Record<DocActionType, string | null> = {
-  'signature-unsigned': null,
-  'signature-signed':   null,
-  'receipt-unread':     'Awaiting read confirmation',
-  'receipt-read':       null,
-  'share':              null,
-};
-
 // ─── Nav data ─────────────────────────────────────────────────────────────────
 
-const navItems = [
-  { icon: Users,         label: 'Tenant Management', href: '/dashboard/tenant-management' },
-  { icon: Mail,          label: 'Messages',           href: '/dashboard/messages' },
-  { icon: AlertTriangle, label: 'Damage Reports',     href: '/dashboard/damage-reports' },
-  { icon: FileText,      label: 'Documents',          href: '/dashboard/documents' },
-  { icon: Wrench,        label: 'Service Providers',  href: '/dashboard/service-providers' },
-  { icon: Database,      label: 'Data',               href: '#' },
-];
 
-const docSubItems = [
-  { id: '',                 label: 'All Files',        icon: FolderOpen   },
-  { id: 'rental-contract',  label: 'Rental Contract',  icon: ClipboardList },
-  { id: 'house-rules',      label: 'House Rules',      icon: BookOpen      },
-  { id: 'meter-readings',   label: 'Meter Readings',   icon: Activity      },
-  { id: 'electricity',      label: 'Electricity',      icon: Zap           },
-  { id: 'gas',              label: 'Gas',              icon: Flame         },
-  { id: 'water',            label: 'Water',            icon: Droplets      },
-  { id: 'oil-heating',      label: 'Oil Heating',      icon: Thermometer   },
-  { id: 'service-provider', label: 'Service Provider', icon: Wrench        },
-  { id: 'others',           label: 'Others',           icon: Folder        },
-];
 
 // ─── Sidebar ──────────────────────────────────────────────────────────────────
 
@@ -459,7 +256,20 @@ export default function DocumentDetailPage() {
 
   const detail = contractDetails[docId];
 
+  const INVOICE_CATEGORIES = ['electricity', 'water', 'gas', 'oil-heating', 'service-provider'];
+  const invoiceUnitMap: Record<string, string> = {
+    electricity: 'kWh',
+    water: 'm³',
+    gas: 'm³',
+    'oil-heating': 'Liter',
+    'service-provider': 'Hour',
+  };
+  const showInvoiceSection = INVOICE_CATEGORIES.includes(category);
+  const invoiceUnit = invoiceUnitMap[category] ?? '';
+
   const [description, setDescription] = useState(detail?.description ?? '');
+  const [meterValue, setMeterValue] = useState('');
+  const [invoiceAmount, setInvoiceAmount] = useState('');
   const [ackReadReceipt, setAckReadReceipt] = useState(detail?.ackReadReceipt ?? false);
   const [ackSignature, setAckSignature]     = useState(detail?.ackSignature ?? false);
   const [sendViaHausBuddy, setSendViaHausBuddy] = useState(detail?.sendViaHausBuddy ?? false);
@@ -727,7 +537,60 @@ export default function DocumentDetailPage() {
               <div className="border-t border-[#f0ebe0]" />
 
               {/* ══════════════════════════════════════════════════════════
-                  SECTION 5 — Tenant Acknowledgement
+                  SECTION 5 — Invoice Data (only for invoice categories)
+              ══════════════════════════════════════════════════════════ */}
+              {showInvoiceSection && (
+                <>
+                  <div className="p-7 flex flex-col gap-5">
+                    <h3 className="text-[13px] font-bold text-[#1a1814]">Invoice Data</h3>
+                    <div className="grid grid-cols-2 gap-6">
+
+                      {/* Meter Reading */}
+                      <div className="flex flex-col gap-1.5">
+                        <label className="text-[11px] font-semibold text-[#b0aaa2] uppercase tracking-[0.6px]">
+                          Meter Reading
+                        </label>
+                        <div className="flex items-center rounded-[10px] border border-[#e8e4db] bg-[#faf8f5] overflow-hidden focus-within:border-[#cda460] focus-within:bg-white transition-colors">
+                          <input
+                            type="number"
+                            value={meterValue}
+                            onChange={e => setMeterValue(e.target.value)}
+                            placeholder="0"
+                            className="flex-1 min-w-0 px-3.5 py-2.5 text-[13px] text-[#4a453d] outline-none bg-transparent"
+                          />
+                          <span className="shrink-0 px-3 py-2.5 border-l border-[#e8e4db] bg-[#f0ebe0] text-[12px] font-semibold text-[#7d7870] select-none">
+                            {invoiceUnit}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Invoice Amount */}
+                      <div className="flex flex-col gap-1.5">
+                        <label className="text-[11px] font-semibold text-[#b0aaa2] uppercase tracking-[0.6px]">
+                          Invoice Amount
+                        </label>
+                        <div className="flex items-center rounded-[10px] border border-[#e8e4db] bg-[#faf8f5] overflow-hidden focus-within:border-[#cda460] focus-within:bg-white transition-colors">
+                          <span className="shrink-0 px-3 py-2.5 border-r border-[#e8e4db] bg-[#f0ebe0] text-[12px] font-semibold text-[#7d7870] select-none">
+                            AED
+                          </span>
+                          <input
+                            type="number"
+                            value={invoiceAmount}
+                            onChange={e => setInvoiceAmount(e.target.value)}
+                            placeholder="0.00"
+                            className="flex-1 min-w-0 px-3.5 py-2.5 text-[13px] text-[#4a453d] outline-none bg-transparent"
+                          />
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                  <div className="border-t border-[#f0ebe0]" />
+                </>
+              )}
+
+              {/* ══════════════════════════════════════════════════════════
+                  SECTION 6 — Tenant Acknowledgement
               ══════════════════════════════════════════════════════════ */}
               <div className="px-7 py-6 flex items-center justify-between flex-wrap gap-6">
 

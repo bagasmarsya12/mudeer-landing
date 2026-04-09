@@ -25,64 +25,15 @@ import {
   UserCircle2,
   Check,
 } from 'lucide-react';
+import { navItems } from '@/lib/constants/navigation';
+import type { Status, Tenant } from '@/lib/data/tenants';
+import { tenants, statusStyle, buildingDistrict } from '@/lib/data/tenants';
 
-// ─── Data ─────────────────────────────────────────────────────────────────────
-
-const navItems = [
-  { icon: Users, label: 'Tenant Management', href: '/dashboard/tenant-management' },
-  { icon: Mail, label: 'Messages', href: '/dashboard/messages' },
-  { icon: AlertTriangle, label: 'Damage Reports', href: '/dashboard/damage-reports' },
-  { icon: FileText, label: 'Documents', href: '#' },
-  { icon: Wrench, label: 'Service Providers', href: '/dashboard/service-providers' },
-  { icon: Database, label: 'Data', href: '#' },
-];
-
-type Status = 'Tenant' | 'Owner' | 'N/A';
-
-interface Tenant {
-  id: number;
-  firstName: string;
-  lastName: string;
-  building: string;
-  phone: string;
-  email: string;
-  lastUpdated: string;
-  status: Status;
-  hausbuddyActive: boolean;
-}
-
-const tenants: Tenant[] = [
-  { id: 1,  firstName: 'Tunan',     lastName: 'Tunan',     building: '222m',                phone: '+49 21',            email: '—',                         lastUpdated: '21 Jan 2026, 04:00', status: 'N/A',    hausbuddyActive: false },
-  { id: 2,  firstName: 'Tenant',    lastName: 'Random',    building: 'ABC',                 phone: '+49 221 21',        email: '—',                         lastUpdated: '21 Jan 2026, 03:00', status: 'N/A',    hausbuddyActive: false },
-  { id: 3,  firstName: 'Sendi',     lastName: 'Patryjar',  building: 'Leopoldstraße 55',    phone: '+49 812 312111113', email: 'sendi@stebasia.com',         lastUpdated: '15 Jan 2026, 07:00', status: 'Tenant', hausbuddyActive: true },
-  { id: 4,  firstName: 'Sendi',     lastName: 'Patryjar',  building: 'Wilhelmstraße 4',     phone: '+49 812 3123123123',email: 'sendipatryjar@gmail.com',    lastUpdated: '05 Jan 2026, 07:00', status: 'Tenant', hausbuddyActive: true },
-  { id: 5,  firstName: 'Katarina',  lastName: 'Kochc',     building: 'Alexanderplatz 10',   phone: '+49 309 012345',    email: 'katarina.koch@hausb…',      lastUpdated: '05 Jan 2026, 06:00', status: 'Tenant', hausbuddyActive: true },
-  { id: 6,  firstName: 'Tenant',    lastName: 'AG',        building: 'ABC',                 phone: '+49 211 11',        email: '—',                         lastUpdated: '31 Oct 2025, 03:00', status: 'Tenant', hausbuddyActive: false },
-  { id: 7,  firstName: 'Manuela',   lastName: 'God of werkewerke', building: 'Friedrichstraße 200', phone: '+49 21',    email: '—',                         lastUpdated: '31 Oct 2025, 03:00', status: 'N/A',    hausbuddyActive: false },
-  { id: 8,  firstName: 'Marco',     lastName: 'Reus',      building: 'Alexanderplatz 25',   phone: '+49 812 3123123123',email: 'myhausbuddy@gmail…',         lastUpdated: '31 Oct 2025, 03:00', status: 'Owner',  hausbuddyActive: true },
-  { id: 9,  firstName: 'Matthiass', lastName: 'Vogel',     building: 'Alexanderplatz 10',   phone: '+49 301 23345',     email: 'hausbuddyprod@gm…',         lastUpdated: '15 Oct 2025, 00:00', status: 'Owner',  hausbuddyActive: true },
-  { id: 10, firstName: 'Bagas',     lastName: 'Marsya',    building: 'Alexanderplatz 10',   phone: '+49 123 11',        email: 'bagas@stebasia.com',         lastUpdated: '25 Sep 2025, 00:00', status: 'Tenant', hausbuddyActive: true },
-  { id: 11, firstName: 'Matthiass', lastName: 'Manco',     building: 'Königstraße 9',       phone: '+49 121 21',        email: 'mycondoprod1@gma…',         lastUpdated: '23 Sep 2025, 00:00', status: 'Owner',  hausbuddyActive: false },
-  { id: 12, firstName: 'Daniel',    lastName: 'Richter',   building: 'Alexanderplatz 10',   phone: '+49 300 123456',    email: 'daniel.r@hausbuddy…',       lastUpdated: '15 Sep 2025, 00:00', status: 'Owner',  hausbuddyActive: true },
-  { id: 13, firstName: 'Anna',      lastName: 'Schmidt',   building: 'Friedrichstraße 44',  phone: '+49 171 8765432',   email: 'anna.schmidt@mail.de',       lastUpdated: '10 Sep 2025, 00:00', status: 'Tenant', hausbuddyActive: false },
-  { id: 14, firstName: 'Lukas',     lastName: 'Bauer',     building: 'Prenzlauer Allee 8',  phone: '+49 160 1234567',   email: 'l.bauer@web.de',             lastUpdated: '08 Sep 2025, 00:00', status: 'Tenant', hausbuddyActive: true },
-  { id: 15, firstName: 'Hannah',    lastName: 'Müller',    building: 'Torstraße 120',       phone: '+49 177 9988776',   email: 'h.mueller@gmx.de',           lastUpdated: '01 Sep 2025, 00:00', status: 'Owner',  hausbuddyActive: false },
-  { id: 16, firstName: 'Felix',     lastName: 'Wagner',    building: 'Kantstraße 33',       phone: '+49 162 5544332',   email: 'felix.wagner@gmail.com',     lastUpdated: '28 Aug 2025, 00:00', status: 'Tenant', hausbuddyActive: true },
-  { id: 17, firstName: 'Sophie',    lastName: 'Braun',     building: 'Rosenthaler Str 2',   phone: '+49 155 7766554',   email: 'sophie.braun@icloud.com',    lastUpdated: '20 Aug 2025, 00:00', status: 'N/A',    hausbuddyActive: false },
-  { id: 18, firstName: 'Emre',      lastName: 'Yildiz',    building: 'Boxhagener Str 77',   phone: '+49 176 9988001',   email: 'emre.yildiz@hotmail.com',    lastUpdated: '15 Aug 2025, 00:00', status: 'Tenant', hausbuddyActive: false },
-  { id: 19, firstName: 'Laura',     lastName: 'Koch',      building: 'Landsberger Allee 55',phone: '+49 152 3311224',   email: 'laura.koch@t-online.de',     lastUpdated: '10 Aug 2025, 00:00', status: 'Owner',  hausbuddyActive: true },
-  { id: 20, firstName: 'Jan',       lastName: 'Fischer',   building: 'Müllerstraße 90',     phone: '+49 163 6677889',   email: 'jan.f@yahoo.de',             lastUpdated: '05 Aug 2025, 00:00', status: 'Tenant', hausbuddyActive: false },
-];
 
 const PAGE_SIZE = 20;
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
-const statusStyle: Record<Status, string> = {
-  Tenant: 'bg-[#eef6ee] text-[#3a7d44]',
-  Owner:  'bg-[#eef0fa] text-[#3a52a0]',
-  'N/A':  'bg-[#f0ebe0] text-[#7d7870]',
-};
 
 // ─── Sidebar ──────────────────────────────────────────────────────────────────
 
@@ -101,58 +52,55 @@ const Sidebar = () => (
       </div>
     </div>
 
-    {/* Navigation */}
-    <nav className="flex-1 px-6 pt-8 overflow-y-auto scrollbar-minimal" style={{ scrollbarWidth: 'thin', scrollbarColor: 'rgba(0,0,0,0.1) transparent' } as React.CSSProperties}>
-      {/* Overview */}
-      <Link href="/dashboard">
-        <button className="w-full flex items-center gap-3 px-4 py-3 rounded-[16px] mb-1 hover:bg-[#f0ebe0]/60 transition-colors">
-          <Home size={20} className="text-[#7d7870] shrink-0" />
-          <span className="font-semibold text-[16px] tracking-[-0.31px] text-[#7d7870]">Overview</span>
-        </button>
+    <nav className="flex-1 px-3 py-2 overflow-y-auto scrollbar-minimal" style={{ scrollbarWidth: 'thin', scrollbarColor: 'rgba(0,0,0,0.1) transparent' } as React.CSSProperties}>
+      <Link href="/dashboard" className="flex items-center gap-3 px-3 py-2.5 rounded-[10px] text-[#7d7870] hover:bg-[#f0ebe0] transition-colors mb-1">
+        <Home size={18} />
+        <span className="text-[14px] font-semibold">Overview</span>
       </Link>
 
-      {/* Sub-items */}
-      <div className="ml-[25px] border-l-2 border-[#e6e2d8] pl-[18px] py-1 flex flex-col gap-1 mb-2">
-        <button className="flex items-center gap-3 px-2 py-2 rounded-[12px] hover:bg-[#f0ebe0]/60 transition-colors w-full">
-          <Archive size={16} className="text-[#7d7870] shrink-0" />
-          <span className="font-semibold text-[14px] tracking-[-0.15px] text-[#7d7870]">All Drafts</span>
-        </button>
-        <button className="flex items-center gap-3 px-2 py-2 rounded-[12px] hover:bg-[#f0ebe0]/60 transition-colors w-full">
-          <Trash2 size={16} className="text-[#7d7870] shrink-0" />
-          <span className="font-semibold text-[14px] tracking-[-0.15px] text-[#7d7870]">Recycle Bin</span>
-        </button>
-      </div>
-
-      {/* Nav items */}
-      {navItems.map(({ icon: Icon, label, href }) => (
-        <Link key={label} href={href}>
-          <button
-            className={`w-full flex items-center gap-3 px-4 py-3 rounded-[16px] mb-1 transition-colors ${
-              label === 'Tenant Management' ? 'bg-[#f0ebe0]' : 'hover:bg-[#f0ebe0]/60'
-            }`}
-          >
-            <Icon
-              size={20}
-              className={label === 'Tenant Management' ? 'text-[#1a1814] shrink-0' : 'text-[#7d7870] shrink-0'}
-            />
-            <span
-              className={`text-[16px] tracking-[-0.31px] ${
-                label === 'Tenant Management' ? 'font-bold text-[#1a1814]' : 'font-semibold text-[#7d7870]'
+      {navItems.map(({ icon: Icon, label, href }) => {
+        const isActive = label === 'Tenant Management';
+        return (
+          <div key={label}>
+            <Link
+              href={href}
+              className={`flex items-center gap-3 px-3 py-2.5 rounded-[10px] transition-colors mb-1 ${
+                isActive ? 'bg-[#f0ebe0] text-[#1a1814]' : 'text-[#7d7870] hover:bg-[#f0ebe0]'
               }`}
             >
-              {label}
-            </span>
-          </button>
-        </Link>
-      ))}
+              <Icon size={18} />
+              <span className="text-[14px] font-semibold flex-1">{label}</span>
+              {isActive && <ChevronDown size={14} className="opacity-50" />}
+            </Link>
+            {isActive && (
+              <div className="ml-7 mb-1 flex flex-col gap-0.5">
+                {[
+                  { icon: Users,   label: 'All Residents', active: true },
+                  { icon: Archive, label: 'All Drafts',    active: false },
+                  { icon: Trash2,  label: 'Bin',           active: false },
+                ].map(sub => (
+                  <button
+                    key={sub.label}
+                    className={`flex items-center gap-2.5 px-3 py-2 rounded-[8px] text-[13px] font-medium transition-colors w-full text-left ${
+                      sub.active ? 'bg-[#f4ebd9] text-[#b8975a]' : 'text-[#7d7870] hover:bg-[#f0ebe0]'
+                    }`}
+                  >
+                    <sub.icon size={14} />
+                    {sub.label}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+        );
+      })}
     </nav>
 
-    {/* Settings */}
-    <div className="px-6 pb-6 pt-2">
-      <button className="w-full flex items-center gap-3 px-4 py-3 rounded-[16px] hover:bg-[#f0ebe0]/60 transition-colors">
-        <Settings size={20} className="text-[#7d7870] shrink-0" />
-        <span className="font-semibold text-[16px] tracking-[-0.31px] text-[#7d7870]">Settings</span>
-      </button>
+    <div className="px-3 pb-6">
+      <Link href="#" className="flex items-center gap-3 px-3 py-2.5 rounded-[10px] text-[#7d7870] hover:bg-[#f0ebe0] transition-colors">
+        <Settings size={18} />
+        <span className="text-[14px] font-semibold">Settings</span>
+      </Link>
     </div>
   </aside>
 );

@@ -18,127 +18,201 @@ import {
   Bell,
   Plus,
   ChevronRight,
+  ChevronDown,
   LayoutGrid,
   Menu,
   Folder,
   FolderOpen,
   Building2,
 } from 'lucide-react';
+import { navItems } from '@/lib/constants/navigation';
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
-const navItems = [
-  { icon: Users, label: 'Tenant Management', href: '/dashboard/tenant-management' },
-  { icon: Mail, label: 'Messages', href: '/dashboard/messages' },
-  { icon: AlertTriangle, label: 'Damage Reports', href: '/dashboard/damage-reports' },
-  { icon: FileText, label: 'Documents', href: '/dashboard/documents' },
-  { icon: Wrench, label: 'Service Providers', href: '/dashboard/service-providers' },
-  { icon: Database, label: 'Data', href: '#' },
-];
 
 const buildingCards = [
-  { name: 'Tulip Building', image: 'https://placehold.co/183x104/9cb8b5/ffffff?text=Tulip' },
-  { name: 'Orchid Building', image: 'https://placehold.co/183x104/7a8fa6/ffffff?text=Orchid' },
-  { name: 'Rose Building', image: 'https://placehold.co/183x104/5e7d5b/ffffff?text=Rose' },
-  { name: 'Sunflower Building', image: 'https://placehold.co/183x104/2d3748/ffffff?text=Sunflower' },
-  { name: 'Maple Tower', image: 'https://placehold.co/183x104/8b7355/ffffff?text=Maple' },
-  { name: 'Cedar Heights', image: 'https://placehold.co/183x104/6b8e6b/ffffff?text=Cedar' },
-  { name: 'Palm Residences', image: 'https://placehold.co/183x104/b8860b/ffffff?text=Palm' },
-  { name: 'Jasmine Court', image: 'https://placehold.co/183x104/7b6b8b/ffffff?text=Jasmine' },
+  { name: 'Tulip Building',         image: 'https://placehold.co/183x104/9cb8b5/ffffff?text=Tulip' },
+  { name: 'Orchid Building',        image: 'https://placehold.co/183x104/7a8fa6/ffffff?text=Orchid' },
+  { name: 'Rose Building',          image: 'https://placehold.co/183x104/5e7d5b/ffffff?text=Rose' },
+  { name: 'Sunflower Building',     image: 'https://placehold.co/183x104/2d3748/ffffff?text=Sunflower' },
+  { name: 'Maple Tower',            image: 'https://placehold.co/183x104/8b7355/ffffff?text=Maple' },
+  { name: 'Cedar Heights',          image: 'https://placehold.co/183x104/6b8e6b/ffffff?text=Cedar' },
+  { name: 'Palm Residences',        image: 'https://placehold.co/183x104/b8860b/ffffff?text=Palm' },
+  { name: 'Jasmine Court',          image: 'https://placehold.co/183x104/7b6b8b/ffffff?text=Jasmine' },
+  { name: 'Ammana Building Dubai',  image: 'https://placehold.co/183x104/4a7c8a/ffffff?text=Ammana' },
+  { name: 'Royal Building Dubai',   image: 'https://placehold.co/183x104/8a6b5a/ffffff?text=Royal' },
+  { name: 'Sky View Tower Dubai',   image: 'https://placehold.co/183x104/5a7a6b/ffffff?text=SkyView' },
+  { name: 'Al Shera Building',      image: 'https://placehold.co/183x104/9a8060/ffffff?text=AlShera' },
+  { name: 'Marina Heights Dubai',   image: 'https://placehold.co/183x104/6a5a8a/ffffff?text=Marina' },
+  { name: 'Gold Tower Dubai',       image: 'https://placehold.co/183x104/7a9a7a/ffffff?text=Gold' },
+  { name: 'Burj Views',             image: 'https://placehold.co/183x104/8a7060/ffffff?text=Burj' },
+  { name: 'Amina Tower',            image: 'https://placehold.co/183x104/4e6d8a/ffffff?text=Amina' },
+  { name: 'Highland Tower',         image: 'https://placehold.co/183x104/7a6a5a/ffffff?text=Highland' },
+  { name: 'Al Noor Residences',     image: 'https://placehold.co/183x104/5a8a7a/ffffff?text=AlNoor' },
+  { name: 'Corniche Towers',        image: 'https://placehold.co/183x104/8a7a4a/ffffff?text=Corniche' },
+  { name: 'Saadiyat View',          image: 'https://placehold.co/183x104/6a8a5a/ffffff?text=Saadiyat' },
+  { name: 'Yas Island Residences',  image: 'https://placehold.co/183x104/8a5a6a/ffffff?text=Yas' },
+  { name: 'Sharjah Grand',          image: 'https://placehold.co/183x104/5a6a8a/ffffff?text=Sharjah' },
+  { name: 'Buhaira Towers',         image: 'https://placehold.co/183x104/7a8a5a/ffffff?text=Buhaira' },
+  { name: 'Al Majaz Residences',    image: 'https://placehold.co/183x104/9a6a5a/ffffff?text=AlMajaz' },
+  { name: 'Al Hamra Residences',    image: 'https://placehold.co/183x104/6a7a8a/ffffff?text=AlHamra' },
 ];
 
 const folders = [
   {
     name: 'Dubai',
-    buildings: ['Ammana Building Dubai', 'Royal Building Dubai', 'Sky View Tower Dubai'],
+    buildings: [
+      'Tulip Building', 'Orchid Building', 'Rose Building', 'Sunflower Building',
+      'Maple Tower', 'Cedar Heights', 'Palm Residences', 'Jasmine Court',
+      'Ammana Building Dubai', 'Royal Building Dubai', 'Sky View Tower Dubai',
+      'Al Shera Building', 'Marina Heights Dubai', 'Gold Tower Dubai', 'Burj Views',
+    ],
   },
   {
     name: 'Abu Dhabi',
-    buildings: ['Amina Tower', 'Highland Tower Abu Dhabi'],
+    buildings: [
+      'Amina Tower', 'Highland Tower', 'Al Noor Residences',
+      'Corniche Towers', 'Saadiyat View', 'Yas Island Residences',
+      'Al Wahda Complex', 'Capital Gate Residences', 'Al Bateen Residences',
+    ],
+  },
+  {
+    name: 'Sharjah',
+    buildings: [
+      'Sharjah Grand', 'Al Taawun Plaza', 'Buhaira Towers',
+      'Al Qasba Residences', 'Al Majaz Residences', 'Rolla Square',
+    ],
+  },
+  {
+    name: 'Ras Al Khaimah',
+    buildings: ['Emirates Height', 'Al Hamra Residences', 'Julphar Tower'],
+  },
+  {
+    name: 'Ajman',
+    buildings: ['Al Dhait Complex', 'Ajman Pearl Tower', 'Garden City Residences'],
   },
 ];
 
 const tableRows = [
-  { folder: 'Dubai',     subfolder: 'Commercial',  unit: 'Ammana Building',  street: 'Sheikh Zayed Rd' },
-  { folder: 'Dubai',     subfolder: 'Residential', unit: 'Royal Building',   street: 'Marina Promenade' },
-  { folder: 'Dubai',     subfolder: 'Residential', unit: 'Sky View Tower',   street: 'Downtown St' },
-  { folder: 'Abu Dhabi', subfolder: 'Commercial',  unit: 'Amina Tower',      street: 'Corniche Rd' },
-  { folder: 'Abu Dhabi', subfolder: 'Residential', unit: 'Highland Tower',   street: 'Al Reem St' },
+  { folder: 'Dubai',           subfolder: 'Commercial',  unit: 'Ammana Building Dubai',    street: 'Sheikh Zayed Rd' },
+  { folder: 'Dubai',           subfolder: 'Residential', unit: 'Royal Building Dubai',     street: 'Marina Promenade' },
+  { folder: 'Dubai',           subfolder: 'Residential', unit: 'Sky View Tower Dubai',     street: 'Downtown Blvd' },
+  { folder: 'Dubai',           subfolder: 'Commercial',  unit: 'Tulip Building',           street: 'Business Bay Ave' },
+  { folder: 'Dubai',           subfolder: 'Residential', unit: 'Orchid Building',          street: 'JBR Walk' },
+  { folder: 'Dubai',           subfolder: 'Residential', unit: 'Rose Building',            street: 'Palm Trunk Rd' },
+  { folder: 'Dubai',           subfolder: 'Commercial',  unit: 'Sunflower Building',       street: 'DIFC Gate Ave' },
+  { folder: 'Dubai',           subfolder: 'Residential', unit: 'Maple Tower',              street: 'Al Barsha St' },
+  { folder: 'Dubai',           subfolder: 'Commercial',  unit: 'Cedar Heights',            street: 'Sheikh Zayed Rd' },
+  { folder: 'Dubai',           subfolder: 'Residential', unit: 'Palm Residences',          street: 'Marina Promenade' },
+  { folder: 'Dubai',           subfolder: 'Residential', unit: 'Jasmine Court',            street: 'JBR Walk' },
+  { folder: 'Dubai',           subfolder: 'Commercial',  unit: 'Al Shera Building',        street: 'Business Bay Ave' },
+  { folder: 'Dubai',           subfolder: 'Residential', unit: 'Marina Heights Dubai',     street: 'Marina Walk' },
+  { folder: 'Dubai',           subfolder: 'Commercial',  unit: 'Gold Tower Dubai',         street: 'Downtown Blvd' },
+  { folder: 'Dubai',           subfolder: 'Commercial',  unit: 'Burj Views',               street: 'DIFC Gate Ave' },
+  { folder: 'Abu Dhabi',       subfolder: 'Commercial',  unit: 'Amina Tower',              street: 'Corniche Rd' },
+  { folder: 'Abu Dhabi',       subfolder: 'Residential', unit: 'Highland Tower',           street: 'Al Reem Blvd' },
+  { folder: 'Abu Dhabi',       subfolder: 'Residential', unit: 'Al Noor Residences',       street: 'Khalidiyah St' },
+  { folder: 'Abu Dhabi',       subfolder: 'Commercial',  unit: 'Corniche Towers',          street: 'Corniche Rd' },
+  { folder: 'Abu Dhabi',       subfolder: 'Residential', unit: 'Saadiyat View',            street: 'Saadiyat Cultural Blvd' },
+  { folder: 'Abu Dhabi',       subfolder: 'Residential', unit: 'Yas Island Residences',    street: 'Yas Dr' },
+  { folder: 'Abu Dhabi',       subfolder: 'Commercial',  unit: 'Al Wahda Complex',         street: 'Al Wahda St' },
+  { folder: 'Abu Dhabi',       subfolder: 'Residential', unit: 'Capital Gate Residences',  street: 'Airport Rd' },
+  { folder: 'Abu Dhabi',       subfolder: 'Residential', unit: 'Al Bateen Residences',     street: 'Al Bateen St' },
+  { folder: 'Sharjah',         subfolder: 'Commercial',  unit: 'Sharjah Grand',            street: 'King Faisal Rd' },
+  { folder: 'Sharjah',         subfolder: 'Residential', unit: 'Al Taawun Plaza',          street: 'Al Taawun St' },
+  { folder: 'Sharjah',         subfolder: 'Residential', unit: 'Buhaira Towers',           street: 'Corniche Buhaira' },
+  { folder: 'Sharjah',         subfolder: 'Commercial',  unit: 'Al Qasba Residences',      street: 'Al Qasba Canal Rd' },
+  { folder: 'Sharjah',         subfolder: 'Residential', unit: 'Al Majaz Residences',      street: 'Al Majaz St' },
+  { folder: 'Sharjah',         subfolder: 'Commercial',  unit: 'Rolla Square',             street: 'Rolla Rd' },
+  { folder: 'Ras Al Khaimah',  subfolder: 'Residential', unit: 'Emirates Height',          street: 'Sheikh Mohammed Bin Salem Rd' },
+  { folder: 'Ras Al Khaimah',  subfolder: 'Residential', unit: 'Al Hamra Residences',      street: 'Al Hamra Village Rd' },
+  { folder: 'Ras Al Khaimah',  subfolder: 'Commercial',  unit: 'Julphar Tower',            street: 'Al Nakheel Blvd' },
+  { folder: 'Ajman',           subfolder: 'Residential', unit: 'Al Dhait Complex',         street: 'Sheikh Humaid Bin Rashid Rd' },
+  { folder: 'Ajman',           subfolder: 'Commercial',  unit: 'Ajman Pearl Tower',        street: 'Sheikh Khalifa Bin Zayed St' },
+  { folder: 'Ajman',           subfolder: 'Residential', unit: 'Garden City Residences',   street: 'Corniche Ajman' },
+  { folder: 'Dubai',           subfolder: 'Residential', unit: 'Tulip Building',           street: 'Al Barsha St' },
+  { folder: 'Dubai',           subfolder: 'Commercial',  unit: 'Orchid Building',          street: 'Sheikh Zayed Rd' },
+  { folder: 'Dubai',           subfolder: 'Residential', unit: 'Rose Building',            street: 'Business Bay Ave' },
+  { folder: 'Abu Dhabi',       subfolder: 'Commercial',  unit: 'Saadiyat View',            street: 'Abu Dhabi Corniche' },
+  { folder: 'Abu Dhabi',       subfolder: 'Residential', unit: 'Yas Island Residences',    street: 'Yas Leisure Dr' },
+  { folder: 'Abu Dhabi',       subfolder: 'Commercial',  unit: 'Al Noor Residences',       street: 'Al Reem Island Blvd' },
+  { folder: 'Sharjah',         subfolder: 'Residential', unit: 'Sharjah Grand',            street: 'Al Nahda St' },
+  { folder: 'Sharjah',         subfolder: 'Commercial',  unit: 'Buhaira Towers',           street: 'Al Taawun Rd' },
+  { folder: 'Ras Al Khaimah',  subfolder: 'Residential', unit: 'Julphar Tower',            street: 'Lakeside Dr' },
+  { folder: 'Ras Al Khaimah',  subfolder: 'Commercial',  unit: 'Al Hamra Residences',      street: 'Al Hamra Rd' },
+  { folder: 'Ajman',           subfolder: 'Residential', unit: 'Al Dhait Complex',         street: 'Al Dhait Rd' },
+  { folder: 'Ajman',           subfolder: 'Commercial',  unit: 'Garden City Residences',   street: 'Al Jurf Industrial' },
+  { folder: 'Dubai',           subfolder: 'Commercial',  unit: 'Maple Tower',              street: 'DIFC Gate Ave' },
+  { folder: 'Abu Dhabi',       subfolder: 'Residential', unit: 'Highland Tower',           street: 'Hamdan St' },
 ];
 
 // ─── Sidebar ───────────────────────────────────────────────────────────────────
 
-const Sidebar = ({ activeItem, setActiveItem }: { activeItem: string; setActiveItem: (v: string) => void }) => {
-  return (
-    <aside className="w-[280px] shrink-0 bg-[#faf8f5] flex flex-col h-screen sticky top-0">
-      {/* Logo */}
-      <div className="px-6 pt-6 pb-4 flex items-center gap-3">
-        <div className="flex flex-col gap-[3px]">
-          <div className="w-[18px] h-1 bg-[#cda460] rounded-full" />
-          <div className="w-[14px] h-1 bg-[#cda460] rounded-full" />
-          <div className="w-[10px] h-1 bg-[#cda460] rounded-full" />
-        </div>
-        <div className="flex flex-col gap-[2px]">
-          <span className="font-black text-[18px] tracking-[-0.89px] text-[#1a1814] leading-none">
-            THE MUDEER
-          </span>
-          <span className="text-[9px] font-bold uppercase tracking-[1.5px] text-[#7d7870] leading-none">
-            Property Management
-          </span>
-        </div>
+const Sidebar = () => (
+  <aside className="w-[280px] shrink-0 bg-[#faf8f5] flex flex-col h-screen sticky top-0">
+    {/* Logo */}
+    <div className="px-6 pt-6 pb-4 flex items-center gap-3">
+      <div className="flex flex-col gap-[3px]">
+        <div className="w-[18px] h-1 bg-[#cda460] rounded-full" />
+        <div className="w-[14px] h-1 bg-[#cda460] rounded-full" />
+        <div className="w-[10px] h-1 bg-[#cda460] rounded-full" />
       </div>
+      <div className="flex flex-col gap-[2px]">
+        <span className="font-black text-[18px] tracking-[-0.89px] text-[#1a1814] leading-none">THE MUDEER</span>
+        <span className="text-[9px] font-bold uppercase tracking-[1.5px] text-[#7d7870] leading-none">Property Management</span>
+      </div>
+    </div>
 
-      {/* Navigation */}
-      <nav className="flex-1 px-6 pt-8 overflow-y-auto">
-        {/* Overview (active) */}
-        <button
-          onClick={() => setActiveItem('Overview')}
-          className={`w-full flex items-center gap-3 px-4 py-3 rounded-[16px] mb-1 transition-colors ${
-            activeItem === 'Overview' ? 'bg-[#f0ebe0]' : 'hover:bg-[#f0ebe0]/60'
-          }`}
+    <nav className="flex-1 px-3 py-2 overflow-y-auto scrollbar-minimal" style={{ scrollbarWidth: 'thin', scrollbarColor: 'rgba(0,0,0,0.1) transparent' } as React.CSSProperties}>
+      {/* Overview — active */}
+      <div>
+        <Link
+          href="/dashboard"
+          className="flex items-center gap-3 px-3 py-2.5 rounded-[10px] bg-[#f0ebe0] text-[#1a1814] mb-1"
         >
-          <Home size={20} className="text-[#1a1814] shrink-0" />
-          <span className="font-bold text-[16px] tracking-[-0.31px] text-[#1a1814]">Overview</span>
-        </button>
-
-        {/* Sub-items */}
-        <div className="ml-[25px] border-l-2 border-[#e6e2d8] pl-[18px] py-1 flex flex-col gap-1 mb-2">
-          <button className="flex items-center gap-3 px-2 py-2 rounded-[12px] hover:bg-[#f0ebe0]/60 transition-colors w-full">
-            <Archive size={16} className="text-[#7d7870] shrink-0" />
-            <span className="font-semibold text-[14px] tracking-[-0.15px] text-[#7d7870]">All Drafts</span>
-          </button>
-          <button className="flex items-center gap-3 px-2 py-2 rounded-[12px] hover:bg-[#f0ebe0]/60 transition-colors w-full">
-            <Trash2 size={16} className="text-[#7d7870] shrink-0" />
-            <span className="font-semibold text-[14px] tracking-[-0.15px] text-[#7d7870]">Recycle Bin</span>
-          </button>
-        </div>
-
-        {/* Nav items */}
-        {navItems.map(({ icon: Icon, label, href }) => (
-          <Link key={label} href={href}>
+          <Home size={18} />
+          <span className="text-[14px] font-semibold flex-1">Overview</span>
+          <ChevronDown size={14} className="opacity-50" />
+        </Link>
+        <div className="ml-7 mb-1 flex flex-col gap-0.5">
+          {[
+            { icon: Archive, label: 'All Drafts' },
+            { icon: Trash2,  label: 'Recycle Bin' },
+          ].map(sub => (
             <button
-              onClick={() => setActiveItem(label)}
-              className={`w-full flex items-center gap-3 px-4 py-3 rounded-[16px] mb-1 transition-colors ${
-                activeItem === label ? 'bg-[#f0ebe0]' : 'hover:bg-[#f0ebe0]/60'
-              }`}
+              key={sub.label}
+              className="flex items-center gap-2.5 px-3 py-2 rounded-[8px] text-[13px] font-medium text-[#7d7870] hover:bg-[#f0ebe0] transition-colors w-full text-left"
             >
-              <Icon size={20} className="text-[#7d7870] shrink-0" />
-              <span className="font-semibold text-[16px] tracking-[-0.31px] text-[#7d7870]">{label}</span>
+              <sub.icon size={14} />
+              {sub.label}
             </button>
-          </Link>
-        ))}
-      </nav>
-
-      {/* Settings */}
-      <div className="px-6 pb-6 pt-2">
-        <button className="w-full flex items-center gap-3 px-4 py-3 rounded-[16px] hover:bg-[#f0ebe0]/60 transition-colors">
-          <Settings size={20} className="text-[#7d7870] shrink-0" />
-          <span className="font-semibold text-[16px] tracking-[-0.31px] text-[#7d7870]">Settings</span>
-        </button>
+          ))}
+        </div>
       </div>
-    </aside>
-  );
-};
+
+      {navItems.map(({ icon: Icon, label, href }) => (
+        <Link
+          key={label}
+          href={href}
+          className="flex items-center gap-3 px-3 py-2.5 rounded-[10px] text-[#7d7870] hover:bg-[#f0ebe0] transition-colors mb-1"
+        >
+          <Icon size={18} />
+          <span className="text-[14px] font-semibold">{label}</span>
+        </Link>
+      ))}
+    </nav>
+
+    <div className="px-3 pb-6">
+      <Link
+        href="#"
+        className="flex items-center gap-3 px-3 py-2.5 rounded-[10px] text-[#7d7870] hover:bg-[#f0ebe0] transition-colors"
+      >
+        <Settings size={18} />
+        <span className="text-[14px] font-semibold">Settings</span>
+      </Link>
+    </div>
+  </aside>
+);
 
 // ─── Top Bar ───────────────────────────────────────────────────────────────────
 
@@ -443,11 +517,9 @@ const FAB = () => {
 // ─── Page ──────────────────────────────────────────────────────────────────────
 
 export default function DashboardPage() {
-  const [activeItem, setActiveItem] = useState('Overview');
-
   return (
     <div className="flex h-screen bg-[#faf8f5] overflow-hidden">
-      <Sidebar activeItem={activeItem} setActiveItem={setActiveItem} />
+      <Sidebar />
 
       <div className="flex flex-col flex-1 min-w-0">
         <TopBar />

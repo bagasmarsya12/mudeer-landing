@@ -34,6 +34,7 @@ import {
   ListFilter,
   CalendarClock,
 } from 'lucide-react';
+import { navItems } from '@/lib/constants/navigation';
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
@@ -303,14 +304,6 @@ const reports: DamageReport[] = [
   },
 ];
 
-const navItems = [
-  { icon: Users,         label: 'Tenant Management', href: '/dashboard/tenant-management' },
-  { icon: Mail,          label: 'Messages',           href: '/dashboard/messages' },
-  { icon: AlertTriangle, label: 'Damage Reports',     href: '/dashboard/damage-reports' },
-  { icon: FileText,      label: 'Documents',          href: '/dashboard/documents' },
-  { icon: Wrench,        label: 'Service Providers',  href: '/dashboard/service-providers' },
-  { icon: Database,      label: 'Data',               href: '#' },
-];
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 

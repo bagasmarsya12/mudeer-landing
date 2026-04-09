@@ -34,6 +34,7 @@ import {
   MoreHorizontal,
   FolderOpen,
 } from 'lucide-react';
+import { navItems, docSubItems } from '@/lib/constants/navigation';
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
@@ -45,40 +46,20 @@ interface DocCategory {
 }
 
 const categories: DocCategory[] = [
-  { id: 'rental-contract',  label: 'Rental Contract',   icon: ClipboardList, count: 5 },
-  { id: 'house-rules',      label: 'House Rules',        icon: BookOpen,      count: 5 },
-  { id: 'meter-readings',   label: 'Meter Readings',     icon: Activity,      count: 3 },
-  { id: 'electricity',      label: 'Electricity',        icon: Zap,           count: 3 },
-  { id: 'gas',              label: 'Gas',                icon: Flame,         count: 3 },
-  { id: 'water',            label: 'Water',              icon: Droplets,      count: 3 },
-  { id: 'oil-heating',      label: 'Oil Heating',        icon: Thermometer,   count: 0 },
-  { id: 'service-provider', label: 'Service Provider',   icon: Wrench,        count: 0 },
-  { id: 'others',           label: 'Others',             icon: FolderOpen,    count: 0 },
+  { id: 'rental-contract',  label: 'Rental Contract',   icon: ClipboardList, count: 50 },
+  { id: 'house-rules',      label: 'House Rules',        icon: BookOpen,      count: 50 },
+  { id: 'meter-readings',   label: 'Meter Readings',     icon: Activity,      count: 50 },
+  { id: 'electricity',      label: 'Electricity',        icon: Zap,           count: 50 },
+  { id: 'gas',              label: 'Gas',                icon: Flame,         count: 50 },
+  { id: 'water',            label: 'Water',              icon: Droplets,      count: 50 },
+  { id: 'oil-heating',      label: 'Oil Heating',        icon: Thermometer,   count: 50 },
+  { id: 'service-provider', label: 'Service Provider',   icon: Wrench,        count: 50 },
+  { id: 'others',           label: 'Others',             icon: FolderOpen,    count: 50 },
 ];
 
 const totalFiles = categories.reduce((s, c) => s + c.count, 0);
 
-const navItems = [
-  { icon: Users,         label: 'Tenant Management', href: '/dashboard/tenant-management' },
-  { icon: Mail,          label: 'Messages',           href: '/dashboard/messages' },
-  { icon: AlertTriangle, label: 'Damage Reports',     href: '/dashboard/damage-reports' },
-  { icon: FileText,      label: 'Documents',          href: '/dashboard/documents' },
-  { icon: Wrench,        label: 'Service Providers',  href: '/dashboard/service-providers' },
-  { icon: Database,      label: 'Data',               href: '#' },
-];
 
-const docSubItems = [
-  { id: '',                 label: 'All Files',        icon: FolderOpen },
-  { id: 'rental-contract',  label: 'Rental Contract',  icon: ClipboardList },
-  { id: 'house-rules',      label: 'House Rules',      icon: BookOpen },
-  { id: 'meter-readings',   label: 'Meter Readings',   icon: Activity },
-  { id: 'electricity',      label: 'Electricity',      icon: Zap },
-  { id: 'gas',              label: 'Gas',              icon: Flame },
-  { id: 'water',            label: 'Water',            icon: Droplets },
-  { id: 'oil-heating',      label: 'Oil Heating',      icon: Thermometer },
-  { id: 'service-provider', label: 'Service Provider', icon: Wrench },
-  { id: 'others',           label: 'Others',           icon: Folder },
-];
 
 // ─── Sidebar ──────────────────────────────────────────────────────────────────
 

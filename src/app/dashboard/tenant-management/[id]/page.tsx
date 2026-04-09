@@ -42,73 +42,11 @@ import {
   X,
   Plus,
 } from 'lucide-react';
+import { navItems } from '@/lib/constants/navigation';
+import type { Status, Tenant } from '@/lib/data/tenants';
+import { tenants, statusStyle, buildingDistrict } from '@/lib/data/tenants';
 
-// ─── District mapping ────────────────────────────────────────────────────────
 
-const buildingDistrict: Record<string, string> = {
-  'Alexanderplatz 10':    'Mitte',
-  'Alexanderplatz 25':    'Mitte',
-  'Friedrichstraße 200':  'Mitte',
-  'Friedrichstraße 44':   'Mitte',
-  'Wilhelmstraße 4':      'Mitte',
-  'Torstraße 120':        'Mitte',
-  'Rosenthaler Str 2':    'Mitte',
-  'Leopoldstraße 55':     'Schwabing',
-  'Königstraße 9':        'Stuttgart',
-  'Prenzlauer Allee 8':   'Prenzlauer Berg',
-  'Kantstraße 33':        'Charlottenburg',
-  'Boxhagener Str 77':    'Friedrichshain',
-  'Landsberger Allee 55': 'Friedrichshain',
-  'Müllerstraße 90':      'Wedding',
-};
-
-// ─── Data (shared) ────────────────────────────────────────────────────────────
-
-const navItems = [
-  { icon: Users,         label: 'Tenant Management', href: '/dashboard/tenant-management' },
-  { icon: Mail,          label: 'Messages',           href: '#' },
-  { icon: AlertTriangle, label: 'Damage Reports',     href: '/dashboard/damage-reports' },
-  { icon: FileText,      label: 'Documents',          href: '/dashboard/documents' },
-  { icon: Wrench,        label: 'Service Providers',  href: '/dashboard/service-providers' },
-  { icon: Database,      label: 'Data',               href: '#' },
-];
-
-type Status = 'Tenant' | 'Owner' | 'N/A';
-
-interface Tenant {
-  id: number;
-  firstName: string;
-  lastName: string;
-  building: string;
-  phone: string;
-  email: string;
-  lastUpdated: string;
-  status: Status;
-  hausbuddyActive: boolean;
-}
-
-const tenants: Tenant[] = [
-  { id: 1,  firstName: 'Tunan',     lastName: 'Tunan',     building: '222m',                 phone: '+49 21',             email: '—',                      lastUpdated: '21 Jan 2026, 04:00', status: 'N/A',    hausbuddyActive: false },
-  { id: 2,  firstName: 'Tenant',    lastName: 'Random',    building: 'ABC',                  phone: '+49 221 21',         email: '—',                      lastUpdated: '21 Jan 2026, 03:00', status: 'N/A',    hausbuddyActive: false },
-  { id: 3,  firstName: 'Sendi',     lastName: 'Patryjar',  building: 'Leopoldstraße 55',     phone: '+49 812 312111113',  email: 'sendi@stebasia.com',     lastUpdated: '15 Jan 2026, 07:00', status: 'Tenant', hausbuddyActive: true },
-  { id: 4,  firstName: 'Sendi',     lastName: 'Patryjar',  building: 'Wilhelmstraße 4',      phone: '+49 812 3123123123', email: 'sendipatryjar@gmail.com',lastUpdated: '05 Jan 2026, 07:00', status: 'Tenant', hausbuddyActive: true },
-  { id: 5,  firstName: 'Katarina',  lastName: 'Kochc',     building: 'Alexanderplatz 10',    phone: '+49 309 012345',     email: 'katarina.koch@hausb.de', lastUpdated: '05 Jan 2026, 06:00', status: 'Tenant', hausbuddyActive: true },
-  { id: 6,  firstName: 'Tenant',    lastName: 'AG',        building: 'ABC',                  phone: '+49 211 11',         email: '—',                      lastUpdated: '31 Oct 2025, 03:00', status: 'Tenant', hausbuddyActive: false },
-  { id: 7,  firstName: 'Manuela',   lastName: 'God of werkewerke', building: 'Friedrichstraße 200', phone: '+49 21',      email: '—',                      lastUpdated: '31 Oct 2025, 03:00', status: 'N/A',    hausbuddyActive: false },
-  { id: 8,  firstName: 'Marco',     lastName: 'Reus',      building: 'Alexanderplatz 25',    phone: '+49 812 3123123123', email: 'myhausbuddy@gmail.com',  lastUpdated: '31 Oct 2025, 03:00', status: 'Owner',  hausbuddyActive: true },
-  { id: 9,  firstName: 'Matthiass', lastName: 'Vogel',     building: 'Alexanderplatz 10',    phone: '+49 301 23345',      email: 'hausbuddyprod@gmail.com',lastUpdated: '15 Oct 2025, 00:00', status: 'Owner',  hausbuddyActive: true },
-  { id: 10, firstName: 'Bagas',     lastName: 'Marsya',    building: 'Alexanderplatz 10',    phone: '+49 123 11',         email: 'bagas@stebasia.com',     lastUpdated: '25 Sep 2025, 00:00', status: 'Tenant', hausbuddyActive: true },
-  { id: 11, firstName: 'Matthiass', lastName: 'Manco',     building: 'Königstraße 9',        phone: '+49 121 21',         email: 'mycondoprod1@gmail.com', lastUpdated: '23 Sep 2025, 00:00', status: 'Owner',  hausbuddyActive: false },
-  { id: 12, firstName: 'Daniel',    lastName: 'Richter',   building: 'Alexanderplatz 10',    phone: '+49 300 123456',     email: 'daniel.r@hausbuddy.com', lastUpdated: '15 Sep 2025, 00:00', status: 'Owner',  hausbuddyActive: true },
-  { id: 13, firstName: 'Anna',      lastName: 'Schmidt',   building: 'Friedrichstraße 44',   phone: '+49 171 8765432',    email: 'anna.schmidt@mail.de',   lastUpdated: '10 Sep 2025, 00:00', status: 'Tenant', hausbuddyActive: false },
-  { id: 14, firstName: 'Lukas',     lastName: 'Bauer',     building: 'Prenzlauer Allee 8',   phone: '+49 160 1234567',    email: 'l.bauer@web.de',         lastUpdated: '08 Sep 2025, 00:00', status: 'Tenant', hausbuddyActive: true },
-  { id: 15, firstName: 'Hannah',    lastName: 'Müller',    building: 'Torstraße 120',        phone: '+49 177 9988776',    email: 'h.mueller@gmx.de',       lastUpdated: '01 Sep 2025, 00:00', status: 'Owner',  hausbuddyActive: false },
-  { id: 16, firstName: 'Felix',     lastName: 'Wagner',    building: 'Kantstraße 33',        phone: '+49 162 5544332',    email: 'felix.wagner@gmail.com', lastUpdated: '28 Aug 2025, 00:00', status: 'Tenant', hausbuddyActive: true },
-  { id: 17, firstName: 'Sophie',    lastName: 'Braun',     building: 'Rosenthaler Str 2',    phone: '+49 155 7766554',    email: 'sophie.braun@icloud.com',lastUpdated: '20 Aug 2025, 00:00', status: 'N/A',    hausbuddyActive: false },
-  { id: 18, firstName: 'Emre',      lastName: 'Yildiz',    building: 'Boxhagener Str 77',    phone: '+49 176 9988001',    email: 'emre.yildiz@hotmail.com',lastUpdated: '15 Aug 2025, 00:00', status: 'Tenant', hausbuddyActive: false },
-  { id: 19, firstName: 'Laura',     lastName: 'Koch',      building: 'Landsberger Allee 55', phone: '+49 152 3311224',    email: 'laura.koch@t-online.de', lastUpdated: '10 Aug 2025, 00:00', status: 'Owner',  hausbuddyActive: true },
-  { id: 20, firstName: 'Jan',       lastName: 'Fischer',   building: 'Müllerstraße 90',      phone: '+49 163 6677889',    email: 'jan.f@yahoo.de',         lastUpdated: '05 Aug 2025, 00:00', status: 'Tenant', hausbuddyActive: false },
-];
 
 // ─── Sidebar ──────────────────────────────────────────────────────────────────
 
@@ -352,49 +290,42 @@ const ProfileBody = ({ tenant }: { tenant: Tenant }) => {
 const NotesSection = () => {
   const [notes, setNotes] = useState('');
   return (
-    <div className="border-b border-[#e8e4db]">
-      {/* Toolbar */}
-      <div className="flex items-center gap-1 px-5 py-2 bg-[#faf8f5] border-b border-[#e8e4db] flex-wrap">
-        {[Undo2, Redo2].map((Icon, i) => (
-          <button key={i} className="w-7 h-7 flex items-center justify-center rounded hover:bg-[#f0ebe0] transition-colors">
-            <Icon size={12} className="text-[#7d7870]" />
-          </button>
-        ))}
-        <span className="w-px h-4 bg-[#e8e4db] mx-1" />
-        {['Paragraph', 'Inter, sans-serif', '12pt'].map(label => (
-          <div key={label} className="flex items-center gap-1 px-2 py-1 border border-[#e8e4db] rounded-[5px] text-[11px] text-[#4a453d] cursor-pointer hover:bg-[#f0ebe0] transition-colors">
-            <span>{label}</span><ChevronDown size={10} />
+    <div className="p-7 flex flex-col gap-4 border-b border-[#e8e4db]">
+      <h3 className="text-[13px] font-bold text-[#1a1814]">Description</h3>
+
+      <div className="border border-[#e8e4db] rounded-[14px] overflow-hidden">
+        {/* Toolbar */}
+        <div className="flex items-center gap-1 px-3 py-2.5 border-b border-[#f0ebe0] bg-[#faf8f5] flex-wrap">
+          <button className="p-1.5 rounded-[6px] hover:bg-[#f0ebe0] transition-colors"><Undo2 size={13} className="text-[#7d7870]" /></button>
+          <button className="p-1.5 rounded-[6px] hover:bg-[#f0ebe0] transition-colors"><Redo2 size={13} className="text-[#7d7870]" /></button>
+          <div className="w-px h-4 bg-[#e8e4db] mx-1" />
+          <div className="flex items-center gap-1 px-2 py-1 rounded-[6px] border border-[#e8e4db] bg-white text-[11px] text-[#7d7870] cursor-pointer hover:bg-[#f0ebe0] transition-colors">
+            Paragraph <ChevronDown size={9} />
           </div>
-        ))}
-        <span className="w-px h-4 bg-[#e8e4db] mx-1" />
-        {[Bold, Italic, Underline].map((Icon, i) => (
-          <button key={i} className="w-7 h-7 flex items-center justify-center rounded hover:bg-[#f0ebe0] transition-colors">
-            <Icon size={12} className="text-[#7d7870]" />
-          </button>
-        ))}
-        <span className="w-px h-4 bg-[#e8e4db] mx-1" />
-        {[AlignLeft, AlignCenter, AlignRight, List].map((Icon, i) => (
-          <button key={i} className="w-7 h-7 flex items-center justify-center rounded hover:bg-[#f0ebe0] transition-colors">
-            <Icon size={12} className="text-[#7d7870]" />
-          </button>
-        ))}
-        <span className="w-px h-4 bg-[#e8e4db] mx-1" />
-        <button className="w-7 h-7 flex items-center justify-center rounded hover:bg-[#f0ebe0] transition-colors">
-          <MoreHorizontal size={12} className="text-[#7d7870]" />
-        </button>
-      </div>
-      {/* Editor */}
-      <div className="px-6 py-4 min-h-[140px]">
-        <textarea
-          value={notes}
-          onChange={e => setNotes(e.target.value)}
-          placeholder="Add note about this tenant here..."
-          className="w-full min-h-[120px] bg-transparent resize-none outline-none text-[14px] text-[#1a1814] placeholder:text-[#c5bfb5]"
-        />
-      </div>
-      <div className="px-6 py-1.5 border-t border-[#f0ebe0] flex items-center justify-between">
-        <span className="text-[11px] text-[#c5bfb5]">p</span>
-        <span className="text-[11px] text-[#c5bfb5]">Build with TinyMCE</span>
+          <div className="flex items-center gap-1 px-2 py-1 rounded-[6px] border border-[#e8e4db] bg-white text-[11px] text-[#7d7870] cursor-pointer hover:bg-[#f0ebe0] transition-colors">
+            Inter, sans-serif <ChevronDown size={9} />
+          </div>
+          <div className="flex items-center gap-1 px-2 py-1 rounded-[6px] border border-[#e8e4db] bg-white text-[11px] text-[#7d7870] cursor-pointer hover:bg-[#f0ebe0] transition-colors">
+            12pt <ChevronDown size={9} />
+          </div>
+          <div className="w-px h-4 bg-[#e8e4db] mx-1" />
+          <button className="p-1.5 rounded-[6px] hover:bg-[#f0ebe0] transition-colors"><Bold size={13} className="text-[#7d7870]" /></button>
+          <button className="p-1.5 rounded-[6px] hover:bg-[#f0ebe0] transition-colors"><Italic size={13} className="text-[#7d7870]" /></button>
+          <button className="p-1.5 rounded-[6px] hover:bg-[#f0ebe0] transition-colors"><AlignLeft size={13} className="text-[#7d7870]" /></button>
+          <button className="p-1.5 rounded-[6px] hover:bg-[#f0ebe0] transition-colors"><List size={13} className="text-[#7d7870]" /></button>
+          <button className="p-1.5 rounded-[6px] hover:bg-[#f0ebe0] transition-colors"><MoreVertical size={13} className="text-[#7d7870]" /></button>
+        </div>
+
+        {/* Editable area */}
+        <div className="bg-white">
+          <textarea
+            value={notes}
+            onChange={e => setNotes(e.target.value)}
+            rows={7}
+            className="w-full p-4 text-[13px] text-[#4a453d] leading-[1.8] outline-none resize-none bg-transparent"
+            placeholder="Add a description for this tenant..."
+          />
+        </div>
       </div>
     </div>
   );
